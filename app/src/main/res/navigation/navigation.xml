@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/homeTestFragment"
         android:name="com.flashcards.HomeTestFragment"
-        android:label="fragment_home_test"
-        tools:layout="@layout/fragment_home_test" >
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home_test">
         <action
             android:id="@+id/action_homeTestFragment_to_destinationTestFragment"
             app:destination="@id/destinationTestFragment" />
@@ -17,6 +17,6 @@
     <fragment
         android:id="@+id/destinationTestFragment"
         android:name="com.flashcards.DestinationTestFragment"
-        android:label="fragment_destination_test"
+        android:label="@string/destination"
         tools:layout="@layout/fragment_destination_test" />
 </navigation>

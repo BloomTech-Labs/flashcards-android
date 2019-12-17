@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupActionBarWithNavController(this, findNavController(R.id.nav_host_fragment))
     }
 
-    //Makes it so that the back arrow actually goes back now.
+    // Delegates the up button pressed to the nav controller to make the back button actually work now.
     override fun onSupportNavigateUp(): Boolean {
         return findNavController(R.id.nav_host_fragment).navigateUp()
     }
