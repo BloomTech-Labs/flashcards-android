@@ -18,5 +18,11 @@
         android:id="@+id/destinationTestFragment"
         android:name="com.flashcards.DestinationTestFragment"
         android:label="@string/destination"
-        tools:layout="@layout/fragment_destination_test" />
+        tools:layout="@layout/fragment_destination_test" >
+        <action
+            android:id="@+id/action_destinationTestFragment_to_homeTestFragment"
+            app:destination="@id/homeTestFragment"
+            app:popUpTo="@+id/homeTestFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
