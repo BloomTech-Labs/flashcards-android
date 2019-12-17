@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homeTestFragment">
+
+    <fragment
+        android:id="@+id/homeTestFragment"
+        android:name="com.flashcards.HomeTestFragment"
+        android:label="fragment_home_test"
+        tools:layout="@layout/fragment_home_test" />
+    <fragment
+        android:id="@+id/destinationTestFragment"
+        android:name="com.flashcards.DestinationTestFragment"
+        android:label="fragment_destination_test"
+        tools:layout="@layout/fragment_destination_test" />
+</navigation>
