@@ -92,6 +92,9 @@ class HomeTestFragment : Fragment() {
         FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener{task ->
             if(task.isSuccessful){
                 println("Google Login Success")
+                val user = auth.currentUser
+                val message = " ${user?.displayName} + ${user?.email} + ${user?.photoUrl}"
+                Log.i("INFORMATION", message)
             }
         }
     }
