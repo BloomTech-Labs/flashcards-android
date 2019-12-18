@@ -22,9 +22,11 @@ class HomeTestFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btn_destination.setOnClickListener{
-            findNavController().navigate(R.id.action_homeTestFragment_to_destinationTestFragment)
+            if((!et_first.text.toString().isNullOrEmpty()) && (!et_second.text.toString().isNullOrEmpty())){
+                val directions = HomeTestFragmentDirections.actionHomeTestFragmentToDestinationTestFragment(et_first.text.toString(), et_second.text.toString().toInt())
+                findNavController().navigate(directions)
+            }
         }
-
     }
 
 }
