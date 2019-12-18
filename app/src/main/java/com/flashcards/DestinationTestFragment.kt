@@ -26,6 +26,10 @@ class DestinationTestFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        tv_first.text = args.valueOne
+        tv_second.text = args.valueTwo.toString()
+
         btn_return.setOnClickListener {
             findNavController().navigate(R.id.action_destinationTestFragment_to_homeTestFragment)
         }
