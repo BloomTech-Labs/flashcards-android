@@ -27,6 +27,11 @@ android {
         }
     }
 
+    // Needed kotlinOptions to use navArgs
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     dataBinding {
         enabled = true
     }
