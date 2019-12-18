@@ -50,8 +50,11 @@ class HomeTestFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
 
         btn_google_login.setOnClickListener {
-
             signIn()
+        }
+
+        btn_google_signout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
         }
 
         btn_destination.setOnClickListener{
