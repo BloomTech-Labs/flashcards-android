@@ -11,15 +11,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 import com.google.android.gms.auth.GoogleAuthException
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.fragment_home_test.*
+import java.util.*
 
 class HomeTestFragment : Fragment() {
 
@@ -28,6 +35,8 @@ class HomeTestFragment : Fragment() {
     val RC_SIGN_IN = 1000
 
     private lateinit var auth: FirebaseAuth
+
+    var callbackManager = CallbackManager.Factory.create()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,6 +66,10 @@ class HomeTestFragment : Fragment() {
             FirebaseAuth.getInstance().signOut()
         }
 
+        btn_facebook_login.setOnClickListener {
+            facebookLogin()
+        }
+
         btn_destination.setOnClickListener{
             if((!et_first.text.toString().isNullOrEmpty()) && (!et_second.text.toString().isNullOrEmpty())){
                 val directions = HomeTestFragmentDirections.actionHomeTestFragmentToDestinationTestFragment(et_first.text.toString(), et_second.text.toString().toInt())
@@ -72,6 +85,8 @@ class HomeTestFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
+        callbackManager.onActivityResult(requestCode, resultCode, data)
 
         if(requestCode == RC_SIGN_IN){
 
@@ -104,4 +119,33 @@ class HomeTestFragment : Fragment() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
     }
+
+    fun facebookLogin(){
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile","email"))
+        LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<LoginResult>{
+            override fun onSuccess(result: LoginResult?) {
+                firebaseAuthWithFacebook(result)
+            }
+
+            override fun onCancel() {
+//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onError(error: FacebookException?) {
+//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+        })
+    }
+
+    fun firebaseAuthWithFacebook(result: LoginResult?){
+        var credential = FacebookAuthProvider.getCredential(result!!.accessToken.token)
+        FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener{task ->
+            if(task.isSuccessful){
+                println("Facebook Login Success")
+            }
+        }
+    }
+
+
 }
