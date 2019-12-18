@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.fragment_destination_test.*
 
 class DestinationTestFragment : Fragment() {
 
+    // Holds the data from the previous fragment
     private val args: DestinationTestFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -27,6 +28,7 @@ class DestinationTestFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Sets up the text views to use the data from the previous fragment.
         tv_first.text = args.valueOne
         tv_second.text = args.valueTwo.toString()
 
