@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homeTestFragment">
+
+    <fragment
+        android:id="@+id/homeTestFragment"
+        android:name="com.lambda.mnemecards.HomeTestFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home_test">
+        <action
+            android:id="@+id/action_homeTestFragment_to_destinationTestFragment"
+            app:destination="@id/destinationTestFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/destinationTestFragment"
+        android:name="com.lambda.mnemecards.DestinationTestFragment"
+        android:label="@string/destination"
+        tools:layout="@layout/fragment_destination_test" >
+        <action
+            android:id="@+id/action_destinationTestFragment_to_homeTestFragment"
+            app:destination="@id/homeTestFragment"
+            app:popUpTo="@+id/homeTestFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="valueOne"
+            app:argType="string" />
+        <argument
+            android:name="valueTwo"
+            app:argType="integer" />
+    </fragment>
+</navigation>

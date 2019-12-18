@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Mneme Cards</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home Screen</string>
+    <string name="destination">Destination Screen</string>
+    <string name="testing">Testing123</string>
+</resources>
