@@ -26,6 +26,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_home_test.*
 import java.util.*
 
@@ -34,6 +35,9 @@ class HomeTestFragment : Fragment() {
     lateinit var fragmentContext: Context
     var googleSignInClient: GoogleSignInClient ?= null
     val RC_SIGN_IN = 1000
+
+    // For accessing Firestore
+    private var db = FirebaseFirestore.getInstance()
 
     private lateinit var auth: FirebaseAuth
 
@@ -50,6 +54,46 @@ class HomeTestFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+//        val docRef = db.collection("DemoDeck").document("I2r2gejFYwCQfqafWlVy")
+//        docRef.get()
+//            .addOnSuccessListener { document ->
+//                if (document != null) {
+//                    Log.d("Get Deck", "DocumentSnapshot data: ${document.data}")
+//                } else {
+//                    Log.d("Get Deck", "No such document")
+//                }
+//            }
+//            .addOnFailureListener { exception ->
+//                Log.d("Get Deck", "get failed with ", exception)
+//            }
+
+        //This code is to get decks/
+        db.collection("DemoDeck").document("I2r2gejFYwCQfqafWlVy").collection("Biology")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    Log.d("Get Deck", "${document.id} => ${document.data}")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d(TAG, "Error getting documents: ", exception)
+            }
+
+            .addOnFailureListener { exception ->
+                Log.d(TAG, "Error getting documents: ", exception)
+            }
+
+//        db.collection("DemoDeck").document().collection("Biology").get()
+//            .addOnSuccessListener { document ->
+//                if (document != null) {
+//                    Log.d("Get Deck", "DocumentSnapshot data: ${document.documents}")
+//                } else {
+//                    Log.d("Get Deck", "No such document")
+//                }
+//            }
+//            .addOnFailureListener { exception ->
+//                Log.d("Get Deck", "get failed with ", exception)
+//            }
         var gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
