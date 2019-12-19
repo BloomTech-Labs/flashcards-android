@@ -6,4 +6,8 @@
     <string name="home">Home Screen</string>
     <string name="destination">Destination Screen</string>
     <string name="testing">Testing123</string>
+
+    <string name="facebook_app_id">599129000838159</string>
+    <string name="fb_login_protocol_scheme">fb599129000838159</string>
+
 </resources>
