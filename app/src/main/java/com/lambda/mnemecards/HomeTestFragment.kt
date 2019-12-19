@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -70,6 +71,22 @@ class HomeTestFragment : Fragment() {
             facebookLogin()
         }
 
+        btn_register.setOnClickListener {
+            auth.createUserWithEmailAndPassword(et_email.text.toString(), et_password.text.toString())
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d(TAG, "createUserWithEmail:success")
+                        val user = auth.currentUser
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                        Toast.makeText(fragmentContext, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show()
+                    }
+                }
+        }
+
         btn_destination.setOnClickListener{
             if((!et_first.text.toString().isNullOrEmpty()) && (!et_second.text.toString().isNullOrEmpty())){
                 val directions = HomeTestFragmentDirections.actionHomeTestFragmentToDestinationTestFragment(et_first.text.toString(), et_second.text.toString().toInt())
@@ -79,9 +96,12 @@ class HomeTestFragment : Fragment() {
     }
 
     private fun signIn() {
+
         val signInIntent = googleSignInClient?.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
+
     }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -109,7 +129,7 @@ class HomeTestFragment : Fragment() {
                 println("Google Login Success")
                 val user = auth.currentUser
                 val message = " ${user?.displayName} + ${user?.email} + ${user?.photoUrl}"
-                Log.i("INFORMATION", message)
+                Log.i("INFORMATION GOOGLE", message)
             }
         }
     }
@@ -129,10 +149,12 @@ class HomeTestFragment : Fragment() {
 
             override fun onCancel() {
 //                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                Log.i("INFORMATION FACEBOOK", "CANCEL")
             }
 
             override fun onError(error: FacebookException?) {
 //                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                Log.i("INFORMATION FACEBOOK", "ERROR")
             }
 
         })
@@ -143,6 +165,9 @@ class HomeTestFragment : Fragment() {
         FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener{task ->
             if(task.isSuccessful){
                 println("Facebook Login Success")
+                val user = auth.currentUser
+                val message = " ${user?.displayName} + ${user?.email} + ${user?.photoUrl}"
+                Log.i("INFORMATION FACEBOOK", message)
             }
         }
     }
