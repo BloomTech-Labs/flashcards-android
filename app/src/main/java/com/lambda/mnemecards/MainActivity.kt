@@ -24,7 +24,8 @@ class MainActivity : AppCompatActivity() {
 
         Toast.makeText(this, "Firebase Connection Test", Toast.LENGTH_SHORT).show()
 
-
+        // Gets rid of the shadow under the action bar
+        supportActionBar?.elevation = 0F
 
 
         //This makes it so that the when moving between fragments, there's a back button now.
