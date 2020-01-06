@@ -67,7 +67,7 @@ class HomeTestFragment : Fragment() {
 //                Log.d("Get Deck", "get failed with ", exception)
 //            }
 
-        //This code is to get decks/
+        //This code is to get cards
         db.collection("DemoDeck").document("I2r2gejFYwCQfqafWlVy").collection("Biology")
             .get()
             .addOnSuccessListener { result ->
@@ -76,11 +76,26 @@ class HomeTestFragment : Fragment() {
                 }
             }
             .addOnFailureListener { exception ->
-                Log.d(TAG, "Error getting documents: ", exception)
+                Log.d("Get Deck", "Error getting documents: ", exception)
             }
 
             .addOnFailureListener { exception ->
-                Log.d(TAG, "Error getting documents: ", exception)
+                Log.d("Get Deck", "Error getting documents: ", exception)
+            }
+
+        //This code is to get decks
+        db.collection("DemoDeck").document("I2r2gejFYwCQfqafWlVy")
+            .get()
+            .addOnSuccessListener { result ->
+                    Log.d("Get Deck", "${result.id} => ${result.data}")
+
+            }
+            .addOnFailureListener { exception ->
+                Log.d("Get Deck", "Error getting documents: ", exception)
+            }
+
+            .addOnFailureListener { exception ->
+                Log.d("Get Deck", "Error getting documents: ", exception)
             }
 
 //        db.collection("DemoDeck").document().collection("Biology").get()
