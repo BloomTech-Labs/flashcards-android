@@ -10,5 +10,7 @@
     <string name="mNeme">mNeme</string>
     <string name="facebook_app_id">599129000838159</string>
     <string name="fb_login_protocol_scheme">fb599129000838159</string>
+    <string name="welcome_to_mneme_flashcards">Welcome to mNeme Flashcards!</string>
+    <string name="an_effective_fun_and_easy_to_use_flashcards_app">An effective, fun, and easy to use\nflashcards app</string>
 
 </resources>
