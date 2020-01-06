@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/homeTestFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
-        android:id="@+id/homeTestFragment"
-        android:name="com.lambda.mnemecards.HomeTestFragment"
-        android:label="@string/home"
-        tools:layout="@layout/fragment_home_test">
+        android:id="@+id/loginFragment"
+        android:name="com.lambda.mnemecards.LoginFragment"
+        android:label="@string/mNeme"
+        tools:layout="@layout/fragment_login">
         <action
-            android:id="@+id/action_homeTestFragment_to_destinationTestFragment"
+            android:id="@+id/action_loginFragment_to_destinationTestFragment"
             app:destination="@id/destinationTestFragment" />
     </fragment>
     <fragment
@@ -21,8 +21,8 @@
         tools:layout="@layout/fragment_destination_test" >
         <action
             android:id="@+id/action_destinationTestFragment_to_homeTestFragment"
-            app:destination="@id/homeTestFragment"
-            app:popUpTo="@+id/homeTestFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@+id/loginFragment"
             app:popUpToInclusive="true" />
         <argument
             android:name="valueOne"

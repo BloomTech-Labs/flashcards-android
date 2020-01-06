@@ -17,7 +17,6 @@ import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
-import com.google.android.gms.auth.GoogleAuthException
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -27,10 +26,10 @@ import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.fragment_home_test.*
+import kotlinx.android.synthetic.main.fragment_login.*
 import java.util.*
 
-class HomeTestFragment : Fragment() {
+class LoginFragment : Fragment() {
 
     lateinit var fragmentContext: Context
     var googleSignInClient: GoogleSignInClient ?= null
@@ -48,7 +47,7 @@ class HomeTestFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         fragmentContext = container!!.context
-        return inflater.inflate(R.layout.fragment_home_test, container, false)
+        return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -164,7 +163,7 @@ class HomeTestFragment : Fragment() {
 
         btn_destination.setOnClickListener{
             if((!et_first.text.toString().isNullOrEmpty()) && (!et_second.text.toString().isNullOrEmpty())){
-                val directions = HomeTestFragmentDirections.actionHomeTestFragmentToDestinationTestFragment(et_first.text.toString(), et_second.text.toString().toInt())
+                val directions = LoginFragmentDirections.actionLoginFragmentToDestinationTestFragment(et_first.text.toString(), et_second.text.toString().toInt())
                 findNavController().navigate(directions)
             }
         }
@@ -211,7 +210,7 @@ class HomeTestFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
+
         val currentUser = auth.currentUser
     }
 
