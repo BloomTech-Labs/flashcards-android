@@ -56,7 +56,7 @@ class HomeFragment : Fragment() {
         fragmentContext = container!!.context
 
         return inflater.inflate(R.layout.fragment_home, container, false)
-        
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
