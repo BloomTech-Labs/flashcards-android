@@ -23,5 +23,8 @@
     <string name="lifetime">LifeTime</string>
     <string name="studied">Studied</string>
     <string name="mastered">Mastered</string>
+    <string name="_12_cards">12 cards</string>
+    <string name="spanish">Spanish</string>
+    <string name="mastery">Mastery</string>
 
 </resources>
