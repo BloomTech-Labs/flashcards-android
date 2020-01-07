@@ -1,7 +1,7 @@
 package com.lambda.mnemecards
 
 
-import android.content.ContentValues.TAG
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -18,19 +18,19 @@ import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.IdpResponse
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.fragment_login.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import java.util.*
 
-class LoginFragment : Fragment() {
+class HomeFragment : Fragment() {
 
     companion object {
         const val TAG = "MainFragment"
@@ -48,12 +48,24 @@ class LoginFragment : Fragment() {
 
     var callbackManager = CallbackManager.Factory.create()
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        launchSignInFlow()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
+
         fragmentContext = container!!.context
-        return inflater.inflate(R.layout.fragment_login, container, false)
+
+
+
+        return inflater.inflate(R.layout.fragment_home, container, false)
 
 
     }
@@ -61,7 +73,6 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        launchSignInFlow()
 
 //        val docRef = db.collection("DemoDeck").document("I2r2gejFYwCQfqafWlVy")
 //        docRef.get()
@@ -173,7 +184,7 @@ class LoginFragment : Fragment() {
 
         btn_destination.setOnClickListener{
             if((!et_first.text.toString().isNullOrEmpty()) && (!et_second.text.toString().isNullOrEmpty())){
-                val directions = LoginFragmentDirections.actionLoginFragmentToDestinationTestFragment(et_first.text.toString(), et_second.text.toString().toInt())
+                val directions = HomeFragmentDirections.actionHomeFragmentToDestinationTestFragment(et_first.text.toString(), et_second.text.toString().toInt())
                 findNavController().navigate(directions)
             }
         }
@@ -187,24 +198,7 @@ class LoginFragment : Fragment() {
     }
 
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
 
-        callbackManager.onActivityResult(requestCode, resultCode, data)
-
-        if(requestCode == RC_SIGN_IN){
-
-            var task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try {
-                // Google Sign In was successful, authenticate with Firebase
-                val account = task.getResult(ApiException::class.java)
-                firebaseAuthWithGoogle(account!!)
-            } catch (e: ApiException) {
-                // Google Sign In failed, update UI appropriately
-                Log.w(TAG, "Google sign in failed", e)
-            }
-        }
-    }
 
     fun firebaseAuthWithGoogle(acct: GoogleSignInAccount){
         var credential = GoogleAuthProvider.getCredential(acct?.idToken, null)
@@ -257,11 +251,13 @@ class LoginFragment : Fragment() {
     }
 
     private fun launchSignInFlow() {
-        // Give users the option to sign in / register with their email or Google account.
+        // Give users the option to sign in / register with their email, Google account, or Facebook account.
         // If users choose to register with their email,
         // they will need to create a password as well.
         val providers = arrayListOf(
-            AuthUI.IdpConfig.EmailBuilder().build(), AuthUI.IdpConfig.GoogleBuilder().build(), AuthUI.IdpConfig.FacebookBuilder().build()
+            AuthUI.IdpConfig.EmailBuilder().build(),
+            AuthUI.IdpConfig.GoogleBuilder().build(),
+            AuthUI.IdpConfig.FacebookBuilder().build()
 
             // This is where you can provide more ways for users to register and
             // sign in.
@@ -274,9 +270,26 @@ class LoginFragment : Fragment() {
             AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
+                .setLogo(R.drawable.fui_ic_facebook_white_22dp)
                 .build(),
-            LoginFragment.SIGN_IN_RESULT_CODE
+            HomeFragment.SIGN_IN_RESULT_CODE
         )
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == SIGN_IN_RESULT_CODE) {
+            val response = IdpResponse.fromResultIntent(data)
+            if (resultCode == Activity.RESULT_OK) {
+                // User successfully signed in
+                Log.i(TAG, "Successfully signed in user ${FirebaseAuth.getInstance().currentUser?.displayName}!")
+            } else {
+                // Sign in failed. If response is null the user canceled the
+                // sign-in flow using the back button. Otherwise check
+                // response.getError().getErrorCode() and handle the error.
+                Log.i(TAG, "Sign in unsuccessful ${response?.error?.errorCode}")
+            }
+        }
     }
 
 }
