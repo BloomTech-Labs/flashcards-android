@@ -72,6 +72,8 @@ class HomeFragment : Fragment() {
 
         fragmentContext = container!!.context
 
+//        binding.rvDecks.adapter =
+
         setHasOptionsMenu(true)
         return binding.root
     }
