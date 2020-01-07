@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
-            type="com.lambda.mnemecards.overview.OverviewViewModel" />
+            type="com.lambda.mnemecards.overview.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".HomeFragment">
+        tools:context=".overview.HomeFragment">
 
         <FrameLayout
             android:id="@+id/fl_introduction"
@@ -129,6 +128,17 @@
 
         </FrameLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_decks"
+        app:layout_constraintTop_toBottomOf="@id/fl_introduction"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent=".5"
+        android:clipToPadding="false"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

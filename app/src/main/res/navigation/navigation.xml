@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.lambda.mnemecards.HomeFragment"
+        android:name="com.lambda.mnemecards.overview.HomeFragment"
         android:label="@string/mNeme"
         tools:layout="@layout/fragment_home">
         <action

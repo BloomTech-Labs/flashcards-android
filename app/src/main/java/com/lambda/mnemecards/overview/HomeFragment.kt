@@ -1,4 +1,4 @@
-package com.lambda.mnemecards
+package com.lambda.mnemecards.overview
 
 
 import android.app.Activity
@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.get
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -27,7 +27,8 @@ import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.fragment_home.*
+import com.lambda.mnemecards.R
+import com.lambda.mnemecards.databinding.FragmentHomeBinding
 import java.util.*
 
 class HomeFragment : Fragment() {
@@ -48,15 +49,31 @@ class HomeFragment : Fragment() {
 
     var callbackManager = CallbackManager.Factory.create()
 
+    private val viewModel: HomeViewModel by lazy {
+        ViewModelProviders.of(this).get(HomeViewModel::class.java)
+    }
+
+    /**
+     * Inflates the layout with Data Binding, sets its lifecycle owner to the OverviewFragment
+     * to enable Data Binding to observe LiveData, and sets up the RecyclerView with an adapter.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
+        val binding = FragmentHomeBinding.inflate(inflater)
+
+        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
+        binding.setLifecycleOwner(this)
+
+        // Giving the binding access to the OverviewViewModel
+        binding.viewModel = viewModel
+
         fragmentContext = container!!.context
 
-        return inflater.inflate(R.layout.fragment_home, container, false)
-
+        setHasOptionsMenu(true)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -261,7 +278,7 @@ class HomeFragment : Fragment() {
                 .setAvailableProviders(providers)
                 .setLogo(R.drawable.fui_ic_facebook_white_22dp)
                 .build(),
-            HomeFragment.SIGN_IN_RESULT_CODE
+            SIGN_IN_RESULT_CODE
         )
     }
 
