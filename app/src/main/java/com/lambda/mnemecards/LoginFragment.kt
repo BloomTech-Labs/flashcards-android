@@ -17,6 +17,7 @@ import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
+import com.firebase.ui.auth.AuthUI
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -30,6 +31,11 @@ import kotlinx.android.synthetic.main.fragment_login.*
 import java.util.*
 
 class LoginFragment : Fragment() {
+
+    companion object {
+        const val TAG = "MainFragment"
+        const val SIGN_IN_RESULT_CODE = 1001
+    }
 
     lateinit var fragmentContext: Context
     var googleSignInClient: GoogleSignInClient ?= null
@@ -54,6 +60,8 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        launchSignInFlow()
 
 //        val docRef = db.collection("DemoDeck").document("I2r2gejFYwCQfqafWlVy")
 //        docRef.get()
@@ -248,5 +256,27 @@ class LoginFragment : Fragment() {
         }
     }
 
+    private fun launchSignInFlow() {
+        // Give users the option to sign in / register with their email or Google account.
+        // If users choose to register with their email,
+        // they will need to create a password as well.
+        val providers = arrayListOf(
+            AuthUI.IdpConfig.EmailBuilder().build(), AuthUI.IdpConfig.GoogleBuilder().build(), AuthUI.IdpConfig.FacebookBuilder().build()
+
+            // This is where you can provide more ways for users to register and
+            // sign in.
+        )
+
+        // Create and launch sign-in intent.
+        // We listen to the response of this activity with the
+        // SIGN_IN_REQUEST_CODE
+        startActivityForResult(
+            AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(providers)
+                .build(),
+            LoginFragment.SIGN_IN_RESULT_CODE
+        )
+    }
 
 }
