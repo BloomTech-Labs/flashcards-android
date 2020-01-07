@@ -48,32 +48,21 @@ class HomeFragment : Fragment() {
 
     var callbackManager = CallbackManager.Factory.create()
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-        launchSignInFlow()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-
-
         fragmentContext = container!!.context
 
-
-
         return inflater.inflate(R.layout.fragment_home, container, false)
-
-
+        
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        launchSignInFlow()
 //        val docRef = db.collection("DemoDeck").document("I2r2gejFYwCQfqafWlVy")
 //        docRef.get()
 //            .addOnSuccessListener { document ->
@@ -138,56 +127,56 @@ class HomeFragment : Fragment() {
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
 
-        btn_google_login.setOnClickListener {
-            signIn()
-        }
+//        btn_google_login.setOnClickListener {
+//            signIn()
+//        }
+//
+//        btn_google_signout.setOnClickListener {
+//            FirebaseAuth.getInstance().signOut()
+//        }
+//
+//        btn_facebook_login.setOnClickListener {
+//            facebookLogin()
+//        }
+//
+//        btn_register.setOnClickListener {
+//            auth.createUserWithEmailAndPassword(et_email.text.toString(), et_password.text.toString())
+//                .addOnCompleteListener { task ->
+//                    if (task.isSuccessful) {
+//                        // Sign in success, update UI with the signed-in user's information
+//                        Log.d(TAG, "createUserWithEmail:success")
+//                        val user = auth.currentUser
+//                    } else {
+//                        // If sign in fails, display a message to the user.
+//                        Log.w(TAG, "createUserWithEmail:failure", task.exception)
+//                        Toast.makeText(fragmentContext, "Authentication failed.",
+//                            Toast.LENGTH_SHORT).show()
+//                    }
+//                }
+//        }
 
-        btn_google_signout.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-        }
+//        btn_login.setOnClickListener {
+//            auth.signInWithEmailAndPassword(et_email.text.toString(), et_password.text.toString())
+//                .addOnCompleteListener { task ->
+//                    if (task.isSuccessful) {
+//                        // Sign in success, update UI with the signed-in user's information
+//                        Log.d(TAG, "signInWithEmail:success")
+//                        val user = auth.currentUser
+//                    } else {
+//                        // If sign in fails, display a message to the user.
+//                        Log.w(TAG, "signInWithEmail:failure", task.exception)
+//                        Toast.makeText(fragmentContext, "Authentication failed.",
+//                            Toast.LENGTH_SHORT).show()
+//                    }
+//                }
+//        }
 
-        btn_facebook_login.setOnClickListener {
-            facebookLogin()
-        }
-
-        btn_register.setOnClickListener {
-            auth.createUserWithEmailAndPassword(et_email.text.toString(), et_password.text.toString())
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "createUserWithEmail:success")
-                        val user = auth.currentUser
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                        Toast.makeText(fragmentContext, "Authentication failed.",
-                            Toast.LENGTH_SHORT).show()
-                    }
-                }
-        }
-
-        btn_login.setOnClickListener {
-            auth.signInWithEmailAndPassword(et_email.text.toString(), et_password.text.toString())
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "signInWithEmail:success")
-                        val user = auth.currentUser
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w(TAG, "signInWithEmail:failure", task.exception)
-                        Toast.makeText(fragmentContext, "Authentication failed.",
-                            Toast.LENGTH_SHORT).show()
-                    }
-                }
-        }
-
-        btn_destination.setOnClickListener{
-            if((!et_first.text.toString().isNullOrEmpty()) && (!et_second.text.toString().isNullOrEmpty())){
-                val directions = HomeFragmentDirections.actionHomeFragmentToDestinationTestFragment(et_first.text.toString(), et_second.text.toString().toInt())
-                findNavController().navigate(directions)
-            }
-        }
+//        btn_destination.setOnClickListener{
+//            if((!et_first.text.toString().isNullOrEmpty()) && (!et_second.text.toString().isNullOrEmpty())){
+//                val directions = HomeFragmentDirections.actionHomeFragmentToDestinationTestFragment(et_first.text.toString(), et_second.text.toString().toInt())
+//                findNavController().navigate(directions)
+//            }
+//        }
     }
 
     private fun signIn() {
