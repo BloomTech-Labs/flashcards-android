@@ -72,7 +72,9 @@ class HomeFragment : Fragment() {
 
         fragmentContext = container!!.context
 
-//        binding.rvDecks.adapter =
+        binding.rvDecks.adapter = DeckAdapter(DeckAdapter.OnClickListener{
+
+        })
 
         setHasOptionsMenu(true)
         return binding.root
