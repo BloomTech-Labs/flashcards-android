@@ -26,5 +26,8 @@
     <string name="_12_cards">12 cards</string>
     <string name="spanish">Spanish</string>
     <string name="mastery">Mastery</string>
+    <string name="create">Create</string>
+    <string name="recent_decks">Recent Decks</string>
+    <string name="all_decks">All Decks</string>
 
 </resources>
