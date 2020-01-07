@@ -1,124 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
-        android:id="@+id/fl_introduction"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <data>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <variable
+            name="viewModel"
+            type="com.lambda.mnemecards.overview.OverviewViewModel" />
+    </data>
 
-            <TextView
-                android:id="@+id/tv_today"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="26dp"
-                android:layout_marginTop="18dp"
-                android:fontFamily="@font/roboto_condensed_bold"
-                android:text="@string/today"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/tv_week"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".HomeFragment">
 
-            <TextView
-                android:id="@+id/tv_week"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/this_week"
-                android:textColor="#FFFFFF"
-                app:layout_constraintEnd_toStartOf="@+id/tv_life_time"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/tv_today"
-                app:layout_constraintTop_toTopOf="@id/tv_today"
-                tools:layout_editor_absoluteY="41dp" />
+        <FrameLayout
+            android:id="@+id/fl_introduction"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/tv_life_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lifetime"
-                android:textColor="#FFFFFF"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/tv_week"
-                app:layout_constraintTop_toTopOf="@id/tv_today"
-                tools:layout_editor_absoluteY="41dp" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/tv_studied_amount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
-                android:text="0"
-                android:textColor="#FFFFFF"
-                android:textSize="64sp"
-                app:layout_constraintEnd_toStartOf="@+id/tv_mastered_amount"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteY="86dp" />
+                <TextView
+                    android:id="@+id/tv_today"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="26dp"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/roboto_condensed_bold"
+                    android:text="@string/today"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_week"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_mastered_amount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="#FFFFFF"
-                android:textSize="64sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/tv_studied_amount"
-                app:layout_constraintTop_toTopOf="@id/tv_studied_amount"
-                tools:layout_editor_absoluteY="86dp" />
+                <TextView
+                    android:id="@+id/tv_week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/this_week"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_life_time"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/tv_today"
+                    app:layout_constraintTop_toTopOf="@id/tv_today"
+                    tools:layout_editor_absoluteY="41dp" />
 
-            <TextView
-                android:id="@+id/tv_studied"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/studied"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="40dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tv_mastered"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_studied_amount" />
+                <TextView
+                    android:id="@+id/tv_life_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lifetime"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/tv_week"
+                    app:layout_constraintTop_toTopOf="@id/tv_today"
+                    tools:layout_editor_absoluteY="41dp" />
 
-            <TextView
-                android:id="@+id/tv_mastered"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/mastered"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="40dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/tv_studied"
-                app:layout_constraintTop_toBottomOf="@id/tv_mastered_amount" />
+                <TextView
+                    android:id="@+id/tv_studied_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:text="0"
+                    android:textColor="#FFFFFF"
+                    android:textSize="64sp"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_mastered_amount"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteY="86dp" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/tv_mastered_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="#FFFFFF"
+                    android:textSize="64sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/tv_studied_amount"
+                    app:layout_constraintTop_toTopOf="@id/tv_studied_amount"
+                    tools:layout_editor_absoluteY="86dp" />
 
-    </FrameLayout>
+                <TextView
+                    android:id="@+id/tv_studied"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="40dp"
+                    android:text="@string/studied"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_mastered"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_studied_amount" />
+
+                <TextView
+                    android:id="@+id/tv_mastered"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="40dp"
+                    android:text="@string/mastered"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/tv_studied"
+                    app:layout_constraintTop_toBottomOf="@id/tv_mastered_amount" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+
 
     <!--    <EditText-->
     <!--        android:id="@+id/et_first"-->
@@ -283,5 +297,3 @@
     <!--        android:layout_width="wrap_content"-->
     <!--        android:layout_height="wrap_content"/>-->
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
