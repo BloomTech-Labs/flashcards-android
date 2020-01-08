@@ -24,6 +24,7 @@ class DeckAdapter(val onClickListener: OnClickListener):
         RecyclerView.ViewHolder(binding.root) {
         fun bind(deck: Deck) {
             binding.deck = deck
+//            binding.tvTitle.text = deck.deckName
             // This is important, because it forces the data binding to execute immediately,
             // which allows the RecyclerView to make the correct view size measurements
             binding.executePendingBindings()

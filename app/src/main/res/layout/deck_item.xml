@@ -49,6 +49,7 @@
                         android:layout_marginTop="16dp"
                         android:textSize="18sp"
                         tools:text="Spanish"
+                        android:text="@{deck.deckName}"
                         android:fontFamily="@font/roboto_condensed_bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>

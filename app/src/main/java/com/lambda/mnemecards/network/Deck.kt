@@ -12,7 +12,7 @@ data class Deck(
     val `data`: List<Data>,
 
     @Json(name = "deckName")
-    val deckName: String,
+    var deckName: String,
 
     val imgSrcUrl: String?
 ): Parcelable

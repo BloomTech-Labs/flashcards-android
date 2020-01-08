@@ -29,7 +29,11 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import com.lambda.mnemecards.R
 import com.lambda.mnemecards.databinding.FragmentHomeBinding
+import com.lambda.mnemecards.network.DeckApi
+import retrofit2.Call
+import retrofit2.Response
 import java.util.*
+import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment() {
 

@@ -4,11 +4,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.lambda.mnemecards.network.Card
-import com.lambda.mnemecards.network.Deck
-import com.lambda.mnemecards.network.DeckApi
-import com.lambda.mnemecards.network.DeckApiService
+import com.lambda.mnemecards.network.*
 import kotlinx.coroutines.*
+import retrofit2.Call
+import retrofit2.Callback
 import java.lang.Exception
 
 class HomeViewModel: ViewModel(){
@@ -21,6 +20,8 @@ class HomeViewModel: ViewModel(){
     val decks: LiveData<Deck>
         get() = _decks
 
+    private var _deckNames = MutableLiveData<List<String>>()
+
     // Create a Coroutine scope using a job to be able to cancel when needed
     private var viewModelJob = Job()
 
@@ -28,7 +29,30 @@ class HomeViewModel: ViewModel(){
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init {
-        getDecks()
+        getDeckNames()
+//        getDecks()
+    }
+
+    private fun getDeckNames(){
+
+        coroutineScope.launch {
+            var getDecksDeffered = DeckApi.retrofitService.getDemoDecks(
+                "I2r2gejFYwCQfqafWlVy"
+            )
+            try{
+
+                val deckResult = getDecksDeffered.await()
+
+                _deckNames.value = deckResult
+
+                Log.i("HomeViewModel TRY", "${_deckNames.value}")
+
+
+            }catch (e: Exception){
+                Log.i("HomeViewModel CATCH", "${e.message}")
+            }
+        }
+
     }
 
     private fun getDecks(){
@@ -54,11 +78,12 @@ class HomeViewModel: ViewModel(){
 
                 _decks.value = listResult
 
-                Log.i("HomeViewModel", "${_decks.value}")
+                Log.i("HomeViewModel TRY", "${_decks.value}")
+                Log.i("HomeViewModel TRY", "${_decks.value!!.deckName}")
 
 
             }catch (e: Exception){
-                Log.i("HomeViewModel", "${e.message}")
+                Log.i("HomeViewModel CATCH", "${e.message}")
             }
         }
 
