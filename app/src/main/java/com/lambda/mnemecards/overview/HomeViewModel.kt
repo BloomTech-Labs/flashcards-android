@@ -25,6 +25,7 @@ class HomeViewModel: ViewModel(){
         val cards = listOf<Card>(Card("1","front","back"), Card("2","frontt","backk"))
         val listResult = listOf<Deck>(Deck("Name", cards, "testing"),Deck("Name", cards, "testing"),Deck("Name", cards, "testing"))
 
+
         _decks.value = listResult
     }
 }

@@ -57,7 +57,7 @@
                         android:id="@+id/tv_card_count"
                         app:layout_constraintStart_toStartOf="@id/tv_title"
                         app:layout_constraintTop_toBottomOf="@id/tv_title"
-                        android:text="@string/_12_cards"
+                        android:text="@{Integer.toString(deck.cards.size()) + ` Cards`}"
                         android:textSize="12sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
