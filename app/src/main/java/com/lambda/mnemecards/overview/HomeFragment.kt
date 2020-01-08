@@ -98,20 +98,20 @@ class HomeFragment : Fragment() {
 //            }
 
         //This code is to get cards
-        db.collection("DemoDeck").document("I2r2gejFYwCQfqafWlVy").collection("Biology")
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    Log.d("Get Deck", "${document.id} => ${document.data}")
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.d("Get Deck", "Error getting documents: ", exception)
-            }
-
-            .addOnFailureListener { exception ->
-                Log.d("Get Deck", "Error getting documents: ", exception)
-            }
+//        db.collection("DemoDeck").document("I2r2gejFYwCQfqafWlVy").collection("Biology")
+//            .get()
+//            .addOnSuccessListener { result ->
+//                for (document in result) {
+//                    Log.d("Get Deck", "${document.id} => ${document.data}")
+//                }
+//            }
+//            .addOnFailureListener { exception ->
+//                Log.d("Get Deck", "Error getting documents: ", exception)
+//            }
+//
+//            .addOnFailureListener { exception ->
+//                Log.d("Get Deck", "Error getting documents: ", exception)
+//            }
 
         //This code is to get decks
         db.collection("DemoDeck").document("I2r2gejFYwCQfqafWlVy")
