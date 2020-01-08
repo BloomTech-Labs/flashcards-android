@@ -40,7 +40,7 @@ class DeckAdapter(val onClickListener: OnClickListener):
         }
 
         override fun areContentsTheSame(oldItem: Deck, newItem: Deck): Boolean {
-            return oldItem.name == newItem.name
+            return oldItem.deckName == newItem.deckName
         }
     }
 
