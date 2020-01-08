@@ -45,9 +45,13 @@ class HomeViewModel: ViewModel(){
 
                 _deckNames.value = deckResult
 
-                Log.i("HomeViewModel TRY", "${_deckNames.value}")
+                Log.i("HomeViewModel TRY", "${_deckNames.value!!.get(0)}")
 
-
+                coroutineScope.launch {
+                    for(deckName in _deckNames.value!!){
+                        getDecks(deckName)
+                    }
+                }
             }catch (e: Exception){
                 Log.i("HomeViewModel CATCH", "${e.message}")
             }
@@ -55,7 +59,7 @@ class HomeViewModel: ViewModel(){
 
     }
 
-    private fun getDecks(){
+    private fun getDecks(deckName: String){
 
 //        val cards = listOf<Card>(Card("1","front","back"), Card("2","frontt","backk"), Card("3", "fronttt", "backkk"))
 //        val listResult = listOf<Deck>(Deck("Name", cards, "testing"),Deck("Name", cards, "testing"),Deck("Name", cards, "testing"))
@@ -67,7 +71,7 @@ class HomeViewModel: ViewModel(){
 
             var getCardsDeffered = DeckApi.retrofitService.getDemoCards(
                 "I2r2gejFYwCQfqafWlVy",
-                "Biology")
+                deckName)
 
 //            api/demo/I2r2gejFYwCQfqafWlVy/Biology
 //            var getCardsEasyDeffered = DeckApi.retrofitService.getDemoCardsEasy()
