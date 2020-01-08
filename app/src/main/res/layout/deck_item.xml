@@ -43,7 +43,7 @@
 
                     <TextView
                         android:id="@+id/tv_title"
-                        android:text="@string/spanish"
+                        android:text="@{deck.name}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         android:layout_marginStart="16dp"
