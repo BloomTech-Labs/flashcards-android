@@ -21,7 +21,7 @@
             android:layout_height="0dp"
             android:background="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.3"
+            app:layout_constraintHeight_percent="0.2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -34,7 +34,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="26dp"
-                    android:layout_marginTop="18dp"
                     android:fontFamily="@font/roboto_condensed_bold"
                     android:text="@string/today"
                     android:textColor="#FFFFFF"
@@ -72,14 +71,13 @@
                     android:id="@+id/tv_studied_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="60dp"
                     android:text="0"
                     android:textColor="#FFFFFF"
                     android:textSize="64sp"
                     app:layout_constraintEnd_toStartOf="@+id/tv_mastered_amount"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_today"
                     tools:layout_editor_absoluteY="86dp" />
 
                 <TextView
@@ -99,8 +97,8 @@
                     android:id="@+id/tv_studied"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:layout_marginBottom="40dp"
+                    android:layout_marginTop="16dp"
                     android:text="@string/studied"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
@@ -114,12 +112,12 @@
                     android:id="@+id/tv_mastered"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     android:layout_marginBottom="40dp"
                     android:text="@string/mastered"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_studied"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/tv_studied"
@@ -131,28 +129,28 @@
 
         <TextView
             android:id="@+id/tv_recent_decks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_condensed_bold"
             android:text="@string/recent_decks"
+            android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@id/rv_decks"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fl_introduction"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="16dp"
-            android:textSize="18sp"
-            android:fontFamily="@font/roboto_condensed_bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintTop_toBottomOf="@id/fl_introduction" />
 
         <TextView
             android:id="@+id/tv_all_decks"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fl_introduction"
-            app:layout_constraintBottom_toTopOf="@id/rv_decks"
-            android:text="@string/all_decks"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="18dp"
-            android:textSize="18sp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="18dp"
+            android:text="@string/all_decks"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@id/rv_decks"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fl_introduction" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_decks"
@@ -162,7 +160,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".5"
+            app:layout_constraintHeight_percent=".65"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fl_introduction"
             app:listData="@{viewModel.decks}" />
@@ -170,11 +168,13 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/create"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
+            android:text="@string/create"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_decks"
             app:layout_constraintWidth_percent=".8" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

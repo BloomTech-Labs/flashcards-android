@@ -49,6 +49,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:textSize="18sp"
+                        tools:text="Spanish"
                         android:fontFamily="@font/roboto_condensed_bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -59,6 +60,7 @@
                         app:layout_constraintTop_toBottomOf="@id/tv_title"
                         android:text="@{Integer.toString(deck.cards.size()) + ` Cards`}"
                         android:textSize="12sp"
+                        tools:text="10 cards"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
@@ -91,7 +93,7 @@
                         app:layout_constraintTop_toBottomOf="@id/tv_mastery"
                         app:layout_constraintStart_toStartOf="@id/tv_mastery"
                         android:layout_marginTop="16dp"
-                        android:text="8 cards"
+                        android:text="2 cards"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 

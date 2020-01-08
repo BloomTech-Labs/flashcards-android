@@ -22,7 +22,7 @@ class HomeViewModel: ViewModel(){
 
     private fun getDecks(){
 
-        val cards = listOf<Card>(Card("1","front","back"), Card("2","frontt","backk"))
+        val cards = listOf<Card>(Card("1","front","back"), Card("2","frontt","backk"), Card("3", "fronttt", "backkk"))
         val listResult = listOf<Deck>(Deck("Name", cards, "testing"),Deck("Name", cards, "testing"),Deck("Name", cards, "testing"))
 
 
