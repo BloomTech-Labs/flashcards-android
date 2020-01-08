@@ -43,7 +43,6 @@
 
                     <TextView
                         android:id="@+id/tv_title"
-                        android:text="@{deck.name}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         android:layout_marginStart="16dp"
@@ -54,15 +53,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
+<!--
+                        android:text="@{deck.name}"-->
+
                     <TextView
                         android:id="@+id/tv_card_count"
                         app:layout_constraintStart_toStartOf="@id/tv_title"
                         app:layout_constraintTop_toBottomOf="@id/tv_title"
-                        android:text="@{Integer.toString(deck.cards.size()) + ` Cards`}"
                         android:textSize="12sp"
                         tools:text="10 cards"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
+
+<!--
+                        android:text="@{Integer.toString(deck.cards.size()) + ` Cards`}"-->
 
                     <ImageView
                         android:id="@+id/iv_deck_image"

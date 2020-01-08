@@ -117,7 +117,7 @@ class HomeFragment : Fragment() {
         db.collection("DemoDeck").document("I2r2gejFYwCQfqafWlVy")
             .get()
             .addOnSuccessListener { result ->
-                    Log.d("Get Deck", "${result.id} => ${result.data}")
+                    Log.d("Get Deck", "${result.id} => ${result.data} => ${result.reference} => ${result.metadata} =>")
 
             }
             .addOnFailureListener { exception ->

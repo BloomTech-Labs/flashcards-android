@@ -38,12 +38,15 @@ interface DeckApiService {
      * Returns a Coroutine [Deferred] [List] of [Deck] which can be fetched with await() if
      * in a Coroutine scope.
      */
-    @GET("api/demo/:{userid}/{deckid}/{deckname}")
-    fun getDemoCards(@Path("userid") userid: String,
-                     @Path("deckid") deckid:String,
+    // Only need the demo deck id  and deck name
+    @GET("api/demo/{deckid}/{deckname}")
+    fun getDemoCards(@Path("deckid") deckid:String,
                      @Path("deckname") deckname: String):Deferred<Deck>
     // The Coroutine Call Adapter allows us to return a Deferred, a Job with a result
             //Deferred<List<MarsProperty>>
+
+    @GET("api/demo/I2r2gejFYwCQfqafWlVy/Biology")
+    fun getDemoCardsEasy(): Deferred<Deck>
 }
 
 /**
