@@ -3,6 +3,8 @@ package com.lambda.mnemecards.settings
 
 import android.os.Bundle
 import android.view.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -17,7 +19,7 @@ import com.lambda.mnemecards.databinding.FragmentSettingsBinding
 /**
  * A simple [Fragment] subclass.
  */
-class SettingsFragment : Fragment() {
+class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private lateinit var viewModel: SettingsViewModel
     private lateinit var viewModelFactory: SettingsViewModelFactory
@@ -54,6 +56,11 @@ class SettingsFragment : Fragment() {
 //            binding.executePendingBindings()
         })
 
+        val adapter:ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(binding.root.context, R.array.study_methods, android.R.layout.simple_spinner_item )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.settingsSpinnerPreferToStudyBy.adapter = adapter
+        binding.settingsSpinnerPreferToStudyBy.onItemSelectedListener = this
+
         setHasOptionsMenu(true)
 
         // Inflate the layout for this fragment
@@ -79,6 +86,14 @@ class SettingsFragment : Fragment() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        Toast.makeText(parent?.context, parent?.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show()
     }
 
 

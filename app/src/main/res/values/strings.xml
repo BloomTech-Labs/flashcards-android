@@ -37,5 +37,17 @@
     <string name="logout">Logout</string>
     <string name="search">search</string>
     <string name="which_subjects_do_you_use_flashcards_for_most_often">Which subjects do you use flashcards for most often?</string>
+    <string name="mobile">Mobile</string>
+    <string name="do_you_prefer_to_do_most_of_your_studying_on_a_mobile_or_desktop_device">Do you prefer to do most of your studying on a mobile or desktop device?</string>
+    <string name="desktop">Desktop</string>
+    <string name="do_you_prefer_to_study_by">Do you prefer to study by</string>
 
+    <string-array name="study_methods">
+        <item>Listening</item>
+        <item>Doing</item>
+        <item>Reading</item>
+        <item>Writing</item>
+        <item>Other</item>
+    </string-array>
+    
 </resources>
