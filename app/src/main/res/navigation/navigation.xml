@@ -40,8 +40,13 @@
         android:label="@string/mNeme"
         tools:layout="@layout/fragment_settings" >
         <argument
+            android:name="name"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
             android:name="photoUrl"
             app:argType="string"
             app:nullable="true" />
+
     </fragment>
 </navigation>

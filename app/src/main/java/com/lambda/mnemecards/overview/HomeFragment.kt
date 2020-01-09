@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.get
 import androidx.navigation.Navigation
@@ -52,8 +53,11 @@ class HomeFragment : Fragment() {
 
     private var loggedInFlag: Boolean = false
 
+    // Name to be passed to the settings
+    var name: String? = "qwe"
+
     // Photo URL to be passed to the settings to draw the picture.
-    lateinit var photoUrl: String
+    var photoUrl: String? = "asd"
 
     private lateinit var auth: FirebaseAuth
 
@@ -74,14 +78,13 @@ class HomeFragment : Fragment() {
 
         val binding = FragmentHomeBinding.inflate(inflater)
 
-        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
-        binding.setLifecycleOwner(this)
-
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
 
-        fragmentContext = container!!.context
+        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
+        binding.lifecycleOwner = this
 
+        fragmentContext = container!!.context
 
 
         binding.rvDecks.adapter = DeckAdapter(DeckAdapter.OnClickListener {
@@ -318,7 +321,7 @@ class HomeFragment : Fragment() {
                 // For getting the user information
                 val user = FirebaseAuth.getInstance().currentUser
                 user?.let {
-                    val name = user.displayName
+                    name = user?.displayName.toString()
                     val email = user.email
                     photoUrl = user?.photoUrl.toString()
 
@@ -349,7 +352,7 @@ class HomeFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            R.id.settings -> findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSettingsFragment(photoUrl))
+            R.id.settings -> findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSettingsFragment(name, photoUrl))
         }
 
         return super.onOptionsItemSelected(item)

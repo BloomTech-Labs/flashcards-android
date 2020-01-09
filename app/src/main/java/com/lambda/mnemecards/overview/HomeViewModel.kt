@@ -30,6 +30,10 @@ class HomeViewModel : ViewModel() {
     // Since working with live data lists have to copy the initial value, modify it, and then set it again
     val newDeck = mutableListOf<Deck>()
 
+    private var _username = MutableLiveData<String>()
+    val username: LiveData<String>
+        get() = _username
+
     init {
         coroutineScope.launch {
             getDeckNames()
@@ -44,6 +48,10 @@ class HomeViewModel : ViewModel() {
             Log.i("HomeViewModel tre", "${_decks.value?.get(0)?.deckName}")
             Log.i("HomeViewModel tre", "${_decks.value?.get(1)?.deckName}")
         }
+    }
+
+    fun setUsername(username:String){
+        _username.value = username
     }
 
     private suspend fun getDeckNames() {
