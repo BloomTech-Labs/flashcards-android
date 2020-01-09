@@ -52,7 +52,7 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         viewModel.name.observe(this, Observer{newName ->
             binding.tvSettingsName.text =newName.toString()
-            Toast.makeText(binding.root.context, "${binding.tvSettingsName.text} ${newName.toString()}", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(binding.root.context, "${binding.tvSettingsName.text} ${newName.toString()}", Toast.LENGTH_SHORT).show()
 //            binding.executePendingBindings()
         })
 

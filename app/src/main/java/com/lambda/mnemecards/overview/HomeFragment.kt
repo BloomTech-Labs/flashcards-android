@@ -306,7 +306,7 @@ class HomeFragment : Fragment() {
             AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
-                .setLogo(R.drawable.fui_ic_facebook_white_22dp)
+//                .setLogo(R.drawable.fui_ic_facebook_white_22dp)
                 .build(),
             SIGN_IN_RESULT_CODE
         )

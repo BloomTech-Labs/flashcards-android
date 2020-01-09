@@ -43,6 +43,10 @@
     <string name="do_you_prefer_to_study_by">Do you prefer to study by</string>
     <string name="how_frequently_do_you_want_to_study">How frequently do you want to study?</string>
     <string name="how_often_would_you_like_to_receive_notifications">How often would you like to receive notifications?</string>
+    <string name="do_you_prefer_to_study_from_decks_that_are">Do you prefer to study from decks that are</string>
+    <string name="pre_made">Pre-Made</string>
+    <string name="custom">Custom</string>
+    <string name="save">Save</string>
 
     <!--    String arrays used for the spinner drop down menu-->
     <string-array name="study_methods">
