@@ -18,5 +18,16 @@
     <string name="sign_in">Sign In</string>
     <string name="new_to_mneme_create_an_account">New to mNeme? Create an account</string>
     <string name="here">here</string>
+    <string name="today">Today</string>
+    <string name="this_week">This Week</string>
+    <string name="lifetime">LifeTime</string>
+    <string name="studied">Studied</string>
+    <string name="mastered">Mastered</string>
+    <string name="_12_cards">12 cards</string>
+    <string name="spanish">Spanish</string>
+    <string name="mastery">Mastery</string>
+    <string name="create">Create</string>
+    <string name="recent_decks">Recent Decks</string>
+    <string name="all_decks">All Decks</string>
 
 </resources>

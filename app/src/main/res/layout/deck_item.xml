@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="deck"
+            type="com.lambda.mnemecards.network.Deck" />
+    </data>
+
+<!--    Need this relative layout or else the card will shrink-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:paddingBottom="50dp"
+                app:strokeColor="@color/colorPrimary"
+                app:strokeWidth="1dp"
+                app:cardElevation="2dp"
+                app:cardCornerRadius="5dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_title"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:textSize="18sp"
+                        tools:text="Spanish"
+                        android:text="@{deck.deckName}"
+                        android:fontFamily="@font/roboto_condensed_bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+<!--
+                        android:text="@{deck.name}"-->
+
+                    <TextView
+                        android:id="@+id/tv_card_count"
+                        app:layout_constraintStart_toStartOf="@id/tv_title"
+                        app:layout_constraintTop_toBottomOf="@id/tv_title"
+                        android:textSize="12sp"
+                        android:text="@{Integer.toString(deck.data.size()) + ` Cards`}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+
+                    <ImageView
+                        android:id="@+id/iv_deck_image"
+                        android:scaleType="centerCrop"
+                        android:adjustViewBounds="true"
+                        android:layout_width="200dp"
+                        android:layout_height="100dp"
+                        android:src="@color/colorPrimary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp" />
+
+                    <TextView
+                        android:id="@+id/tv_mastery"
+                        android:text="@string/mastery"
+                        android:fontFamily="@font/roboto_condensed_bold"
+                        android:layout_width="wrap_content"
+                        android:textSize="16sp"
+                        app:layout_constraintTop_toBottomOf="@id/tv_card_count"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="36dp"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/tv_mastered_cards_count"
+                        app:layout_constraintTop_toBottomOf="@id/tv_mastery"
+                        app:layout_constraintStart_toStartOf="@id/tv_mastery"
+                        android:layout_marginTop="16dp"
+                        android:text="2 cards"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </RelativeLayout>
+
+
+</layout>
