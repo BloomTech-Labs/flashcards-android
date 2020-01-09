@@ -35,6 +35,12 @@ class HomeViewModel : ViewModel() {
             for (name in _deckNames.value!!) {
                 getDecks(name)
             }
+
+            // Whenever using postValue inside of thread, need a delay or else logs will be null.
+            _decks.postValue(newDeck)
+            delay(1000)
+            Log.i("HomeViewModel tre", "${_decks.value?.get(0)?.deckName}")
+            Log.i("HomeViewModel tre", "${_decks.value?.get(1)?.deckName}")
         }
     }
 
@@ -82,14 +88,14 @@ class HomeViewModel : ViewModel() {
             // Use .postValue() when working inside of a thread
             // Otherwise use .value() when working outside
 
-            _decks.postValue(newDeck)
+
 //            _decks.value?.add(deckResult)
 
             Log.i("HomeViewModel Try", "${deckResult}")
             Log.i("HomeViewModel Try", "${newDeck}")
             Log.i("HomeViewModel Try", "${_decks.value?.get(0)?.deckName}")
 
-            // Need this delay or else the value will be null
+            // Need this delay or else the value will be null when using logs
             delay(1000)
 
             Log.i("HomeViewModel Tryyy", "${_decks.value?.get(0)?.deckName}")
