@@ -20,6 +20,7 @@ class SettingsViewModel(name:String?, photoUrl: String?): AndroidViewModel(Appli
 
     init {
         _name.value = name
+        _photo.value = photoUrl
     }
 
     fun changeTheName(){

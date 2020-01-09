@@ -50,7 +50,6 @@ class SettingsFragment : Fragment() {
 
         viewModel.name.observe(this, Observer{newName ->
             binding.tvSettingsName.text =newName.toString()
-            binding.tvChangeThis.text = newName.toString()
             Toast.makeText(binding.root.context, "${binding.tvSettingsName.text} ${newName.toString()}", Toast.LENGTH_SHORT).show()
 //            binding.executePendingBindings()
         })

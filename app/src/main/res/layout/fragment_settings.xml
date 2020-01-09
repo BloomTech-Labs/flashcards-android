@@ -48,33 +48,15 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginRight="72dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <Button
-                    android:id="@+id/btn_change"
-                    android:onClick="@{() -> viewmodel.changeTheName()}"
-                    android:text="WDADAW"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-<!--
-                    app:imageUrl="@{viewmodel._photo}"-->
+                    android:layout_marginEnd="36dp"
+                    app:imageUrl="@{viewmodel.photo}"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </FrameLayout>
 
-        <TextView
-            android:id="@+id/tv_change_this"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="abc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
