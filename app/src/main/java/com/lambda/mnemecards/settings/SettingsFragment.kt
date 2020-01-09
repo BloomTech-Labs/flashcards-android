@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 
 import com.lambda.mnemecards.R
 
@@ -17,6 +18,10 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        val settingsFragmentArgs by navArgs<SettingsFragmentArgs>()
+
+        settingsFragmentArgs.photoUrl
 
         setHasOptionsMenu(true)
 

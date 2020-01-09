@@ -52,6 +52,9 @@ class HomeFragment : Fragment() {
 
     private var loggedInFlag: Boolean = false
 
+    // Photo URL to be passed to the settings to draw the picture.
+    lateinit var photoUrl: String
+
     private lateinit var auth: FirebaseAuth
 
     var callbackManager = CallbackManager.Factory.create()
@@ -234,6 +237,7 @@ class HomeFragment : Fragment() {
                 println("Google Login Success")
                 val user = auth.currentUser
                 val message = " ${user?.displayName} + ${user?.email} + ${user?.photoUrl}"
+
                 Log.i("INFORMATION GOOGLE", message)
             }
         }
@@ -316,7 +320,7 @@ class HomeFragment : Fragment() {
                 user?.let {
                     val name = user.displayName
                     val email = user.email
-                    val photoUrl = user.photoUrl
+                    photoUrl = user?.photoUrl.toString()
 
                     Toast.makeText(fragmentContext, "Welcome $name", Toast.LENGTH_SHORT).show()
 
@@ -345,7 +349,7 @@ class HomeFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            R.id.settings -> findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
+            R.id.settings -> findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSettingsFragment(photoUrl))
         }
 
         return super.onOptionsItemSelected(item)

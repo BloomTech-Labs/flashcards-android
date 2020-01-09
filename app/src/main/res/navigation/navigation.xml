@@ -38,5 +38,10 @@
         android:id="@+id/settingsFragment"
         android:name="com.lambda.mnemecards.settings.SettingsFragment"
         android:label="@string/mNeme"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <argument
+            android:name="photoUrl"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>
