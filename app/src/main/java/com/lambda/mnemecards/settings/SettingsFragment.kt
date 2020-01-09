@@ -56,10 +56,15 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 //            binding.executePendingBindings()
         })
 
-        val adapter:ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(binding.root.context, R.array.study_methods, android.R.layout.simple_spinner_item )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.settingsSpinnerPreferToStudyBy.adapter = adapter
-        binding.settingsSpinnerPreferToStudyBy.onItemSelectedListener = this
+        val preferToStudyByAdapter:ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(binding.root.context, R.array.study_methods, android.R.layout.simple_spinner_item )
+        preferToStudyByAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinnerSettingsPreferToStudyBy.adapter = preferToStudyByAdapter
+        binding.spinnerSettingsPreferToStudyBy.onItemSelectedListener = this
+
+        val studyFrequencyAdapter:ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(binding.root.context, R.array.study_frequency, android.R.layout.simple_spinner_item)
+        studyFrequencyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinnerStudyFrequency.adapter = studyFrequencyAdapter
+        binding.spinnerStudyFrequency.onItemSelectedListener = this
 
         setHasOptionsMenu(true)
 
@@ -93,7 +98,9 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        Toast.makeText(parent?.context, parent?.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show()
+//        Toast.makeText(parent?.context, parent?.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show()
+
+        // parent?.getItemAtPosition(position).equals seems like an important function I'll be needing in the future
     }
 
 

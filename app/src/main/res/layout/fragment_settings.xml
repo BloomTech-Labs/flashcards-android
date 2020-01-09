@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"/>
 
         <RadioButton
-            android:id="@+id/rb_setting_mobile"
+            android:id="@+id/rb_settings_mobile"
             app:layout_constraintStart_toStartOf="@id/tv_settings_prefer_study"
             app:layout_constraintTop_toBottomOf="@id/tv_settings_prefer_study"
             android:buttonTint="@color/colorPrimary"
@@ -100,18 +100,18 @@
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:id="@+id/tv_setting_mobile"
+            android:id="@+id/tv_settings_mobile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/rb_setting_mobile"
-            app:layout_constraintTop_toTopOf="@id/rb_setting_mobile"
-            app:layout_constraintBottom_toBottomOf="@id/rb_setting_mobile"
+            app:layout_constraintStart_toEndOf="@id/rb_settings_mobile"
+            app:layout_constraintTop_toTopOf="@id/rb_settings_mobile"
+            app:layout_constraintBottom_toBottomOf="@id/rb_settings_mobile"
             android:text="@string/mobile"
             android:fontFamily="@font/roboto_condensed_bold"/>
 
         <RadioButton
-            android:id="@+id/rb_setting_desktop"
-            app:layout_constraintStart_toEndOf="@id/tv_setting_mobile"
+            android:id="@+id/rb_settings_desktop"
+            app:layout_constraintStart_toEndOf="@id/tv_settings_mobile"
             app:layout_constraintTop_toBottomOf="@id/tv_settings_prefer_study"
             android:layout_marginTop="8dp"
             android:layout_marginStart="80dp"
@@ -122,9 +122,9 @@
         <TextView
             android:id="@+id/tv_settings_desktop"
             android:text="@string/desktop"
-            app:layout_constraintStart_toEndOf="@id/rb_setting_desktop"
-            app:layout_constraintTop_toTopOf="@id/rb_setting_desktop"
-            app:layout_constraintBottom_toBottomOf="@id/rb_setting_desktop"
+            app:layout_constraintStart_toEndOf="@id/rb_settings_desktop"
+            app:layout_constraintTop_toTopOf="@id/rb_settings_desktop"
+            app:layout_constraintBottom_toBottomOf="@id/rb_settings_desktop"
             android:fontFamily="@font/roboto_condensed_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -132,7 +132,7 @@
         <TextView
             android:id="@+id/tv_settings_prefer_to_study_by"
             app:layout_constraintStart_toStartOf="@id/tv_settings_prefer_study"
-            app:layout_constraintTop_toBottomOf="@id/rb_setting_desktop"
+            app:layout_constraintTop_toBottomOf="@id/rb_settings_desktop"
             android:layout_marginTop="8dp"
             android:text="@string/do_you_prefer_to_study_by"
             android:fontFamily="@font/roboto_condensed_bold"
@@ -140,13 +140,34 @@
             android:layout_height="wrap_content"/>
 
         <Spinner
-            android:id="@+id/settings_spinner_prefer_to_study_by"
+            android:id="@+id/spinner_settings_prefer_to_study_by"
             app:layout_constraintTop_toBottomOf="@id/tv_settings_prefer_to_study_by"
             app:layout_constraintStart_toStartOf="@id/tv_settings_prefer_to_study_by"
             android:background="@drawable/rectangle"
-            android:tooltipText="dwasadwa"
+            android:layout_marginTop="8dp"
+            android:layout_width="0dp"
+            app:layout_constraintWidth_percent=".75"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_settings_frequency"
+            app:layout_constraintStart_toStartOf="@id/tv_settings_prefer_to_study_by"
+            app:layout_constraintTop_toBottomOf="@id/spinner_settings_prefer_to_study_by"
+            android:text="@string/how_frequently_do_you_want_to_study"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:layout_marginTop="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+        <Spinner
+            android:id="@+id/spinner_study_frequency"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent=".75"
+            android:background="@drawable/rectangle"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@id/tv_settings_frequency"
+            app:layout_constraintTop_toBottomOf="@id/tv_settings_frequency"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

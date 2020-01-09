@@ -41,13 +41,34 @@
     <string name="do_you_prefer_to_do_most_of_your_studying_on_a_mobile_or_desktop_device">Do you prefer to do most of your studying on a mobile or desktop device?</string>
     <string name="desktop">Desktop</string>
     <string name="do_you_prefer_to_study_by">Do you prefer to study by</string>
+    <string name="how_frequently_do_you_want_to_study">How frequently do you want to study?</string>
 
     <string-array name="study_methods">
+        <item>Please Select One</item>
         <item>Listening</item>
         <item>Doing</item>
         <item>Reading</item>
         <item>Writing</item>
         <item>Other</item>
     </string-array>
+    
+    <string-array name="study_frequency">
+        <item>Please Select One</item>
+        <item>Once a day</item>
+        <item>Twice a day</item>
+        <item>Once a week</item>
+        <item>Twice a week</item>
+        <item>Three times a week</item>
+        <item>Everyday</item>
+        <item>Other</item>
+    </string-array>
+
+<!--    <string-array name="study_notification_frequency">-->
+<!--        <item>Please Select One</item>-->
+<!--        <item>When I haven't met my goal in a day</item>-->
+<!--        <item>When I haven't met my goal in a week</item>-->
+<!--        <item>Everyday</item>-->
+<!--        <item>Don't send me notifications</item>-->
+<!--    </string-array>-->
     
 </resources>
