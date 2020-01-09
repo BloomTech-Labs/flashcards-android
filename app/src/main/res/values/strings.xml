@@ -36,5 +36,6 @@
     <string name="help">Help</string>
     <string name="logout">Logout</string>
     <string name="search">search</string>
+    <string name="which_subjects_do_you_use_flashcards_for_most_often">Which subjects do you use flashcards for most often?</string>
 
 </resources>
