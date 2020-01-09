@@ -42,7 +42,9 @@
     <string name="desktop">Desktop</string>
     <string name="do_you_prefer_to_study_by">Do you prefer to study by</string>
     <string name="how_frequently_do_you_want_to_study">How frequently do you want to study?</string>
+    <string name="how_often_would_you_like_to_receive_notifications">How often would you like to receive notifications?</string>
 
+    <!--    String arrays used for the spinner drop down menu-->
     <string-array name="study_methods">
         <item>Please Select One</item>
         <item>Listening</item>
@@ -63,12 +65,13 @@
         <item>Other</item>
     </string-array>
 
-<!--    <string-array name="study_notification_frequency">-->
-<!--        <item>Please Select One</item>-->
-<!--        <item>When I haven't met my goal in a day</item>-->
-<!--        <item>When I haven't met my goal in a week</item>-->
-<!--        <item>Everyday</item>-->
-<!--        <item>Don't send me notifications</item>-->
-<!--    </string-array>-->
+<!--  Need the backslash (in my case japanese yen) for when working with Apostrophes  -->
+    <string-array name="study_notification_frequency">
+        <item>Please Select One</item>
+        <item>When I haven\'t met my goal in a day</item>
+        <item>When I haven\'t met my goal in a week</item>
+        <item>Everyday</item>
+        <item>Don\'t send me notifications</item>
+    </string-array>
     
 </resources>

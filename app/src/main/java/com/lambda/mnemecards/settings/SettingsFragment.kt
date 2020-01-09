@@ -56,15 +56,23 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 //            binding.executePendingBindings()
         })
 
+        // For the prefer to study spinner
         val preferToStudyByAdapter:ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(binding.root.context, R.array.study_methods, android.R.layout.simple_spinner_item )
         preferToStudyByAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerSettingsPreferToStudyBy.adapter = preferToStudyByAdapter
         binding.spinnerSettingsPreferToStudyBy.onItemSelectedListener = this
 
+        // For the study frequency spinner
         val studyFrequencyAdapter:ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(binding.root.context, R.array.study_frequency, android.R.layout.simple_spinner_item)
         studyFrequencyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerStudyFrequency.adapter = studyFrequencyAdapter
         binding.spinnerStudyFrequency.onItemSelectedListener = this
+
+        // For the notification frequency spinner
+        val notificationFrequencyAdapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(binding.root.context, R.array.study_notification_frequency, android.R.layout.simple_spinner_item)
+        notificationFrequencyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinnerNotificationFrequency.adapter = notificationFrequencyAdapter
+        binding.spinnerNotificationFrequency.onItemSelectedListener = this
 
         setHasOptionsMenu(true)
 

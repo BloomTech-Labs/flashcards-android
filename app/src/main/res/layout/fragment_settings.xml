@@ -169,6 +169,26 @@
             app:layout_constraintStart_toStartOf="@id/tv_settings_frequency"
             app:layout_constraintTop_toBottomOf="@id/tv_settings_frequency"/>
 
+        <TextView
+            android:id="@+id/tv_settings_notification_frequency"
+            android:text="@string/how_often_would_you_like_to_receive_notifications"
+            app:layout_constraintStart_toStartOf="@id/tv_settings_frequency"
+            app:layout_constraintTop_toBottomOf="@id/spinner_study_frequency"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Spinner
+            android:id="@+id/spinner_notification_frequency"
+            app:layout_constraintTop_toBottomOf="@id/tv_settings_notification_frequency"
+            app:layout_constraintStart_toStartOf="@id/tv_settings_notification_frequency"
+            android:background="@drawable/rectangle"
+            app:layout_constraintWidth_percent=".75"
+            android:layout_marginTop="8dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
