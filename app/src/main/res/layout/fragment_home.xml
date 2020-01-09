@@ -16,7 +16,7 @@
         tools:context=".overview.HomeFragment">
 
         <FrameLayout
-            android:id="@+id/fl_introduction"
+            android:id="@+id/fl_settings"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@color/colorPrimary"
@@ -97,8 +97,8 @@
                     android:id="@+id/tv_studied"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="40dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginBottom="40dp"
                     android:text="@string/studied"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
@@ -138,7 +138,7 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@id/rv_decks"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fl_introduction" />
+            app:layout_constraintTop_toBottomOf="@id/fl_settings" />
 
         <TextView
             android:id="@+id/tv_all_decks"
@@ -150,7 +150,7 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@id/rv_decks"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fl_introduction" />
+            app:layout_constraintTop_toBottomOf="@id/fl_settings" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_decks"
@@ -162,9 +162,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent=".65"
             app:layout_constraintStart_toStartOf="parent"
-            app:listData="@{viewModel.decks}"
-            app:layout_constraintTop_toBottomOf="@id/fl_introduction"
-             />
+            app:layout_constraintTop_toBottomOf="@id/fl_settings"
+            app:listData="@{viewModel.decks}" />
 
         <Button
             android:layout_width="0dp"

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.lambda.mnemecards.settings.SettingsViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".settings.SettingsFragment">
+
+        <FrameLayout
+            android:id="@+id/fl_settings"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_settings_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginBottom="24dp"
+                    android:fontFamily="@font/roboto_condensed_bold"
+                    android:textColor="#FFFFFF"
+                    android:textSize="21sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="Pat" />
+
+                <ImageView
+                    android:id="@+id/iv_settings_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="36dp"
+                    android:src="@drawable/ic_search_black_24dp"
+                    app:imageUrl="@{viewmodel.photo}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_settings_preference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:text="@string/which_subjects_do_you_use_flashcards_for_most_often"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fl_settings" />
+
+        <EditText
+            android:id="@+id/et_settings_preference"
+            app:layout_constraintTop_toBottomOf="@id/tv_settings_preference"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/rectangle"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="16dp"
+            android:width="300dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_settings_prefer_study"
+            app:layout_constraintTop_toBottomOf="@id/et_settings_preference"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/do_you_prefer_to_do_most_of_your_studying_on_a_mobile_or_desktop_device"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:layout_width="305dp"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:id="@+id/rb_settings_mobile"
+            app:layout_constraintStart_toStartOf="@id/tv_settings_prefer_study"
+            app:layout_constraintTop_toBottomOf="@id/tv_settings_prefer_study"
+            android:buttonTint="@color/colorPrimary"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_settings_mobile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/rb_settings_mobile"
+            app:layout_constraintTop_toTopOf="@id/rb_settings_mobile"
+            app:layout_constraintBottom_toBottomOf="@id/rb_settings_mobile"
+            android:text="@string/mobile"
+            android:fontFamily="@font/roboto_condensed_bold"/>
+
+        <RadioButton
+            android:id="@+id/rb_settings_desktop"
+            app:layout_constraintStart_toEndOf="@id/tv_settings_mobile"
+            app:layout_constraintTop_toBottomOf="@id/tv_settings_prefer_study"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="80dp"
+            android:buttonTint="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_settings_desktop"
+            android:text="@string/desktop"
+            app:layout_constraintStart_toEndOf="@id/rb_settings_desktop"
+            app:layout_constraintTop_toTopOf="@id/rb_settings_desktop"
+            app:layout_constraintBottom_toBottomOf="@id/rb_settings_desktop"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_settings_prefer_to_study_by"
+            app:layout_constraintStart_toStartOf="@id/tv_settings_prefer_study"
+            app:layout_constraintTop_toBottomOf="@id/rb_settings_desktop"
+            android:layout_marginTop="8dp"
+            android:text="@string/do_you_prefer_to_study_by"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Spinner
+            android:id="@+id/spinner_settings_prefer_to_study_by"
+            app:layout_constraintTop_toBottomOf="@id/tv_settings_prefer_to_study_by"
+            app:layout_constraintStart_toStartOf="@id/tv_settings_prefer_to_study_by"
+            android:background="@drawable/rectangle"
+            android:layout_marginTop="8dp"
+            android:layout_width="0dp"
+            app:layout_constraintWidth_percent=".75"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_settings_frequency"
+            app:layout_constraintStart_toStartOf="@id/tv_settings_prefer_to_study_by"
+            app:layout_constraintTop_toBottomOf="@id/spinner_settings_prefer_to_study_by"
+            android:text="@string/how_frequently_do_you_want_to_study"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Spinner
+            android:id="@+id/spinner_study_frequency"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent=".75"
+            android:background="@drawable/rectangle"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@id/tv_settings_frequency"
+            app:layout_constraintTop_toBottomOf="@id/tv_settings_frequency"/>
+
+        <TextView
+            android:id="@+id/tv_settings_notification_frequency"
+            android:text="@string/how_often_would_you_like_to_receive_notifications"
+            app:layout_constraintStart_toStartOf="@id/tv_settings_frequency"
+            app:layout_constraintTop_toBottomOf="@id/spinner_study_frequency"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Spinner
+            android:id="@+id/spinner_notification_frequency"
+            app:layout_constraintTop_toBottomOf="@id/tv_settings_notification_frequency"
+            app:layout_constraintStart_toStartOf="@id/tv_settings_notification_frequency"
+            android:background="@drawable/rectangle"
+            app:layout_constraintWidth_percent=".75"
+            android:layout_marginTop="8dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_settings_prefer_decks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/spinner_notification_frequency"
+            app:layout_constraintStart_toStartOf="@id/spinner_notification_frequency"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:text="@string/do_you_prefer_to_study_from_decks_that_are"/>
+
+        <RadioButton
+            android:id="@+id/rb_settings_pre_made_decks"
+            app:layout_constraintTop_toBottomOf="@id/tv_settings_prefer_decks"
+            app:layout_constraintStart_toStartOf="@id/tv_settings_prefer_decks"
+            android:buttonTint="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_settings_pre_made_decks"
+            app:layout_constraintStart_toEndOf="@id/rb_settings_pre_made_decks"
+            app:layout_constraintTop_toTopOf="@id/rb_settings_pre_made_decks"
+            app:layout_constraintBottom_toBottomOf="@id/rb_settings_pre_made_decks"
+            android:text="@string/pre_made"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:id="@+id/rb_settings_custom_decks"
+            app:layout_constraintStart_toEndOf="@id/tv_settings_pre_made_decks"
+            app:layout_constraintTop_toBottomOf="@id/tv_settings_prefer_decks"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="50dp"
+            android:buttonTint="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_settings_custom_deck"
+            android:text="@string/custom"
+            app:layout_constraintStart_toEndOf="@id/rb_settings_custom_decks"
+            app:layout_constraintTop_toTopOf="@id/rb_settings_custom_decks"
+            app:layout_constraintBottom_toBottomOf="@id/rb_settings_custom_decks"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btn_settings_save"
+            app:layout_constraintTop_toBottomOf="@id/tv_settings_custom_deck"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/save"
+            app:layout_constraintWidth_percent=".75"
+            android:layout_height="wrap_content"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>
