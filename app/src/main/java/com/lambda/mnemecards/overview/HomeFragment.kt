@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.get
@@ -78,13 +79,15 @@ class HomeFragment : Fragment() {
 
         fragmentContext = container!!.context
 
+
+
         binding.rvDecks.adapter = DeckAdapter(DeckAdapter.OnClickListener {
 
         })
 
         // Code that pops up the possible log in options
 
-        if(!loggedInFlag) {
+        if (!loggedInFlag) {
             launchSignInFlow()
             loggedInFlag = true
         }
@@ -307,11 +310,21 @@ class HomeFragment : Fragment() {
         if (requestCode == SIGN_IN_RESULT_CODE) {
             val response = IdpResponse.fromResultIntent(data)
             if (resultCode == Activity.RESULT_OK) {
+
+                // For getting the user information
+                val user = FirebaseAuth.getInstance().currentUser
+                user?.let {
+                    val name = user.displayName
+                    val email = user.email
+                    val photoUrl = user.photoUrl
+
+                    Toast.makeText(fragmentContext, "Welcome $name", Toast.LENGTH_SHORT).show()
+
+                    Log.i("HomeFragment", name + email + photoUrl)
+                }
+
                 // User successfully signed in
-                Log.i(
-                    TAG,
-                    "Successfully signed in user ${FirebaseAuth.getInstance().currentUser?.displayName}!"
-                )
+                Log.i(TAG, "Successfully signed in user ${FirebaseAuth.getInstance().currentUser?.displayName}!")
             } else {
                 // Sign in failed. If response is null the user canceled the
                 // sign-in flow using the back button. Otherwise check
