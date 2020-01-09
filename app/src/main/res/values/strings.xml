@@ -35,5 +35,6 @@
     <string name="demodeck">Demo Deck</string>
     <string name="help">Help</string>
     <string name="logout">Logout</string>
+    <string name="search">search</string>
 
 </resources>
