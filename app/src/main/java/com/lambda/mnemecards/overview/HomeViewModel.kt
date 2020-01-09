@@ -8,7 +8,7 @@ import com.lambda.mnemecards.network.*
 import kotlinx.coroutines.*
 import java.lang.Exception
 
-class HomeViewModel: ViewModel(){
+class HomeViewModel : ViewModel() {
 
     // Internally, we use a MutableLiveData, because we will be updating the List of Decks
     // with new values
@@ -26,38 +26,38 @@ class HomeViewModel: ViewModel(){
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    init {
+    val newDeck = mutableListOf<Deck>()
 
+    init {
         coroutineScope.launch {
             getDeckNames()
-            _deckNames.value?.get(0)?.let { getDecks(it) }
-        }
-
-//        getDeckNames()
-//        getDecks()
-
-    }
-
-    private suspend fun getDeckNames(){
-
-            var getDecksDeffered = DeckApi.retrofitService.getDemoDecks(
-                "I2r2gejFYwCQfqafWlVy"
-            )
-            try{
-
-                val deckResult = getDecksDeffered.await()
-
-                _deckNames.value = deckResult
-
-                Log.i("HomeViewModel name TRY", "${_deckNames.value!!.get(0)}")
-                Log.i("HomeViewModel name TRY", "${_deckNames.value!!.get(1)}")
-
-            }catch (e: Exception){
-                Log.i("HomeViewModel nm CATCH", "${e.message}")
+//            _deckNames.value?.get(0)?.let { getDecks(it) }
+            for (name in _deckNames.value!!) {
+                getDecks(name)
             }
         }
+    }
 
-    private suspend fun getDecks(deckName: String){
+    private suspend fun getDeckNames() {
+
+        var getDecksDeffered = DeckApi.retrofitService.getDemoDecks(
+            "I2r2gejFYwCQfqafWlVy"
+        )
+        try {
+
+            val deckResult = getDecksDeffered.await()
+
+            _deckNames.value = deckResult
+
+            Log.i("HomeViewModel name TRY", "${_deckNames.value!!.get(0)}")
+            Log.i("HomeViewModel name TRY", "${_deckNames.value!!.get(1)}")
+
+        } catch (e: Exception) {
+            Log.i("HomeViewModel nm CATCH", "${e.message}")
+        }
+    }
+
+    private suspend fun getDecks(deckName: String) {
 
 //        val cards = listOf<Card>(Card("1","front","back"), Card("2","frontt","backk"), Card("3", "fronttt", "backkk"))
 //        val listResult = listOf<Deck>(Deck("Name", cards, "testing"),Deck("Name", cards, "testing"),Deck("Name", cards, "testing"))
@@ -67,18 +67,20 @@ class HomeViewModel: ViewModel(){
 
         var getCardsDeffered = DeckApi.retrofitService.getDemoCards(
             "I2r2gejFYwCQfqafWlVy",
-            deckName)
+            deckName
+        )
 
 //            api/demo/I2r2gejFYwCQfqafWlVy/Biology
 //            var getCardsEasyDeffered = DeckApi.retrofitService.getDemoCardsEasy()
 
-        try{
+        try {
 
             val deckResult = getCardsDeffered.await()
 
-            val newDeck = mutableListOf<Deck>()
-
             newDeck.add(deckResult)
+
+            // Use .postValue() when working inside of a thread
+            // Otherwise use .value() when working outside
 
             _decks.postValue(newDeck)
 //            _decks.value?.add(deckResult)
@@ -87,17 +89,19 @@ class HomeViewModel: ViewModel(){
             Log.i("HomeViewModel Try", "${newDeck}")
             Log.i("HomeViewModel Try", "${_decks.value?.get(0)?.deckName}")
 
+            // Need this delay or else the value will be null
             delay(1000)
 
             Log.i("HomeViewModel Tryyy", "${_decks.value?.get(0)?.deckName}")
+            Log.i("HomeViewModel Tryyy", "${_decks.value?.get(1)?.deckName}")
 
 
-        }catch (e: Exception){
+        } catch (e: Exception) {
             Log.i("HomeViewModel get CATCH", "${e.message}")
         }
     }
 
-    }
+}
 
 
 
