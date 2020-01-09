@@ -6,18 +6,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.lambda.mnemecards.network.*
 import kotlinx.coroutines.*
-import retrofit2.Call
-import retrofit2.Callback
 import java.lang.Exception
 
 class HomeViewModel: ViewModel(){
 
     // Internally, we use a MutableLiveData, because we will be updating the List of Decks
     // with new values
-    private val _decks = MutableLiveData<Deck>()
+    private val _decks = MutableLiveData<MutableList<Deck>>()
 
     // The external LiveData interface to the property is immutable, so only this class can modify
-    val decks: LiveData<Deck>
+    val decks: LiveData<MutableList<Deck>>
         get() = _decks
 
     private var _deckNames = MutableLiveData<List<String>>()
@@ -29,13 +27,19 @@ class HomeViewModel: ViewModel(){
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init {
-        getDeckNames()
-//        getDecks()
-    }
-
-    private fun getDeckNames(){
 
         coroutineScope.launch {
+            getDeckNames()
+            _deckNames.value?.get(0)?.let { getDecks(it) }
+        }
+
+//        getDeckNames()
+//        getDecks()
+
+    }
+
+    private suspend fun getDeckNames(){
+
             var getDecksDeffered = DeckApi.retrofitService.getDemoDecks(
                 "I2r2gejFYwCQfqafWlVy"
             )
@@ -45,21 +49,15 @@ class HomeViewModel: ViewModel(){
 
                 _deckNames.value = deckResult
 
-                Log.i("HomeViewModel TRY", "${_deckNames.value!!.get(0)}")
+                Log.i("HomeViewModel name TRY", "${_deckNames.value!!.get(0)}")
+                Log.i("HomeViewModel name TRY", "${_deckNames.value!!.get(1)}")
 
-                coroutineScope.launch {
-                    for(deckName in _deckNames.value!!){
-                        getDecks(deckName)
-                    }
-                }
             }catch (e: Exception){
-                Log.i("HomeViewModel CATCH", "${e.message}")
+                Log.i("HomeViewModel nm CATCH", "${e.message}")
             }
         }
 
-    }
-
-    private fun getDecks(deckName: String){
+    private suspend fun getDecks(deckName: String){
 
 //        val cards = listOf<Card>(Card("1","front","back"), Card("2","frontt","backk"), Card("3", "fronttt", "backkk"))
 //        val listResult = listOf<Deck>(Deck("Name", cards, "testing"),Deck("Name", cards, "testing"),Deck("Name", cards, "testing"))
@@ -67,31 +65,41 @@ class HomeViewModel: ViewModel(){
 
 //        _decks.value = listResult
 
-        coroutineScope.launch {
-
-            var getCardsDeffered = DeckApi.retrofitService.getDemoCards(
-                "I2r2gejFYwCQfqafWlVy",
-                deckName)
+        var getCardsDeffered = DeckApi.retrofitService.getDemoCards(
+            "I2r2gejFYwCQfqafWlVy",
+            deckName)
 
 //            api/demo/I2r2gejFYwCQfqafWlVy/Biology
 //            var getCardsEasyDeffered = DeckApi.retrofitService.getDemoCardsEasy()
 
-            try{
+        try{
 
-                val listResult = getCardsDeffered.await()
+            val deckResult = getCardsDeffered.await()
 
-                _decks.value = listResult
+            val newDeck = mutableListOf<Deck>()
 
-                Log.i("HomeViewModel TRY", "${_decks.value}")
-                Log.i("HomeViewModel TRY", "${_decks.value!!.deckName}")
+            newDeck.add(deckResult)
+
+            _decks.postValue(newDeck)
+//            _decks.value?.add(deckResult)
+
+            Log.i("HomeViewModel Try", "${deckResult}")
+            Log.i("HomeViewModel Try", "${newDeck}")
+            Log.i("HomeViewModel Try", "${_decks.value?.get(0)?.deckName}")
+
+            delay(1000)
+
+            Log.i("HomeViewModel Tryyy", "${_decks.value?.get(0)?.deckName}")
 
 
-            }catch (e: Exception){
-                Log.i("HomeViewModel CATCH", "${e.message}")
-            }
+        }catch (e: Exception){
+            Log.i("HomeViewModel get CATCH", "${e.message}")
         }
-
+    }
 
     }
 
-}
+
+
+
+
