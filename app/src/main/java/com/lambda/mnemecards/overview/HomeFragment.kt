@@ -6,10 +6,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.get
 import com.facebook.CallbackManager
@@ -304,6 +302,14 @@ class HomeFragment : Fragment() {
                 Log.i(TAG, "Sign in unsuccessful ${response?.error?.errorCode}")
             }
         }
+    }
+
+    /**
+     * Inflates the overflow menu that contains filtering options.
+     */
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.overflow_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
 }

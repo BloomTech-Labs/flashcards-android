@@ -26,6 +26,8 @@ class HomeViewModel : ViewModel() {
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
+    // Holds the decks that will be used to reinitialize _decks.
+    // Since working with live data lists have to copy the initial value, modify it, and then set it again
     val newDeck = mutableListOf<Deck>()
 
     init {
