@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_destinationTestFragment"
             app:destination="@id/destinationTestFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/destinationTestFragment"
@@ -31,4 +34,9 @@
             android:name="valueTwo"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.lambda.mnemecards.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

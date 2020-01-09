@@ -10,6 +10,8 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.get
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -41,11 +43,13 @@ class HomeFragment : Fragment() {
     }
 
     lateinit var fragmentContext: Context
-    var googleSignInClient: GoogleSignInClient ?= null
+    var googleSignInClient: GoogleSignInClient? = null
     val RC_SIGN_IN = 1000
 
     // For accessing Firestore
     private var db = FirebaseFirestore.getInstance()
+
+    private var loggedInFlag: Boolean = false
 
     private lateinit var auth: FirebaseAuth
 
@@ -74,9 +78,16 @@ class HomeFragment : Fragment() {
 
         fragmentContext = container!!.context
 
-        binding.rvDecks.adapter = DeckAdapter(DeckAdapter.OnClickListener{
+        binding.rvDecks.adapter = DeckAdapter(DeckAdapter.OnClickListener {
 
         })
+
+        // Code that pops up the possible log in options
+
+        if(!loggedInFlag) {
+            launchSignInFlow()
+            loggedInFlag = true
+        }
 
         setHasOptionsMenu(true)
         return binding.root
@@ -85,7 +96,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        launchSignInFlow()
+
 //        val docRef = db.collection("DemoDeck").document("I2r2gejFYwCQfqafWlVy")
 //        docRef.get()
 //            .addOnSuccessListener { document ->
@@ -119,7 +130,10 @@ class HomeFragment : Fragment() {
         db.collection("DemoDeck").document("I2r2gejFYwCQfqafWlVy")
             .get()
             .addOnSuccessListener { result ->
-                    Log.d("Get Deck", "${result.id} => ${result.data} => ${result.reference} => ${result.metadata} =>")
+                Log.d(
+                    "Get Deck",
+                    "${result.id} => ${result.data} => ${result.reference} => ${result.metadata} =>"
+                )
 
             }
             .addOnFailureListener { exception ->
@@ -210,12 +224,10 @@ class HomeFragment : Fragment() {
     }
 
 
-
-
-    fun firebaseAuthWithGoogle(acct: GoogleSignInAccount){
+    fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
         var credential = GoogleAuthProvider.getCredential(acct?.idToken, null)
-        FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener{task ->
-            if(task.isSuccessful){
+        FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
                 println("Google Login Success")
                 val user = auth.currentUser
                 val message = " ${user?.displayName} + ${user?.email} + ${user?.photoUrl}"
@@ -230,30 +242,32 @@ class HomeFragment : Fragment() {
         val currentUser = auth.currentUser
     }
 
-    fun facebookLogin(){
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile","email"))
-        LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<LoginResult>{
-            override fun onSuccess(result: LoginResult?) {
-                firebaseAuthWithFacebook(result)
-            }
+    fun facebookLogin() {
+        LoginManager.getInstance()
+            .logInWithReadPermissions(this, Arrays.asList("public_profile", "email"))
+        LoginManager.getInstance()
+            .registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+                override fun onSuccess(result: LoginResult?) {
+                    firebaseAuthWithFacebook(result)
+                }
 
-            override fun onCancel() {
+                override fun onCancel() {
 //                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                Log.i("INFORMATION FACEBOOK", "CANCEL")
-            }
+                    Log.i("INFORMATION FACEBOOK", "CANCEL")
+                }
 
-            override fun onError(error: FacebookException?) {
+                override fun onError(error: FacebookException?) {
 //                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                Log.i("INFORMATION FACEBOOK", "ERROR")
-            }
+                    Log.i("INFORMATION FACEBOOK", "ERROR")
+                }
 
-        })
+            })
     }
 
-    fun firebaseAuthWithFacebook(result: LoginResult?){
+    fun firebaseAuthWithFacebook(result: LoginResult?) {
         var credential = FacebookAuthProvider.getCredential(result!!.accessToken.token)
-        FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener{task ->
-            if(task.isSuccessful){
+        FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
                 println("Facebook Login Success")
                 val user = auth.currentUser
                 val message = " ${user?.displayName} + ${user?.email} + ${user?.photoUrl}"
@@ -294,7 +308,10 @@ class HomeFragment : Fragment() {
             val response = IdpResponse.fromResultIntent(data)
             if (resultCode == Activity.RESULT_OK) {
                 // User successfully signed in
-                Log.i(TAG, "Successfully signed in user ${FirebaseAuth.getInstance().currentUser?.displayName}!")
+                Log.i(
+                    TAG,
+                    "Successfully signed in user ${FirebaseAuth.getInstance().currentUser?.displayName}!"
+                )
             } else {
                 // Sign in failed. If response is null the user canceled the
                 // sign-in flow using the back button. Otherwise check
@@ -310,6 +327,15 @@ class HomeFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.overflow_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            R.id.settings -> findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
 }
