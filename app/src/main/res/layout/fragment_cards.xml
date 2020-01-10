@@ -1,14 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".cards.CardsFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".overview.HomeFragment">
 
-</FrameLayout>
+        <FrameLayout
+            android:id="@+id/fl_cards"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_cards_deck_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/roboto_condensed_bold"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Spanish" />
+
+                <TextView
+                    android:id="@+id/tv_cards_card_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/roboto_condensed_bold"
+                    android:textColor="#FFFFFF"
+                    android:textSize="32sp"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_cards_mastered_amount"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteY="52dp"
+                    tools:text="12" />
+
+                <TextView
+                    android:id="@+id/tv_cards_mastered_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="32sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/tv_cards_card_amount"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteY="52dp"
+                    tools:text="8" />
+
+                <TextView
+                    android:id="@+id/tv_cards_cards"
+                    app:layout_constraintTop_toBottomOf="@id/tv_cards_card_amount"
+                    android:layout_width="wrap_content"
+                    android:text="@string/cards"
+                    android:fontFamily="@font/roboto_condensed_bold"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintStart_toStartOf="@id/tv_cards_card_amount"
+                    app:layout_constraintEnd_toEndOf="@id/tv_cards_card_amount"
+                    android:layout_marginTop="8dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_cards_mastered"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_condensed_bold"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintTop_toBottomOf="@id/tv_cards_mastered_amount"
+                    app:layout_constraintStart_toStartOf="@id/tv_cards_mastered_amount"
+                    app:layout_constraintEnd_toEndOf="@id/tv_cards_mastered_amount"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/mastered"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

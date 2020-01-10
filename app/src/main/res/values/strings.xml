@@ -47,6 +47,8 @@
     <string name="pre_made">Pre-Made</string>
     <string name="custom">Custom</string>
     <string name="save">Save</string>
+    <string name="cards">Cards</string>
+    <string name="mastered">Mastered</string>
 
     <!--    String arrays used for the spinner drop down menu-->
     <string-array name="study_methods">
