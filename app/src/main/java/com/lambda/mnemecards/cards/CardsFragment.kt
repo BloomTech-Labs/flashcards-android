@@ -1,6 +1,7 @@
 package com.lambda.mnemecards.cards
 
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -42,6 +43,19 @@ class CardsFragment : Fragment() {
 
         viewModel.displayCard.observe(this, Observer {text->
             binding.tvCardsDisplay.text = text
+//            binding.flCardsDisplayCard.setBackgroundColor(Color.parseColor("#FFD164"))
+        })
+
+        // TODO: FIX THIS BOOLEAN LOGIC LATER
+        // True = White
+        // False = Orange
+        viewModel.frameLayoutColor.observe(this, Observer { color ->
+            if(!color){
+                binding.flCardsDisplayCard.setBackgroundColor(Color.parseColor("#FFD164"))
+            }
+            else{
+                binding.flCardsDisplayCard.setBackgroundColor(Color.parseColor("#F3ECE3"))
+            }
         })
 
         // Inflate the layout for this fragment

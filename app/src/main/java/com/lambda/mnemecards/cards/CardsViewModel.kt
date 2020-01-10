@@ -29,10 +29,17 @@ class CardsViewModel(deck: Deck, app: Application) : AndroidViewModel(app) {
     val displayCard :LiveData<String>
         get() = _displayCard
 
+    // True = White
+    // False = Orange
+    private val _frameLayoutColor = MutableLiveData<Boolean>()
+    val frameLayoutColor: LiveData<Boolean>
+        get() = _frameLayoutColor
+
     init {
         _selectedDeck.value = deck
         _frontOrBack.value = true
         _displayCard.value = _selectedDeck.value?.data?.get(0)?.data?.front
+        _frameLayoutColor.value = true
     }
 
     val displayDeckName = _selectedDeck.value?.deckName
@@ -40,7 +47,7 @@ class CardsViewModel(deck: Deck, app: Application) : AndroidViewModel(app) {
     //var displayCard = _selectedDeck.value?.data?.get(0)?.data?.front
 
     fun displayCard() {
-        
+
         _frontOrBack.value = !_frontOrBack.value!!
 
         if (_frontOrBack.value!!) {
@@ -48,6 +55,20 @@ class CardsViewModel(deck: Deck, app: Application) : AndroidViewModel(app) {
         } else {
             _displayCard.value = _selectedDeck.value?.data?.get(0)?.data?.back
         }
+    }
+
+    fun changeDisplay(){
+
+        _frontOrBack.value = !_frontOrBack.value!!
+        _frameLayoutColor.value = !_frameLayoutColor.value!!
+
+        if(_frontOrBack.value!!){
+            _displayCard.value = _selectedDeck.value?.data?.get(0)?.data?.front
+        }
+        else{
+            _displayCard.value = _selectedDeck.value?.data?.get(0)?.data?.back
+        }
+
     }
 
 }

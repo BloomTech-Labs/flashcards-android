@@ -131,7 +131,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fl_cards_display_card"
             android:layout_marginTop="32dp"
-            android:onClick="@{() -> viewModel.displayCard()}"
+            android:onClick="@{() -> viewModel.changeDisplay()}"
             app:layout_constraintWidth_percent=".85"
             android:text="@string/flip"
             android:layout_width="0dp"
