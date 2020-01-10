@@ -20,6 +20,13 @@ class HomeViewModel : ViewModel() {
 
     private var _deckNames = MutableLiveData<List<String>>()
 
+    // Internally, we use a MutableLiveData to handle navigation to the selected property
+    private val _navigateToSelectedDeck = MutableLiveData<Deck>()
+
+    // The external immutable LiveData for the navigation property
+    val navigateToSelectedDeck: LiveData<Deck>
+        get() = _navigateToSelectedDeck
+
     // Create a Coroutine scope using a job to be able to cancel when needed
     private var viewModelJob = Job()
 
@@ -52,6 +59,10 @@ class HomeViewModel : ViewModel() {
 
     fun setUsername(username:String){
         _username.value = username
+    }
+
+    fun displayDeckDetails(selectedDeck: Deck){
+        _navigateToSelectedDeck.value = selectedDeck
     }
 
     private suspend fun getDeckNames() {
