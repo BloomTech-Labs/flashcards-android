@@ -23,4 +23,6 @@ class CardsViewModel(deck: Deck, app: Application):AndroidViewModel(app){
         _selectedDeck.value = deck
     }
 
+    val displayDeckName = _selectedDeck.value?.deckName
+
 }
