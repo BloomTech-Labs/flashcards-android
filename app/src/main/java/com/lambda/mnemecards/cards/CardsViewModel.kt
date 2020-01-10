@@ -44,18 +44,7 @@ class CardsViewModel(deck: Deck, app: Application) : AndroidViewModel(app) {
 
     val displayDeckName = _selectedDeck.value?.deckName
     val displayDeckCardAmount = _selectedDeck.value?.data?.size
-    //var displayCard = _selectedDeck.value?.data?.get(0)?.data?.front
-
-    fun displayCard() {
-
-        _frontOrBack.value = !_frontOrBack.value!!
-
-        if (_frontOrBack.value!!) {
-            _displayCard.value = _selectedDeck.value?.data?.get(0)?.data?.front
-        } else {
-            _displayCard.value = _selectedDeck.value?.data?.get(0)?.data?.back
-        }
-    }
+    var cardCounter = 0
 
     fun changeDisplay(){
 
@@ -63,12 +52,19 @@ class CardsViewModel(deck: Deck, app: Application) : AndroidViewModel(app) {
         _frameLayoutColor.value = !_frameLayoutColor.value!!
 
         if(_frontOrBack.value!!){
-            _displayCard.value = _selectedDeck.value?.data?.get(0)?.data?.front
+            _displayCard.value = _selectedDeck.value?.data?.get(cardCounter)?.data?.front
+            increaseCardCount()
         }
         else{
-            _displayCard.value = _selectedDeck.value?.data?.get(0)?.data?.back
+            _displayCard.value = _selectedDeck.value?.data?.get(cardCounter)?.data?.back
+            increaseCardCount()
         }
 
+    }
+
+    fun increaseCardCount(){
+        if(cardCounter < _selectedDeck.value?.data?.size!!-1)
+            cardCounter++
     }
 
 }
