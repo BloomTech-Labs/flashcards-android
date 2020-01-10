@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -95,7 +94,7 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            R.id.settings -> findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
+            R.id.preferences -> findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
         }
 
         return super.onOptionsItemSelected(item)
