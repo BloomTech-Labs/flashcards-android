@@ -12,19 +12,42 @@ import com.lambda.mnemecards.network.Deck
  *  [Deck].
  */
 
-class CardsViewModel(deck: Deck, app: Application):AndroidViewModel(app){
+class CardsViewModel(deck: Deck, app: Application) : AndroidViewModel(app) {
 
     private val _selectedDeck = MutableLiveData<Deck>()
 
-    val selectedDeck:LiveData<Deck>
+    val selectedDeck: LiveData<Deck>
         get() = _selectedDeck
+
+    private val _frontOrBack = MutableLiveData<Boolean>()
+
+    val frontOrBack: LiveData<Boolean>
+        get() = _frontOrBack
+
+    private val _displayCard = MutableLiveData<String>()
+
+    val displayCard :LiveData<String>
+        get() = _displayCard
 
     init {
         _selectedDeck.value = deck
+        _frontOrBack.value = true
+        _displayCard.value = _selectedDeck.value?.data?.get(0)?.data?.front
     }
 
     val displayDeckName = _selectedDeck.value?.deckName
     val displayDeckCardAmount = _selectedDeck.value?.data?.size
-    val displayCardFront = _selectedDeck.value?.data?.get(0)?.data?.front
+    //var displayCard = _selectedDeck.value?.data?.get(0)?.data?.front
+
+    fun displayCard() {
+        
+        _frontOrBack.value = !_frontOrBack.value!!
+
+        if (_frontOrBack.value!!) {
+            _displayCard.value = _selectedDeck.value?.data?.get(0)?.data?.front
+        } else {
+            _displayCard.value = _selectedDeck.value?.data?.get(0)?.data?.back
+        }
+    }
 
 }
