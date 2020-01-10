@@ -96,7 +96,7 @@
                         app:layout_constraintTop_toBottomOf="@id/tv_mastery"
                         app:layout_constraintStart_toStartOf="@id/tv_mastery"
                         android:layout_marginTop="16dp"
-                        android:text="2 cards"
+                        android:text="0 cards"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
