@@ -94,8 +94,41 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
         </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_cards_display_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fl_cards"
+            android:layout_marginTop="32dp"
+            android:background="#F3ECE3"
+            app:layout_constraintWidth_percent=".85"
+            app:layout_constraintHeight_percent=".3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+        <TextView
+            android:id="@+id/tv_cards_display"
+            app:layout_constraintTop_toTopOf="@id/fl_cards_display_card"
+            app:layout_constraintStart_toStartOf="@id/fl_cards_display_card"
+            app:layout_constraintEnd_toEndOf="@id/fl_cards_display_card"
+            app:layout_constraintBottom_toBottomOf="@id/fl_cards_display_card"
+            tools:text="Leche"
+            android:textSize="48sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btn_cards_flip"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fl_cards_display_card"
+            android:layout_marginTop="32dp"
+            app:layout_constraintWidth_percent=".85"
+            android:text="@string/flip"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
