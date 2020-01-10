@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.facebook.CallbackManager
@@ -79,9 +80,17 @@ class HomeFragment : Fragment() {
 
         fragmentContext = container!!.context
 
-
+        // Sets the adapter of the deckGrid RecyclerView with clickHandler lambda that
+        // tells the viewModel when our Deck is clicked
         binding.rvDecks.adapter = DeckAdapter(DeckAdapter.OnClickListener {
+            viewModel.displayDeckDetails(it)
+        })
 
+        viewModel.navigateToSelectedDeck.observe(this, Observer{
+            if(it != null){
+                this.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCardsFragment(it))
+                viewModel.displayDeckDetailsComplete()
+            }
         })
 
         // Code that pops up the possible log in options

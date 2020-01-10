@@ -65,6 +65,13 @@ class HomeViewModel : ViewModel() {
         _navigateToSelectedDeck.value = selectedDeck
     }
 
+    /**
+     * After the navigation has taken place, make sure navigateToSelectedProperty is set to null
+     */
+    fun displayDeckDetailsComplete(){
+        _navigateToSelectedDeck.value = null
+    }
+
     private suspend fun getDeckNames() {
 
         var getDecksDeffered = DeckApi.retrofitService.getDemoDecks(
