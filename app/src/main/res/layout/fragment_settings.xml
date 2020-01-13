@@ -49,14 +49,16 @@
                     app:layout_constraintStart_toStartOf="parent"
                     tools:text="Pat" />
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/iv_settings_image"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginEnd="36dp"
+                    android:layout_marginTop="8dp"
                     android:src="@drawable/ic_search_black_24dp"
+                    app:civ_border_width="0dp"
                     app:imageUrl="@{viewmodel.photo}"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_settings_name"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -244,12 +246,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_settings_save"
             app:layout_constraintTop_toBottomOf="@id/tv_settings_custom_deck"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="0dp"
+            app:cornerRadius="20dp"
             android:layout_marginTop="8dp"
             android:text="@string/save"
             app:layout_constraintWidth_percent=".75"

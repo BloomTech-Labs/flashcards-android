@@ -105,5 +105,8 @@ dependencies {
 
     kapt "com.android.databinding:compiler:3.1.4"
 
+    // To make the profile picture image circular
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
+
 }
 apply plugin: 'com.google.gms.google-services'
