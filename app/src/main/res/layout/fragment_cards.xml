@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.lambda.mnemecards.cards.CardsViewModel" />
@@ -33,11 +34,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_condensed_bold"
+                    android:text="@{viewModel.displayDeckName}"
                     android:textColor="#FFFFFF"
                     android:textSize="24sp"
-                    android:text="@{viewModel.displayDeckName}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Spanish" />
@@ -46,16 +46,15 @@
                     android:id="@+id/tv_cards_card_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="40dp"
                     android:fontFamily="@font/roboto_condensed_bold"
-                    android:textColor="#FFFFFF"
-                    android:textSize="32sp"
                     android:text="@{Integer.toString(viewModel.displayDeckCardAmount)}"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_cards_mastered_amount"
-                    app:layout_constraintHorizontal_bias="0.5"
+
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toTopOf="@id/tv_cards_cards"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:layout_editor_absoluteY="52dp"
                     tools:text="12" />
 
                 <TextView
@@ -63,39 +62,41 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
-                    android:textColor="#FFFFFF"
-                    android:textSize="32sp"
-                    android:text="0"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="1"
+                    android:textColor="#44FFFFFF"
+                    android:textSize="88sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/tv_cards_card_amount"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:layout_editor_absoluteY="52dp"
+
                     tools:text="8" />
 
                 <TextView
                     android:id="@+id/tv_cards_cards"
-                    app:layout_constraintTop_toBottomOf="@id/tv_cards_card_amount"
                     android:layout_width="wrap_content"
-                    android:text="@string/cards"
-                    android:fontFamily="@font/roboto_condensed_bold"
-                    android:textColor="#FFFFFF"
-                    app:layout_constraintStart_toStartOf="@id/tv_cards_card_amount"
-                    app:layout_constraintEnd_toEndOf="@id/tv_cards_card_amount"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:layout_height="wrap_content"/>
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/roboto_condensed_bold"
+                    android:text="@string/cards"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_cards_mastered"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
                     android:fontFamily="@font/roboto_condensed_bold"
+                    android:text="@string/mastered"
                     android:textColor="#FFFFFF"
-                    app:layout_constraintTop_toBottomOf="@id/tv_cards_mastered_amount"
-                    app:layout_constraintStart_toStartOf="@id/tv_cards_mastered_amount"
-                    app:layout_constraintEnd_toEndOf="@id/tv_cards_mastered_amount"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/mastered"/>
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -103,39 +104,40 @@
 
         <FrameLayout
             android:id="@+id/fl_cards_display_card"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fl_cards"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginTop="32dp"
             android:background="#F3ECE3"
-            app:layout_constraintWidth_percent=".85"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent=".3"
-            android:layout_width="0dp"
-            android:layout_height="0dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fl_cards"
+            app:layout_constraintWidth_percent=".85" />
 
         <TextView
             android:id="@+id/tv_cards_display"
-            app:layout_constraintTop_toTopOf="@id/fl_cards_display_card"
-            app:layout_constraintStart_toStartOf="@id/fl_cards_display_card"
-            app:layout_constraintEnd_toEndOf="@id/fl_cards_display_card"
-            app:layout_constraintBottom_toBottomOf="@id/fl_cards_display_card"
-            android:text="@{viewModel.displayCard}"
-            tools:text="Leche"
-            android:textSize="48sp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.displayCard}"
+            android:textSize="48sp"
+            app:layout_constraintBottom_toBottomOf="@id/fl_cards_display_card"
+            app:layout_constraintEnd_toEndOf="@id/fl_cards_display_card"
+            app:layout_constraintStart_toStartOf="@id/fl_cards_display_card"
+            app:layout_constraintTop_toTopOf="@id/fl_cards_display_card"
+            tools:text="Leche" />
 
         <Button
             android:id="@+id/btn_cards_flip"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fl_cards_display_card"
-            android:layout_marginTop="32dp"
-            android:onClick="@{() -> viewModel.changeDisplay()}"
-            app:layout_constraintWidth_percent=".85"
-            android:text="@string/flip"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/tap_to_flip"
+            android:onClick="@{() -> viewModel.changeDisplay()}"
+            android:text="@string/flip"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fl_cards_display_card"
+            app:layout_constraintWidth_percent=".85" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
