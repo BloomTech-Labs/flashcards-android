@@ -50,6 +50,11 @@ class CardsFragment : Fragment() {
         // True = White
         // False = Orange
         viewModel.frameLayoutColor.observe(this, Observer { color ->
+
+            binding.btnCardsNext.visibility = View.INVISIBLE
+            binding.btnCardsTryAgain.visibility = View.INVISIBLE
+            binding.ivCardsDisplayHowWell.visibility = View.INVISIBLE
+
             if(!color){
                 binding.flCardsDisplayCard.setBackgroundColor(Color.parseColor("#FFD164"))
 
