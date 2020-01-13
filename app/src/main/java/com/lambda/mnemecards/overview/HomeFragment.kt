@@ -78,6 +78,8 @@ class HomeFragment : Fragment() {
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
 
+
+
         fragmentContext = container!!.context
 
         // Sets the adapter of the deckGrid RecyclerView with clickHandler lambda that

@@ -37,7 +37,7 @@
                     android:fontFamily="@font/roboto_condensed_bold"
                     android:text="@string/today"
                     android:textColor="#FFFFFF"
-                    android:textSize="14sp"
+                    android:textSize="24sp"
                     app:layout_constraintEnd_toStartOf="@+id/tv_week"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -47,8 +47,10 @@
                     android:id="@+id/tv_week"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_condensed_bold"
                     android:text="@string/this_week"
                     android:textColor="#FFFFFF"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@+id/tv_life_time"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/tv_today"
@@ -59,8 +61,10 @@
                     android:id="@+id/tv_life_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_condensed_bold"
                     android:text="@string/lifetime"
                     android:textColor="#FFFFFF"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/tv_week"
@@ -71,57 +75,54 @@
                     android:id="@+id/tv_studied_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:layout_marginStart="16dp"
+                    android:text="120"
                     android:textColor="#FFFFFF"
-                    android:textSize="64sp"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_mastered_amount"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toTopOf="@id/tv_studied"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_today"
                     tools:layout_editor_absoluteY="86dp" />
 
                 <TextView
                     android:id="@+id/tv_mastered_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textColor="#FFFFFF"
-                    android:textSize="64sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/tv_studied_amount"
-                    app:layout_constraintTop_toTopOf="@id/tv_studied_amount"
-                    tools:layout_editor_absoluteY="86dp" />
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="37"
+                    android:textColor="#44FFFFFF"
+                    android:textSize="88sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_studied"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="40dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="16dp"
+
+                    android:fontFamily="@font/roboto_condensed_bold"
                     android:text="@string/studied"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_mastered"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_studied_amount" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_mastered"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginBottom="40dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/roboto_condensed_bold"
                     android:text="@string/mastered"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_studied"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/tv_studied"
-                    app:layout_constraintTop_toBottomOf="@id/tv_mastered_amount" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -165,17 +166,17 @@
             app:layout_constraintTop_toBottomOf="@id/fl_overview"
             app:listData="@{viewModel.decks}" />
 
-<!--        <Button-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:layout_marginBottom="16dp"-->
-<!--            android:text="@string/create"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/rv_decks"-->
-<!--            app:layout_constraintWidth_percent=".8" />-->
+        <!--        <Button-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="8dp"-->
+        <!--            android:layout_marginBottom="16dp"-->
+        <!--            android:text="@string/create"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/rv_decks"-->
+        <!--            app:layout_constraintWidth_percent=".8" />-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
