@@ -49,6 +49,7 @@ class CardsFragment : Fragment() {
         // TODO: FIX THIS BOOLEAN LOGIC LATER
         // True = White
         // False = Orange
+        // Changes the visibility of views depending on if the card is displaying the front or back of the card
         viewModel.frameLayoutColor.observe(this, Observer { color ->
 
             binding.btnCardsNext.visibility = View.INVISIBLE

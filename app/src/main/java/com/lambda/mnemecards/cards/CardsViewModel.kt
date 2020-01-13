@@ -57,20 +57,23 @@ class CardsViewModel(deck: Deck, app: Application) : AndroidViewModel(app) {
     val displayDeckCardAmount = _selectedDeck.value?.data?.size
     var cardCounter = 0
 
-    fun changeDisplayOnFLClick(){
-
+    fun changeDisplay(view: View?){
 
         _frontOrBack.value = !_frontOrBack.value!!
         _frameLayoutColor.value = !_frameLayoutColor.value!!
 
+        if(view?.tag.toString() == "btnNext"){
+            increaseCardCount()
+        }
+
         if(_frontOrBack.value!!){
             _displayCard.value = _selectedDeck.value?.data?.get(cardCounter)?.data?.front
-            increaseCardCount()
         }
         else{
             _displayCard.value = _selectedDeck.value?.data?.get(cardCounter)?.data?.back
-            increaseCardCount()
         }
+
+
 
     }
 
@@ -85,6 +88,11 @@ class CardsViewModel(deck: Deck, app: Application) : AndroidViewModel(app) {
     fun increaseCardCount(){
         if(cardCounter < _selectedDeck.value?.data?.size!!-1)
             cardCounter++
+    }
+
+    fun decreaseCardCount(){
+        if(cardCounter >= 0)
+            cardCounter--
     }
 
 }
