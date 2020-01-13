@@ -14,5 +14,13 @@ data class Deck(
     @Json(name = "deckName")
     var deckName: String,
 
-    val imgSrcUrl: String?
-): Parcelable
+    val imgSrcUrl: String?,
+
+    // Used to display the first card in the HomeFragment
+    var frontCard:String = "Testing"
+): Parcelable{
+    
+    init {
+        frontCard = data[0].data.front
+    }
+}

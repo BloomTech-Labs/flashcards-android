@@ -8,6 +8,7 @@
         <variable
             name="deck"
             type="com.lambda.mnemecards.network.Deck" />
+
     </data>
 
 <!--    Need this relative layout or else the card will shrink-->
@@ -67,17 +68,40 @@
                         android:layout_height="wrap_content"/>
 
 
-                    <ImageView
+                    <FrameLayout
                         android:id="@+id/iv_deck_image"
                         android:scaleType="centerCrop"
                         android:adjustViewBounds="true"
+                        android:background="#F3ECE3"
                         android:layout_width="200dp"
                         android:layout_height="100dp"
-                        android:src="@color/colorPrimary"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         android:layout_marginTop="16dp"
-                        android:layout_marginEnd="16dp" />
+                        android:layout_marginEnd="16dp" >
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_deck_preview"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="Platano"
+                                android:text="@{deck.frontCard}"
+                                android:textSize="16sp"
+                                android:fontFamily="@font/roboto_condensed_bold"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </FrameLayout>
+
 
                     <TextView
                         android:id="@+id/tv_mastery"

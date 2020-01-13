@@ -113,7 +113,7 @@ class HomeViewModel : ViewModel() {
 
             newDeck.add(deckResult)
 
-            // Use .postValue() when working inside of a thread
+                    // Use .postValue() when working inside of a thread
             // Otherwise use .value() when working outside
 
 
