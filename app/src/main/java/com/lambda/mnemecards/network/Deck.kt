@@ -17,9 +17,12 @@ data class Deck(
     val imgSrcUrl: String?,
 
     // Used to display the first card in the HomeFragment
-    var frontCard:String = "Testing"
+    var frontCard:String = "Testing",
+
+    // Used to display the progress of mastery in the HomeFragment
+    var progress:Int = 0
 ): Parcelable{
-    
+
     init {
         frontCard = data[0].data.front
     }

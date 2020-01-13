@@ -37,6 +37,12 @@ class HomeViewModel : ViewModel() {
     // Since working with live data lists have to copy the initial value, modify it, and then set it again
     val newDeck = mutableListOf<Deck>()
 
+    // The progressBar that filled up as more cards are mastered
+    private val _progressBar = MutableLiveData<Int>()
+
+    val progressBar: LiveData<Int>
+        get() = _progressBar
+
     private var _username = MutableLiveData<String>()
     val username: LiveData<String>
         get() = _username

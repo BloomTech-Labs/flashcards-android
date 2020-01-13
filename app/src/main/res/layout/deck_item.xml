@@ -69,7 +69,7 @@
 
 
                     <FrameLayout
-                        android:id="@+id/iv_deck_image"
+                        android:id="@+id/fl_text_holder"
                         android:scaleType="centerCrop"
                         android:adjustViewBounds="true"
                         android:background="#F3ECE3"
@@ -115,12 +115,26 @@
                         android:layout_marginTop="36dp"
                         android:layout_height="wrap_content"/>
 
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:progress="50"
+                        android:progressTint="@color/colorPrimary"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintTop_toBottomOf="@id/tv_mastery"
+                        app:layout_constraintEnd_toEndOf="@id/fl_text_holder"
+                        app:layout_constraintStart_toStartOf="@id/tv_mastery" />
+
                     <TextView
                         android:id="@+id/tv_mastered_cards_count"
                         app:layout_constraintTop_toBottomOf="@id/tv_mastery"
                         app:layout_constraintStart_toStartOf="@id/tv_mastery"
                         android:layout_marginTop="16dp"
-                        android:text="0 cards"
+                        android:fontFamily="@font/roboto_condensed_bold"
+                        android:text="1 cards"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
