@@ -52,9 +52,23 @@ class CardsFragment : Fragment() {
         viewModel.frameLayoutColor.observe(this, Observer { color ->
             if(!color){
                 binding.flCardsDisplayCard.setBackgroundColor(Color.parseColor("#FFD164"))
+
+                binding.ivCardsFlip.visibility = View.INVISIBLE
+                binding.tvCardsTapInstruction.visibility = View.INVISIBLE
+                binding.tvCardsHowWell.visibility = View.VISIBLE
+                binding.ivCardsShock.visibility = View.VISIBLE
+                binding.ivCardsHappy.visibility = View.VISIBLE
+                binding.ivCardsCool.visibility = View.VISIBLE
             }
             else{
                 binding.flCardsDisplayCard.setBackgroundColor(Color.parseColor("#F3ECE3"))
+
+                binding.ivCardsFlip.visibility = View.VISIBLE
+                binding.tvCardsTapInstruction.visibility = View.VISIBLE
+                binding.tvCardsHowWell.visibility = View.INVISIBLE
+                binding.ivCardsShock.visibility = View.INVISIBLE
+                binding.ivCardsHappy.visibility = View.INVISIBLE
+                binding.ivCardsCool.visibility = View.INVISIBLE
             }
         })
 
