@@ -50,6 +50,7 @@
     <string name="cards">Cards</string>
     <string name="flip">Flip</string>
     <string name="tap_card_to_flip">Tap card to flip</string>
+    <string name="how_well_did_you_know_this_card">How well did you know this card?</string>
 
     <!--    String arrays used for the spinner drop down menu-->
     <string-array name="study_methods">
