@@ -11,8 +11,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.get
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -31,11 +29,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import com.lambda.mnemecards.R
 import com.lambda.mnemecards.databinding.FragmentHomeBinding
-import com.lambda.mnemecards.network.DeckApi
-import retrofit2.Call
-import retrofit2.Response
 import java.util.*
-import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment() {
 
@@ -86,9 +80,17 @@ class HomeFragment : Fragment() {
 
         fragmentContext = container!!.context
 
-
+        // Sets the adapter of the deckGrid RecyclerView with clickHandler lambda that
+        // tells the viewModel when our Deck is clicked
         binding.rvDecks.adapter = DeckAdapter(DeckAdapter.OnClickListener {
+            viewModel.displayDeckDetails(it)
+        })
 
+        viewModel.navigateToSelectedDeck.observe(this, Observer{
+            if(it != null){
+                this.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCardsFragment(it))
+                viewModel.displayDeckDetailsComplete()
+            }
         })
 
         // Code that pops up the possible log in options
@@ -352,7 +354,7 @@ class HomeFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            R.id.settings -> findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSettingsFragment(name, photoUrl))
+            R.id.preferences -> findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSettingsFragment(name, photoUrl))
         }
 
         return super.onOptionsItemSelected(item)

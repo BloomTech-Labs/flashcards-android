@@ -2,29 +2,32 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+<!--    <item-->
+<!--        android:id="@+id/home"-->
+<!--        android:title="@string/home_options"/>-->
     <item
-        android:id="@+id/home"
-        android:title="@string/home_options"/>
-    <item
-        android:id="@+id/settings"
-        android:title="@string/settings"/>
-    <item
-        android:id="@+id/flashcards"
-        android:title="@string/flashcards"/>
-    <item
-        android:id="@+id/demo_deck"
-        android:title="@string/demodeck"/>
-    <item
-        android:id="@+id/help"
-        android:title="@string/help"/>
-    <item
-        android:id="@+id/logout"
-        android:title="@string/logout"/>
-    <item
-        android:id="@+id/search"
-        android:title="@string/search"
-        android:icon="@drawable/ic_search_black_24dp"
-        app:showAsAction="always"/>
+        android:id="@+id/preferences"
+        android:title="@string/preferences"/>
+<!--    <item-->
+<!--        android:id="@+id/flashcards"-->
+<!--        android:title="@string/flashcards"/>-->
+<!--    <item-->
+<!--        android:id="@+id/demo_deck"-->
+<!--        android:title="@string/demodeck"/>-->
+<!--    <item-->
+<!--        android:id="@+id/help"-->
+<!--        android:title="@string/help"/>-->
+<!--    <item-->
+<!--        android:id="@+id/logout"-->
+<!--        android:title="@string/logout"/>-->
+<!--    <item-->
+<!--        android:id="@+id/search"-->
+<!--        android:title="@string/search"-->
+<!--        android:icon="@drawable/ic_search_black_24dp"-->
+<!--        app:showAsAction="always"/>-->
+
+
+
 <!---->
 <!--    <item-->
 <!--        android:id="@+id/action_settings"-->
