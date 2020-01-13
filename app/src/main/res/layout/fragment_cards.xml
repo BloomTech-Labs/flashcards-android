@@ -108,36 +108,56 @@
             android:layout_height="0dp"
             android:layout_marginTop="32dp"
             android:background="#F3ECE3"
+            android:onClick="@{() -> viewModel.changeDisplay()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent=".3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fl_cards"
-            app:layout_constraintWidth_percent=".85" />
+            app:layout_constraintWidth_percent=".85">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_cards_display"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.displayCard}"
+                    android:textSize="48sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Leche" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
+
 
         <TextView
-            android:id="@+id/tv_cards_display"
+            android:id="@+id/tv_cards_tap_instruction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.displayCard}"
-            android:textSize="48sp"
-            app:layout_constraintBottom_toBottomOf="@id/fl_cards_display_card"
-            app:layout_constraintEnd_toEndOf="@id/fl_cards_display_card"
-            app:layout_constraintStart_toStartOf="@id/fl_cards_display_card"
-            app:layout_constraintTop_toTopOf="@id/fl_cards_display_card"
-            tools:text="Leche" />
-
-        <Button
-            android:id="@+id/btn_cards_flip"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:background="@drawable/tap_to_flip"
-            android:onClick="@{() -> viewModel.changeDisplay()}"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:text="@string/tap_card_to_flip"
+            android:textColor="#453C38"
+            android:textSize="21sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fl_cards_display_card" />
+
+        <ImageView
+            android:id="@+id/iv_card_flip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/tap_to_flip"
             android:text="@string/flip"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fl_cards_display_card"
-            app:layout_constraintWidth_percent=".85" />
+            app:layout_constraintTop_toBottomOf="@id/tv_cards_tap_instruction" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
