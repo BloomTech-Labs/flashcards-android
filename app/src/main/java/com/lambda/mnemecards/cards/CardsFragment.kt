@@ -72,6 +72,31 @@ class CardsFragment : Fragment() {
             }
         })
 
+        // Changes the display if an emoji is clicked on.
+        viewModel.clickedEmoji.observe(this, Observer { clickedEmoji ->
+
+            binding.ivCardsDisplayHowWell.visibility = View.VISIBLE
+            binding.flCardsDisplayCard.setBackgroundColor(Color.parseColor("#FFFFFF"))
+            binding.ivCardsShock.visibility = View.INVISIBLE
+            binding.ivCardsHappy.visibility = View.INVISIBLE
+            binding.ivCardsCool.visibility = View.INVISIBLE
+            binding.tvCardsHowWell.visibility = View.INVISIBLE
+
+            binding.btnCardsNext.visibility = View.VISIBLE
+            binding.btnCardsTryAgain.visibility = View.VISIBLE
+
+            if(clickedEmoji == "shockEmoji"){
+                binding.ivCardsDisplayHowWell.setImageResource(R.drawable.shocked_emoji)
+            }
+            else if(clickedEmoji == "happyEmoji"){
+                binding.ivCardsDisplayHowWell.setImageResource(R.drawable.happy_emoji)
+            }
+            else{
+                binding.ivCardsDisplayHowWell.setImageResource(R.drawable.cool_emoji)
+            }
+
+        })
+
         // Inflate the layout for this fragment
         return binding.root
     }

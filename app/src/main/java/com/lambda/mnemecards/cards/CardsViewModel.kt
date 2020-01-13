@@ -1,10 +1,17 @@
 package com.lambda.mnemecards.cards
 
+import android.animation.AnimatorInflater
+import android.animation.ObjectAnimator
 import android.app.Application
+import android.util.Log
+import android.view.View
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.lambda.mnemecards.R
 import com.lambda.mnemecards.network.Deck
 
 /**
@@ -29,6 +36,10 @@ class CardsViewModel(deck: Deck, app: Application) : AndroidViewModel(app) {
     val displayCard :LiveData<String>
         get() = _displayCard
 
+    private val _clickedEmoji = MutableLiveData<String>()
+    val clickedEmoji: LiveData<String>
+        get() = _clickedEmoji
+
     // True = White
     // False = Orange
     private val _frameLayoutColor = MutableLiveData<Boolean>()
@@ -46,7 +57,8 @@ class CardsViewModel(deck: Deck, app: Application) : AndroidViewModel(app) {
     val displayDeckCardAmount = _selectedDeck.value?.data?.size
     var cardCounter = 0
 
-    fun changeDisplay(){
+    fun changeDisplayOnFLClick(){
+
 
         _frontOrBack.value = !_frontOrBack.value!!
         _frameLayoutColor.value = !_frameLayoutColor.value!!
@@ -59,6 +71,14 @@ class CardsViewModel(deck: Deck, app: Application) : AndroidViewModel(app) {
             _displayCard.value = _selectedDeck.value?.data?.get(cardCounter)?.data?.back
             increaseCardCount()
         }
+
+    }
+
+    // Get the tag of the ImageView and then set _clickedEmoji to that value.
+    fun changeDisplayOnEmojiClick(view: View){
+
+        Log.i("CardsViewModel", view.tag.toString())
+        _clickedEmoji.value = view.tag.toString()
 
     }
 
