@@ -108,7 +108,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="32dp"
             android:background="#F3ECE3"
-            android:onClick="@{() -> viewModel.changeDisplay()}"
+            android:onClick="@{(view) -> viewModel.changeDisplay(view)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent=".3"
             app:layout_constraintStart_toStartOf="parent"
@@ -130,6 +130,17 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Leche" />
+
+                <ImageView
+                    android:id="@+id/iv_cards_display_how_well"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/happy_emoji"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </FrameLayout>
@@ -177,43 +188,94 @@
             android:id="@+id/iv_cards_shock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/shocked_emoji"
             android:layout_marginTop="32dp"
             android:alpha=".5"
+            android:onClick="@{(view) -> viewModel.changeDisplayOnEmojiClick(view)}"
+            android:src="@drawable/shocked_emoji"
             android:visibility="invisible"
-            app:layout_constraintTop_toBottomOf="@id/tv_cards_how_well"
+            android:tag="shockEmoji"
             app:layout_constraintEnd_toStartOf="@+id/iv_cards_happy"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_cards_how_well"
             tools:layout_editor_absoluteY="511dp" />
 
         <ImageView
             android:id="@+id/iv_cards_happy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/happy_emoji"
             android:layout_marginTop="32dp"
             android:alpha=".5"
+            android:onClick="@{(view) -> viewModel.changeDisplayOnEmojiClick(view)}"
+            android:src="@drawable/happy_emoji"
             android:visibility="invisible"
-            app:layout_constraintTop_toBottomOf="@id/tv_cards_how_well"
+            android:tag="happyEmoji"
             app:layout_constraintEnd_toStartOf="@+id/iv_cards_cool"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/iv_cards_shock"
+            app:layout_constraintTop_toBottomOf="@id/tv_cards_how_well"
             tools:layout_editor_absoluteY="511dp" />
 
         <ImageView
             android:id="@+id/iv_cards_cool"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/cool_emoji"
-            android:alpha=".5"
             android:layout_marginTop="32dp"
+            android:alpha=".5"
+            android:onClick="@{(view) -> viewModel.changeDisplayOnEmojiClick(view)}"
+            android:tag="coolEmoji"
+            android:src="@drawable/cool_emoji"
             android:visibility="invisible"
-            app:layout_constraintTop_toBottomOf="@id/tv_cards_how_well"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/iv_cards_happy"
+            app:layout_constraintTop_toBottomOf="@id/tv_cards_how_well"
             tools:layout_editor_absoluteY="511dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_cards_try_again"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FFFFFF"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:text="@string/try_again"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:layout_marginTop="38dp"
+            app:cornerRadius="23dp"
+            app:rippleColor="@color/colorPrimary"
+            app:strokeWidth="2dp"
+            android:onClick="@{(view) -> viewModel.changeDisplay(view)}"
+            android:visibility="invisible"
+            android:tag="btnTryAgain"
+            app:strokeColor="@color/colorPrimary"
+            app:layout_constraintTop_toBottomOf="@id/fl_cards_display_card"
+            app:layout_constraintEnd_toStartOf="@+id/btn_cards_next"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="446dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_cards_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="38dp"
+            android:backgroundTint="#FFFFFF"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:text="@string/next"
+            android:onClick="@{(view) -> viewModel.changeDisplay(view)}"
+            android:visibility="invisible"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            app:cornerRadius="23dp"
+            android:tag="btnNext"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_cards_try_again"
+            app:layout_constraintTop_toBottomOf="@id/fl_cards_display_card"
+            app:rippleColor="@color/colorPrimary"
+            app:strokeColor="@color/colorPrimary"
+            app:strokeWidth="2dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

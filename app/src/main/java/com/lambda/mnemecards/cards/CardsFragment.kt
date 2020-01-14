@@ -49,13 +49,58 @@ class CardsFragment : Fragment() {
         // TODO: FIX THIS BOOLEAN LOGIC LATER
         // True = White
         // False = Orange
+        // Changes the visibility of views depending on if the card is displaying the front or back of the card
         viewModel.frameLayoutColor.observe(this, Observer { color ->
+
+            binding.btnCardsNext.visibility = View.INVISIBLE
+            binding.btnCardsTryAgain.visibility = View.INVISIBLE
+            binding.ivCardsDisplayHowWell.visibility = View.INVISIBLE
+
             if(!color){
                 binding.flCardsDisplayCard.setBackgroundColor(Color.parseColor("#FFD164"))
+
+                binding.ivCardsFlip.visibility = View.INVISIBLE
+                binding.tvCardsTapInstruction.visibility = View.INVISIBLE
+                binding.tvCardsHowWell.visibility = View.VISIBLE
+                binding.ivCardsShock.visibility = View.VISIBLE
+                binding.ivCardsHappy.visibility = View.VISIBLE
+                binding.ivCardsCool.visibility = View.VISIBLE
             }
             else{
                 binding.flCardsDisplayCard.setBackgroundColor(Color.parseColor("#F3ECE3"))
+
+                binding.ivCardsFlip.visibility = View.VISIBLE
+                binding.tvCardsTapInstruction.visibility = View.VISIBLE
+                binding.tvCardsHowWell.visibility = View.INVISIBLE
+                binding.ivCardsShock.visibility = View.INVISIBLE
+                binding.ivCardsHappy.visibility = View.INVISIBLE
+                binding.ivCardsCool.visibility = View.INVISIBLE
             }
+        })
+
+        // Changes the display if an emoji is clicked on.
+        viewModel.clickedEmoji.observe(this, Observer { clickedEmoji ->
+
+            binding.ivCardsDisplayHowWell.visibility = View.VISIBLE
+            binding.flCardsDisplayCard.setBackgroundColor(Color.parseColor("#FFFFFF"))
+            binding.ivCardsShock.visibility = View.INVISIBLE
+            binding.ivCardsHappy.visibility = View.INVISIBLE
+            binding.ivCardsCool.visibility = View.INVISIBLE
+            binding.tvCardsHowWell.visibility = View.INVISIBLE
+
+            binding.btnCardsNext.visibility = View.VISIBLE
+            binding.btnCardsTryAgain.visibility = View.VISIBLE
+
+            if(clickedEmoji == "shockEmoji"){
+                binding.ivCardsDisplayHowWell.setImageResource(R.drawable.shocked_emoji)
+            }
+            else if(clickedEmoji == "happyEmoji"){
+                binding.ivCardsDisplayHowWell.setImageResource(R.drawable.happy_emoji)
+            }
+            else{
+                binding.ivCardsDisplayHowWell.setImageResource(R.drawable.cool_emoji)
+            }
+
         })
 
         // Inflate the layout for this fragment
