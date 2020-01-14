@@ -117,7 +117,7 @@ class HomeFragment : Fragment() {
             "MobileOrDesktop" to "Desktop",
             "customOrPremade" to "pre-made",
             "notification-frequency" to "When I haven't met my goal in a week",
-            "study-frequency" to "Twice a week",
+            "studyFrequency" to "Twice a week",
             "technique" to "Writing"
         )
 

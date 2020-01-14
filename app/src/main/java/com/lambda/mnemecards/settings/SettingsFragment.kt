@@ -125,6 +125,7 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
         // parent?.getItemAtPosition(position).equals seems like an important function I'll be needing in the future
     }
 
+    // Sets the default values of the radio buttons and spinners depending on what the user has previous saved as their preferences
     fun setDefaultSettings(user: User, binding: FragmentSettingsBinding){
 
         if(!user.favSubjects.isNullOrEmpty()){
@@ -147,6 +148,12 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
             val spinnerPosition = preferToStudyByAdapter.getPosition(user.technique)
             binding.spinnerSettingsPreferToStudyBy.setSelection(spinnerPosition)
             Log.i("SettingsFragment", user.technique)
+        }
+
+        if(!user.studyFrequency.isNullOrEmpty()){
+            val spinnerPosition = studyFrequencyAdapter.getPosition(user.studyFrequency)
+            binding.spinnerStudyFrequency.setSelection(spinnerPosition)
+            Log.i("settingsFragment2", user.studyFrequency)
         }
 
         if(!user.customOrPremade.isNullOrEmpty()){
