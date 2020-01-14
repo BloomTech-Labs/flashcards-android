@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/marketingFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -44,4 +44,9 @@
             android:name="deck"
             app:argType="com.lambda.mnemecards.network.Deck" />
     </fragment>
+    <fragment
+        android:id="@+id/marketingFragment"
+        android:name="com.lambda.mnemecards.marketing.marketingFragment"
+        android:label="fragment_marketing"
+        tools:layout="@layout/fragment_marketing" />
 </navigation>
