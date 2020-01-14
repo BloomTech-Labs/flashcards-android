@@ -11,31 +11,11 @@
         android:label="@string/mNeme"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_destinationTestFragment"
-            app:destination="@id/destinationTestFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
         <action
             android:id="@+id/action_homeFragment_to_cardsFragment"
             app:destination="@id/cardsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/destinationTestFragment"
-        android:name="com.lambda.mnemecards.DestinationTestFragment"
-        android:label="@string/destination"
-        tools:layout="@layout/fragment_destination_test" >
-        <action
-            android:id="@+id/action_destinationTestFragment_to_homeTestFragment"
-            app:destination="@id/homeFragment"
-            app:popUpTo="@+id/homeFragment"
-            app:popUpToInclusive="true" />
-        <argument
-            android:name="valueOne"
-            app:argType="string" />
-        <argument
-            android:name="valueTwo"
-            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"

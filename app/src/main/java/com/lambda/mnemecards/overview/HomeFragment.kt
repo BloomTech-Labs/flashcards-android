@@ -27,6 +27,7 @@ import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.lambda.mnemecards.R
 import com.lambda.mnemecards.databinding.FragmentHomeBinding
 import java.util.*
@@ -48,10 +49,13 @@ class HomeFragment : Fragment() {
     private var loggedInFlag: Boolean = false
 
     // Name to be passed to the settings
-    var name: String? = "qwe"
+    var name: String? = "First Name"
 
     // Photo URL to be passed to the settings to draw the picture.
     var photoUrl: String? = "asd"
+
+    // User's Id
+    var userId: String?= "No Token"
 
     private lateinit var auth: FirebaseAuth
 
@@ -101,6 +105,18 @@ class HomeFragment : Fragment() {
             launchSignInFlow()
             loggedInFlag = true
         }
+
+        // Testing out write with firestore
+
+        val preferences = hashMapOf(
+            "id" to "4uR0bkDdUeOvQdolIXbiP0kxLZs1",
+            "favSubjects" to "math"
+        )
+
+        db.collection("Users").document("4uR0bkDdUeOvQdolIXbiP0kxLZs1")
+            .set(preferences, SetOptions.merge())
+            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
+            .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
 
         setHasOptionsMenu(true)
         return binding.root
@@ -328,6 +344,7 @@ class HomeFragment : Fragment() {
                     name = user?.displayName.toString()
                     val email = user.email
                     photoUrl = user?.photoUrl.toString()
+                    userId = user?.uid
 
                     Toast.makeText(fragmentContext, "Welcome $name", Toast.LENGTH_SHORT).show()
 
