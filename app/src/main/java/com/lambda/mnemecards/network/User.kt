@@ -5,7 +5,9 @@ import com.google.firebase.firestore.PropertyName
 data class User (
     val id: String? = "",
     var favSubjects: String? = "",
-    var MobileOrDesktop: String? = "",
+
+    @PropertyName("MobileOrDesktop")
+    var mobileOrDesktop: String? = "",
     var customOrPremade: String? = "",
 
     @PropertyName("notification-frequency")

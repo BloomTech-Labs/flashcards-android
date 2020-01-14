@@ -58,6 +58,8 @@ class HomeFragment : Fragment() {
     // User's Id
     var userId: String?= "No Token"
 
+    lateinit var userPreferences: User
+
     private lateinit var auth: FirebaseAuth
 
     var callbackManager = CallbackManager.Factory.create()
@@ -111,7 +113,8 @@ class HomeFragment : Fragment() {
 
         val preferences = hashMapOf(
             "id" to "4uR0bkDdUeOvQdolIXbiP0kxLZs1",
-            "favSubjects" to "math"
+            "favSubjects" to "math",
+            "MobileOrDesktop" to "Desktop"
         )
 
         // To write Data
@@ -141,6 +144,7 @@ class HomeFragment : Fragment() {
         docRef.get().addOnSuccessListener { documentSnapshot ->
             val user = documentSnapshot.toObject(User::class.java)
             Log.i("HomeFragment2", user?.favSubjects)
+            Log.i("HomeFragment2", user?.mobileOrDesktop)
         }
 
 
@@ -375,6 +379,13 @@ class HomeFragment : Fragment() {
                     Toast.makeText(fragmentContext, "Welcome $name", Toast.LENGTH_SHORT).show()
 
                     Log.i("HomeFragment", name + email + photoUrl)
+
+                    // To get user's preference data using custom objects
+                    val docRef = db.collection("Users").document(userId!!)
+                    docRef.get().addOnSuccessListener { documentSnapshot ->
+                        userPreferences = documentSnapshot.toObject(User::class.java)!!
+                        Log.i("HomeFragment2", userPreferences?.toString())
+                    }
                 }
 
                 // User successfully signed in
