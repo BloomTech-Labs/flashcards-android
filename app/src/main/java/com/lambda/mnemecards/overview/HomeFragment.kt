@@ -111,21 +111,21 @@ class HomeFragment : Fragment() {
 
         // Testing out write with firestore
 
-        val preferences = hashMapOf(
-            "id" to "4uR0bkDdUeOvQdolIXbiP0kxLZs1",
-            "favSubjects" to "math",
-            "MobileOrDesktop" to "Desktop",
-            "customOrPremade" to "pre-made",
-            "notification-frequency" to "When I haven't met my goal in a week",
-            "studyFrequency" to "Twice a week",
-            "technique" to "Writing"
-        )
+//        val preferences = hashMapOf(
+//            "id" to "4uR0bkDdUeOvQdolIXbiP0kxLZs1",
+//            "favSubjects" to "math",
+//            "MobileOrDesktop" to "Desktop",
+//            "customOrPremade" to "pre-made",
+//            "notification-frequency" to "When I haven't met my goal in a week",
+//            "studyFrequency" to "Twice a week",
+//            "technique" to "Writing"
+//        )
 
-        // To write Data
-        db.collection("Users").document("4uR0bkDdUeOvQdolIXbiP0kxLZs1")
-            .set(preferences, SetOptions.merge())
-            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
-            .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
+//        // To write Data
+//        db.collection("Users").document("4uR0bkDdUeOvQdolIXbiP0kxLZs1")
+//            .set(preferences, SetOptions.merge())
+//            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
+//            .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
 
         // To get data
         db.collection("Users").document("4uR0bkDdUeOvQdolIXbiP0kxLZs1")

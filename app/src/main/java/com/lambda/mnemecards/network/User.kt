@@ -16,7 +16,8 @@ data class User (
     @PropertyName("notification-frequency")
     var notificationFrequency: String? = "",
 
-    @PropertyName("study-frequency")
+    @get:PropertyName("study-frequency")
+    @set:PropertyName("study-frequency")
     var studyFrequency: String? = "",
 
     var technique: String? = ""
