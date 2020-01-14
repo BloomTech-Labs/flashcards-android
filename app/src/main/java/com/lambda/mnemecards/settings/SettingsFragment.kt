@@ -7,7 +7,6 @@ import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
-import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -17,8 +16,8 @@ import androidx.navigation.fragment.navArgs
 import com.google.firebase.firestore.SetOptions
 import com.lambda.mnemecards.R
 import com.lambda.mnemecards.databinding.FragmentSettingsBinding
+import com.lambda.mnemecards.marketing.db
 import com.lambda.mnemecards.network.User
-import com.lambda.mnemecards.overview.db
 
 
 /**
@@ -180,17 +179,23 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
     fun savePreferences(user: User, binding: FragmentSettingsBinding){
 
 //        if(binding.rgSettingsPreferencesMobileDesktop.isEnabled){
-            val id = binding.rgSettingsPreferencesMobileDesktop.checkedRadioButtonId
-            val radioButton = binding.rgSettingsPreferencesMobileDesktop.findViewById<RadioButton>(id)
-            val radioId = binding.rgSettingsPreferencesMobileDesktop.indexOfChild(radioButton)
-            val btn = binding.rgSettingsPreferencesMobileDesktop.getChildAt(radioId)
+            val idMobileOrDesktop = binding.rgSettingsPreferencesMobileDesktop.checkedRadioButtonId
+            val radioButtonMobileOrDesktop = binding.rgSettingsPreferencesMobileDesktop.findViewById<RadioButton>(idMobileOrDesktop)
+            val radioIdMobileOrDesktop = binding.rgSettingsPreferencesMobileDesktop.indexOfChild(radioButtonMobileOrDesktop)
+            val btnMobileOrDesktop = binding.rgSettingsPreferencesMobileDesktop.getChildAt(radioIdMobileOrDesktop)
 
+            val idDecks = binding.rgSettingsPreferencesPreMadeCustom.checkedRadioButtonId
+            val radioButtonDecks = binding.rgSettingsPreferencesPreMadeCustom.findViewById<RadioButton>(idDecks)
+            val radioIdDecks = binding.rgSettingsPreferencesPreMadeCustom.indexOfChild(radioButtonDecks)
+            val btnDecks = binding.rgSettingsPreferencesPreMadeCustom.getChildAt(radioIdDecks)
 //        }
 
         val preferences = hashMapOf(
-            "MobileOrDesktop" to btn.tag.toString()
+            "MobileOrDesktop" to btnMobileOrDesktop.tag.toString(),
+            "customOrPremade" to btnDecks.tag.toString()
         )
-        user.mobileOrDesktop = btn.tag.toString()
+        user.mobileOrDesktop = btnMobileOrDesktop.tag.toString()
+        user.customOrPremade = btnMobileOrDesktop.tag.toString()
         db.collection("Users").document(user.id.toString()).set(preferences, SetOptions.merge())
     }
 }

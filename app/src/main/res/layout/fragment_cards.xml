@@ -110,7 +110,7 @@
             android:background="#F3ECE3"
             android:onClick="@{(view) -> viewModel.changeDisplay(view)}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".3"
+            app:layout_constraintHeight_percent=".4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fl_cards"
             app:layout_constraintWidth_percent=".85">
@@ -121,10 +121,16 @@
 
                 <TextView
                     android:id="@+id/tv_cards_display"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="@{viewModel.displayCard}"
-                    android:textSize="48sp"
+                    android:gravity="center"
+                    android:autoSizeTextType="uniform"
+                    android:textSize="38sp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

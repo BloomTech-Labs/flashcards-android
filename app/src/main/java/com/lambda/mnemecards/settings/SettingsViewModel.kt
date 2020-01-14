@@ -6,7 +6,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.lambda.mnemecards.network.User
-import com.lambda.mnemecards.overview.db
 
 class SettingsViewModel(name:String?, photoUrl: String?, user: User?): AndroidViewModel(Application()){
 

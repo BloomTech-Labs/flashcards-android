@@ -53,6 +53,9 @@
     <string name="how_well_did_you_know_this_card">How well did you know this card?</string>
     <string name="try_again">Try Again</string>
     <string name="next">Next</string>
+    <string name="welcome_to">Welcome to</string>
+    <string name="mneme">mNeme</string>
+    <string name="nee_mee">[Nee-Mee]</string>
 
     <!--    String arrays used for the spinner drop down menu-->
     <string-array name="study_methods">

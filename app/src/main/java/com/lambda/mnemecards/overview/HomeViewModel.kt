@@ -8,7 +8,7 @@ import com.lambda.mnemecards.network.*
 import kotlinx.coroutines.*
 import java.lang.Exception
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
 
     // Internally, we use a MutableLiveData, because we will be updating the List of Decks
     // with new values
@@ -47,7 +47,16 @@ class HomeViewModel : ViewModel() {
     val username: LiveData<String>
         get() = _username
 
+    var name: String?
+    var photo: String?
+    var user: User?
+
     init {
+
+        this.name = name
+        this.photo = photo
+        this.user = user
+
         coroutineScope.launch {
             getDeckNames()
 //            _deckNames.value?.get(0)?.let { getDecks(it) }
