@@ -30,6 +30,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.lambda.mnemecards.R
 import com.lambda.mnemecards.databinding.FragmentHomeBinding
+import com.lambda.mnemecards.network.User
 import java.util.*
 
 class HomeFragment : Fragment() {
@@ -113,10 +114,35 @@ class HomeFragment : Fragment() {
             "favSubjects" to "math"
         )
 
+        // To write Data
         db.collection("Users").document("4uR0bkDdUeOvQdolIXbiP0kxLZs1")
             .set(preferences, SetOptions.merge())
             .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
             .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
+
+        // To get data
+        db.collection("Users").document("4uR0bkDdUeOvQdolIXbiP0kxLZs1")
+            .get()
+            .addOnCompleteListener { result ->
+                val document = result.result
+                Log.d("HomeFragment", "${document?.data}")
+
+            }
+            .addOnFailureListener { exception ->
+                Log.d("Get Deck", "Error getting documents: ", exception)
+            }
+
+            .addOnFailureListener { exception ->
+                Log.d("Get Deck", "Error getting documents: ", exception)
+            }
+
+        // To get data using custom objects
+        val docRef = db.collection("Users").document("4uR0bkDdUeOvQdolIXbiP0kxLZs1")
+        docRef.get().addOnSuccessListener { documentSnapshot ->
+            val user = documentSnapshot.toObject(User::class.java)
+            Log.i("HomeFragment2", user?.favSubjects)
+        }
+
 
         setHasOptionsMenu(true)
         return binding.root
