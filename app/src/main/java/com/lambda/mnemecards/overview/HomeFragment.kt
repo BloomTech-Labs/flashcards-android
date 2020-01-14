@@ -30,7 +30,11 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.lambda.mnemecards.R
 import com.lambda.mnemecards.databinding.FragmentHomeBinding
+import com.lambda.mnemecards.network.User
 import java.util.*
+
+// For accessing Firestore
+var db = FirebaseFirestore.getInstance()
 
 class HomeFragment : Fragment() {
 
@@ -43,8 +47,7 @@ class HomeFragment : Fragment() {
     var googleSignInClient: GoogleSignInClient? = null
     val RC_SIGN_IN = 1000
 
-    // For accessing Firestore
-    private var db = FirebaseFirestore.getInstance()
+
 
     private var loggedInFlag: Boolean = false
 
@@ -56,6 +59,8 @@ class HomeFragment : Fragment() {
 
     // User's Id
     var userId: String?= "No Token"
+
+    var user: User = User()
 
     private lateinit var auth: FirebaseAuth
 
@@ -108,15 +113,46 @@ class HomeFragment : Fragment() {
 
         // Testing out write with firestore
 
-        val preferences = hashMapOf(
-            "id" to "4uR0bkDdUeOvQdolIXbiP0kxLZs1",
-            "favSubjects" to "math"
-        )
+//        val preferences = hashMapOf(
+//            "id" to "4uR0bkDdUeOvQdolIXbiP0kxLZs1",
+//            "favSubjects" to "math",
+//            "MobileOrDesktop" to "Desktop",
+//            "customOrPremade" to "pre-made",
+//            "notification-frequency" to "When I haven't met my goal in a week",
+//            "studyFrequency" to "Twice a week",
+//            "technique" to "Writing"
+//        )
 
+//        // To write Data
+//        db.collection("Users").document("4uR0bkDdUeOvQdolIXbiP0kxLZs1")
+//            .set(preferences, SetOptions.merge())
+//            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
+//            .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
+
+        // To get data
         db.collection("Users").document("4uR0bkDdUeOvQdolIXbiP0kxLZs1")
-            .set(preferences, SetOptions.merge())
-            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
-            .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
+            .get()
+            .addOnCompleteListener { result ->
+                val document = result.result
+                Log.d("HomeFragment", "${document?.data}")
+
+            }
+            .addOnFailureListener { exception ->
+                Log.d("Get Deck", "Error getting documents: ", exception)
+            }
+
+            .addOnFailureListener { exception ->
+                Log.d("Get Deck", "Error getting documents: ", exception)
+            }
+
+        // To get data using custom objects
+        val docRef = db.collection("Users").document("4uR0bkDdUeOvQdolIXbiP0kxLZs1")
+        docRef.get().addOnSuccessListener { documentSnapshot ->
+            val user = documentSnapshot.toObject(User::class.java)
+            Log.i("HomeFragment2", user?.favSubjects)
+            Log.i("HomeFragment2", user?.mobileOrDesktop)
+        }
+
 
         setHasOptionsMenu(true)
         return binding.root
@@ -349,6 +385,13 @@ class HomeFragment : Fragment() {
                     Toast.makeText(fragmentContext, "Welcome $name", Toast.LENGTH_SHORT).show()
 
                     Log.i("HomeFragment", name + email + photoUrl)
+
+                    // To get user's preference data using custom objects
+                    val docRef = db.collection("Users").document(userId!!)
+                    docRef.get().addOnSuccessListener { documentSnapshot ->
+                        this.user = documentSnapshot.toObject(User::class.java)!!
+                        Log.i("HomeFragment2", this.user?.toString())
+                    }
                 }
 
                 // User successfully signed in
@@ -373,7 +416,7 @@ class HomeFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            R.id.preferences -> findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSettingsFragment(name, photoUrl))
+            R.id.preferences -> findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSettingsFragment(name, photoUrl, user))
         }
 
         return super.onOptionsItemSelected(item)
