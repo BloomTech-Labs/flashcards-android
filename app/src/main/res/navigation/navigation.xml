@@ -59,8 +59,8 @@
     <fragment
         android:id="@+id/marketingFragment"
         android:name="com.lambda.mnemecards.marketing.marketingFragment"
-        android:label="fragment_marketing"
-        tools:layout="@layout/fragment_marketing" >
+        android:label="mNeme"
+        tools:layout="@layout/fragment_marketing">
         <action
             android:id="@+id/action_marketingFragment_to_homeFragment"
             app:destination="@id/homeFragment" />

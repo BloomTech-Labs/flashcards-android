@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -128,7 +129,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
 //        val docRef = db.collection("DemoDeck").document("I2r2gejFYwCQfqafWlVy")
 //        docRef.get()
@@ -291,6 +291,7 @@ class HomeFragment : Fragment() {
 //            }
 //        }
 //    }
+
 
 
 

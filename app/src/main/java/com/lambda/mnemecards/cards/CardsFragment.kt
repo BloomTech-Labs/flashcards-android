@@ -55,6 +55,7 @@ class CardsFragment : Fragment() {
             binding.btnCardsNext.visibility = View.INVISIBLE
             binding.btnCardsTryAgain.visibility = View.INVISIBLE
             binding.ivCardsDisplayHowWell.visibility = View.INVISIBLE
+            binding.tvCardsDisplay.visibility = View.VISIBLE
 
             if(!color){
                 binding.flCardsDisplayCard.setBackgroundColor(Color.parseColor("#FFD164"))
@@ -87,6 +88,7 @@ class CardsFragment : Fragment() {
             binding.ivCardsHappy.visibility = View.INVISIBLE
             binding.ivCardsCool.visibility = View.INVISIBLE
             binding.tvCardsHowWell.visibility = View.INVISIBLE
+            binding.tvCardsDisplay.visibility = View.INVISIBLE
 
             binding.btnCardsNext.visibility = View.VISIBLE
             binding.btnCardsTryAgain.visibility = View.VISIBLE

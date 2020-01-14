@@ -71,6 +71,8 @@ class marketingFragment : Fragment() {
             false
         )
 
+
+
         // To get data using custom objects
         val docRef = db.collection("Users").document("4uR0bkDdUeOvQdolIXbiP0kxLZs1")
         docRef.get().addOnSuccessListener { documentSnapshot ->

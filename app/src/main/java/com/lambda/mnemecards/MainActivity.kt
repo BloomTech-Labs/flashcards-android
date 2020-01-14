@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         printHashKey(this)
 
-        Toast.makeText(this, "Firebase Connection Test", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "Firebase Connection Test", Toast.LENGTH_SHORT).show()
 
         // Gets rid of the shadow under the action bar
         supportActionBar?.elevation = 0F
