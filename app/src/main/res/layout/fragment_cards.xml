@@ -121,10 +121,11 @@
 
                 <TextView
                     android:id="@+id/tv_cards_display"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="@{viewModel.displayCard}"
-                    android:textSize="48sp"
+                    android:gravity="center"
+                    android:textSize="38sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

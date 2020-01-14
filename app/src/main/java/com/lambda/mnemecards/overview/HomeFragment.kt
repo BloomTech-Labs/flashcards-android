@@ -66,6 +66,8 @@ class HomeFragment : Fragment() {
 
         val binding = FragmentHomeBinding.inflate(inflater)
 
+        binding.pbLoading.visibility = View.VISIBLE
+
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
 
@@ -80,6 +82,7 @@ class HomeFragment : Fragment() {
         // tells the viewModel when our Deck is clicked
         binding.rvDecks.adapter = DeckAdapter(DeckAdapter.OnClickListener {
             viewModel.displayDeckDetails(it)
+            binding.pbLoading.visibility = View.INVISIBLE
         })
 
         viewModel.navigateToSelectedDeck.observe(this, Observer{

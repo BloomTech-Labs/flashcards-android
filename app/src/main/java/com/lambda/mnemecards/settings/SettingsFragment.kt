@@ -195,6 +195,7 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
             "customOrPremade" to btnDecks.tag.toString()
         )
         user.mobileOrDesktop = btnMobileOrDesktop.tag.toString()
+        user.customOrPremade = btnMobileOrDesktop.tag.toString()
         db.collection("Users").document(user.id.toString()).set(preferences, SetOptions.merge())
     }
 }
