@@ -33,6 +33,9 @@ import com.lambda.mnemecards.databinding.FragmentHomeBinding
 import com.lambda.mnemecards.network.User
 import java.util.*
 
+// For accessing Firestore
+var db = FirebaseFirestore.getInstance()
+
 class HomeFragment : Fragment() {
 
     companion object {
@@ -44,8 +47,7 @@ class HomeFragment : Fragment() {
     var googleSignInClient: GoogleSignInClient? = null
     val RC_SIGN_IN = 1000
 
-    // For accessing Firestore
-    private var db = FirebaseFirestore.getInstance()
+
 
     private var loggedInFlag: Boolean = false
 

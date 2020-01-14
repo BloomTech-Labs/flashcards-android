@@ -115,12 +115,15 @@
                     android:text="@string/mobile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:tag="Mobile"
+                    android:checked="true"
                     app:layout_constraintStart_toStartOf="parent"/>
 
                 <RadioButton
                     android:id="@+id/rb_settings_desktop"
                     android:buttonTint="@color/colorPrimary"
                     android:text="@string/desktop"
+                    android:tag="Desktop"
                     android:layout_marginStart="78dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>

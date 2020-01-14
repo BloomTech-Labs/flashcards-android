@@ -6,16 +6,20 @@ import android.util.Log
 import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.RadioButton
+import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-
+import com.google.firebase.firestore.SetOptions
 import com.lambda.mnemecards.R
 import com.lambda.mnemecards.databinding.FragmentSettingsBinding
 import com.lambda.mnemecards.network.User
+import com.lambda.mnemecards.overview.db
+
 
 /**
  * A simple [Fragment] subclass.
@@ -88,6 +92,10 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         setDefaultSettings(viewModel.user.value!!, binding)
 
+        binding.btnSettingsSave.setOnClickListener{
+            savePreferences(viewModel.user.value!!, binding)
+        }
+
         setHasOptionsMenu(true)
 
         // Inflate the layout for this fragment
@@ -133,8 +141,6 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
 
         if(!user.customOrPremade.isNullOrEmpty()){
-//            binding.rgSettingsPreferencesMobileDesktop
-            val radioId:Int = binding.rgSettingsPreferencesMobileDesktop.checkedRadioButtonId
             if(user.mobileOrDesktop!!.toLowerCase() == "desktop"){
                 binding.rbSettingsDesktop.isChecked = true
             }
@@ -171,5 +177,20 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
     }
 
+    fun savePreferences(user: User, binding: FragmentSettingsBinding){
 
+//        if(binding.rgSettingsPreferencesMobileDesktop.isEnabled){
+            val id = binding.rgSettingsPreferencesMobileDesktop.checkedRadioButtonId
+            val radioButton = binding.rgSettingsPreferencesMobileDesktop.findViewById<RadioButton>(id)
+            val radioId = binding.rgSettingsPreferencesMobileDesktop.indexOfChild(radioButton)
+            val btn = binding.rgSettingsPreferencesMobileDesktop.getChildAt(radioId)
+
+//        }
+
+        val preferences = hashMapOf(
+            "MobileOrDesktop" to btn.tag.toString()
+        )
+        user.mobileOrDesktop = btn.tag.toString()
+        db.collection("Users").document(user.id.toString()).set(preferences, SetOptions.merge())
+    }
 }
