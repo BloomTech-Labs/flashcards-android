@@ -19,5 +19,5 @@ data class User (
     @PropertyName("study-frequency")
     var studyFrequency: String? = "",
 
-    var techniques: String? = ""
+    var technique: String? = ""
 ):Parcelable

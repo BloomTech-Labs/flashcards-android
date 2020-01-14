@@ -25,6 +25,15 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var viewModel: SettingsViewModel
     private lateinit var viewModelFactory: SettingsViewModelFactory
 
+    // For the prefer to study spinner
+    private lateinit var preferToStudyByAdapter:ArrayAdapter<CharSequence>
+
+    // For the study frequency spinner
+    private lateinit var studyFrequencyAdapter:ArrayAdapter<CharSequence>
+
+    // For the notification frequency spinner
+    private lateinit var notificationFrequencyAdapter: ArrayAdapter<CharSequence>
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,7 +54,6 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
             .get(SettingsViewModel::class.java)
 
         Log.i("SettingsFragment2", viewModel.user.value.toString())
-        setDefaultSettings(viewModel.user.value!!, binding)
 
 //       binding.lifecycleOwner = this
 
@@ -61,22 +69,24 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
         })
 
         // For the prefer to study spinner
-        val preferToStudyByAdapter:ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(binding.root.context, R.array.study_methods, android.R.layout.simple_spinner_item )
+        preferToStudyByAdapter = ArrayAdapter.createFromResource(binding.root.context, R.array.study_methods, android.R.layout.simple_spinner_item )
         preferToStudyByAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerSettingsPreferToStudyBy.adapter = preferToStudyByAdapter
         binding.spinnerSettingsPreferToStudyBy.onItemSelectedListener = this
 
         // For the study frequency spinner
-        val studyFrequencyAdapter:ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(binding.root.context, R.array.study_frequency, android.R.layout.simple_spinner_item)
+        studyFrequencyAdapter = ArrayAdapter.createFromResource(binding.root.context, R.array.study_frequency, android.R.layout.simple_spinner_item)
         studyFrequencyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerStudyFrequency.adapter = studyFrequencyAdapter
         binding.spinnerStudyFrequency.onItemSelectedListener = this
 
         // For the notification frequency spinner
-        val notificationFrequencyAdapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(binding.root.context, R.array.study_notification_frequency, android.R.layout.simple_spinner_item)
+        notificationFrequencyAdapter = ArrayAdapter.createFromResource(binding.root.context, R.array.study_notification_frequency, android.R.layout.simple_spinner_item)
         notificationFrequencyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerNotificationFrequency.adapter = notificationFrequencyAdapter
         binding.spinnerNotificationFrequency.onItemSelectedListener = this
+
+        setDefaultSettings(viewModel.user.value!!, binding)
 
         setHasOptionsMenu(true)
 
@@ -130,6 +140,13 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
             else{
                 binding.rbSettingsMobile.isChecked = true
             }
+        }
+
+        if(!user.technique.isNullOrEmpty()){
+
+            val spinnerPosition = preferToStudyByAdapter.getPosition(user.technique)
+            binding.spinnerSettingsPreferToStudyBy.setSelection(spinnerPosition)
+            Log.i("SettingsFragment", user.technique)
         }
 
         if(!user.customOrPremade.isNullOrEmpty()){
