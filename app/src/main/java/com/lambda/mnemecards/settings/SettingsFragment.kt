@@ -15,6 +15,7 @@ import androidx.navigation.fragment.navArgs
 
 import com.lambda.mnemecards.R
 import com.lambda.mnemecards.databinding.FragmentSettingsBinding
+import com.lambda.mnemecards.network.User
 
 /**
  * A simple [Fragment] subclass.
@@ -43,7 +44,8 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(SettingsViewModel::class.java)
 
-        Log.i("SettingsFragment2", "${viewModel.user.value.toString()}")
+        Log.i("SettingsFragment2", viewModel.user.value.toString())
+        setSettings(viewModel.user.value!!, binding)
 
 //       binding.lifecycleOwner = this
 
@@ -111,6 +113,26 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 //        Toast.makeText(parent?.context, parent?.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show()
 
         // parent?.getItemAtPosition(position).equals seems like an important function I'll be needing in the future
+    }
+
+    fun setSettings(user: User, binding: FragmentSettingsBinding){
+
+        if(!user.favSubjects.isNullOrEmpty()){
+            binding.etSettingsPreference.append(" " + user.favSubjects)
+        }
+
+        if(!user.customOrPremade.isNullOrEmpty()){
+//            binding.rgSettingsPreferencesMobileDesktop
+            val radioId:Int = binding.rgSettingsPreferencesMobileDesktop.checkedRadioButtonId
+            if(user.mobileOrDesktop!!.toLowerCase() == "desktop"){
+                binding.rbSettingsDesktop.isChecked = true
+            }
+            else{
+                binding.rbSettingsMobile.isChecked = true
+            }
+        }
+
+
     }
 
 

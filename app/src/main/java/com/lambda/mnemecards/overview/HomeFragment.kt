@@ -114,7 +114,11 @@ class HomeFragment : Fragment() {
         val preferences = hashMapOf(
             "id" to "4uR0bkDdUeOvQdolIXbiP0kxLZs1",
             "favSubjects" to "math",
-            "MobileOrDesktop" to "Desktop"
+            "MobileOrDesktop" to "Desktop",
+            "customOrPremade" to "pre-made",
+            "notification-frequency" to "When I haven't met my goal in a week",
+            "study-frequency" to "Twice a week",
+            "technique" to "Writing"
         )
 
         // To write Data
