@@ -1,7 +1,10 @@
 package com.lambda.mnemecards.network
 
+import android.os.Parcelable
 import com.google.firebase.firestore.PropertyName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class User (
     val id: String? = "",
     var favSubjects: String? = "",
@@ -17,4 +20,4 @@ data class User (
     var studyFrequency: String? = "",
 
     var techniques: String? = ""
-)
+):Parcelable

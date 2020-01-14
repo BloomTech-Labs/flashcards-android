@@ -58,7 +58,7 @@ class HomeFragment : Fragment() {
     // User's Id
     var userId: String?= "No Token"
 
-    lateinit var userPreferences: User
+    lateinit var user: User
 
     private lateinit var auth: FirebaseAuth
 
@@ -383,8 +383,8 @@ class HomeFragment : Fragment() {
                     // To get user's preference data using custom objects
                     val docRef = db.collection("Users").document(userId!!)
                     docRef.get().addOnSuccessListener { documentSnapshot ->
-                        userPreferences = documentSnapshot.toObject(User::class.java)!!
-                        Log.i("HomeFragment2", userPreferences?.toString())
+                        this.user = documentSnapshot.toObject(User::class.java)!!
+                        Log.i("HomeFragment2", this.user?.toString())
                     }
                 }
 
@@ -410,7 +410,7 @@ class HomeFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            R.id.preferences -> findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSettingsFragment(name, photoUrl))
+            R.id.preferences -> findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSettingsFragment(name, photoUrl, user))
         }
 
         return super.onOptionsItemSelected(item)

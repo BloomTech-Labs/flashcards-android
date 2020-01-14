@@ -2,6 +2,7 @@ package com.lambda.mnemecards.settings
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -38,9 +39,11 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         val settingsFragmentArgs by navArgs<SettingsFragmentArgs>()
 
-        viewModelFactory = SettingsViewModelFactory(settingsFragmentArgs.name, settingsFragmentArgs.photoUrl)
+        viewModelFactory = SettingsViewModelFactory(settingsFragmentArgs.name, settingsFragmentArgs.photoUrl, settingsFragmentArgs.userPreference)
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(SettingsViewModel::class.java)
+
+        Log.i("SettingsFragment2", "${viewModel.user.value.toString()}")
 
 //       binding.lifecycleOwner = this
 

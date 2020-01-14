@@ -30,6 +30,10 @@
             android:name="photoUrl"
             app:argType="string"
             app:nullable="true" />
+        <argument
+            android:name="userPreference"
+            app:argType="com.lambda.mnemecards.network.User"
+            app:nullable="true" />
 
     </fragment>
     <fragment
