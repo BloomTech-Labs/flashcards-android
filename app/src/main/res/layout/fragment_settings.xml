@@ -198,48 +198,37 @@
             android:fontFamily="@font/roboto_condensed_bold"
             android:text="@string/do_you_prefer_to_study_from_decks_that_are"/>
 
-        <RadioButton
-            android:id="@+id/rb_settings_pre_made_decks"
+        <RadioGroup
+            android:id="@+id/rg_settings_preferences_pre_made_custom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tv_settings_prefer_decks"
-            app:layout_constraintStart_toStartOf="@id/tv_settings_prefer_decks"
-            android:buttonTint="@color/colorPrimary"
-            android:layout_width="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="8dp"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintWidth_percent=".75"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_settings_pre_made_decks"
-            app:layout_constraintStart_toEndOf="@id/rb_settings_pre_made_decks"
-            app:layout_constraintTop_toTopOf="@id/rb_settings_pre_made_decks"
-            app:layout_constraintBottom_toBottomOf="@id/rb_settings_pre_made_decks"
-            android:text="@string/pre_made"
-            android:fontFamily="@font/roboto_condensed_bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <RadioButton
+                android:id="@+id/rb_settings_pre_made_decks"
+                android:buttonTint="@color/colorPrimary"
+                android:layout_width="wrap_content"
+                android:text="@string/pre_made"
+                android:layout_height="wrap_content"/>
 
-        <RadioButton
-            android:id="@+id/rb_settings_custom_decks"
-            app:layout_constraintStart_toEndOf="@id/tv_settings_pre_made_decks"
-            app:layout_constraintTop_toBottomOf="@id/tv_settings_prefer_decks"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="50dp"
-            android:buttonTint="@color/colorPrimary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <RadioButton
+                android:id="@+id/rb_settings_custom_decks"
+                android:buttonTint="@color/colorPrimary"
+                android:text="@string/custom"
+                android:layout_marginStart="53dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/tv_settings_custom_deck"
-            android:text="@string/custom"
-            app:layout_constraintStart_toEndOf="@id/rb_settings_custom_decks"
-            app:layout_constraintTop_toTopOf="@id/rb_settings_custom_decks"
-            app:layout_constraintBottom_toBottomOf="@id/rb_settings_custom_decks"
-            android:fontFamily="@font/roboto_condensed_bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        </RadioGroup>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_settings_save"
-            app:layout_constraintTop_toBottomOf="@id/tv_settings_custom_deck"
+            app:layout_constraintTop_toBottomOf="@id/rg_settings_preferences_pre_made_custom"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="0dp"

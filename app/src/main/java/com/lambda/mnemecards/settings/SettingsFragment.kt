@@ -45,7 +45,7 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
             .get(SettingsViewModel::class.java)
 
         Log.i("SettingsFragment2", viewModel.user.value.toString())
-        setSettings(viewModel.user.value!!, binding)
+        setDefaultSettings(viewModel.user.value!!, binding)
 
 //       binding.lifecycleOwner = this
 
@@ -115,7 +115,7 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
         // parent?.getItemAtPosition(position).equals seems like an important function I'll be needing in the future
     }
 
-    fun setSettings(user: User, binding: FragmentSettingsBinding){
+    fun setDefaultSettings(user: User, binding: FragmentSettingsBinding){
 
         if(!user.favSubjects.isNullOrEmpty()){
             binding.etSettingsPreference.append(" " + user.favSubjects)
@@ -132,7 +132,14 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
             }
         }
 
-
+        if(!user.customOrPremade.isNullOrEmpty()){
+            if(user.customOrPremade!!.toLowerCase() == "custom"){
+                binding.rbSettingsCustomDecks.isChecked = true
+            }
+            else{
+                binding.rbSettingsPreMadeDecks.isChecked = true
+            }
+        }
     }
 
 

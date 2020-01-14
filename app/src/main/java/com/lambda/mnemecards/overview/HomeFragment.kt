@@ -58,7 +58,7 @@ class HomeFragment : Fragment() {
     // User's Id
     var userId: String?= "No Token"
 
-    lateinit var user: User
+    var user: User = User()
 
     private lateinit var auth: FirebaseAuth
 
