@@ -16,8 +16,8 @@ import androidx.navigation.fragment.navArgs
 import com.google.firebase.firestore.SetOptions
 import com.lambda.mnemecards.R
 import com.lambda.mnemecards.databinding.FragmentSettingsBinding
+import com.lambda.mnemecards.marketing.db
 import com.lambda.mnemecards.network.User
-import com.lambda.mnemecards.overview.db
 
 
 /**

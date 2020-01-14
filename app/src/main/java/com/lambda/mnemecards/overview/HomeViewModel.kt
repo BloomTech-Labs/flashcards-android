@@ -47,7 +47,16 @@ class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
     val username: LiveData<String>
         get() = _username
 
+    var name: String?
+    var photo: String?
+    var user: User?
+
     init {
+
+        this.name = name
+        this.photo = photo
+        this.user = user
+
         coroutineScope.launch {
             getDeckNames()
 //            _deckNames.value?.get(0)?.let { getDecks(it) }
