@@ -8,7 +8,7 @@ import com.lambda.mnemecards.network.*
 import kotlinx.coroutines.*
 import java.lang.Exception
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
 
     // Internally, we use a MutableLiveData, because we will be updating the List of Decks
     // with new values
