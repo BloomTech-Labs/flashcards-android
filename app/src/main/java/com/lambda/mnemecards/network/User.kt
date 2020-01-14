@@ -9,11 +9,13 @@ data class User (
     val id: String? = "",
     var favSubjects: String? = "",
 
-    @PropertyName("MobileOrDesktop")
+    @get:PropertyName("MobileOrDesktop")
+    @set:PropertyName("MobileOrDesktop")
     var mobileOrDesktop: String? = "",
     var customOrPremade: String? = "",
 
-    @PropertyName("notification-frequency")
+    @get:PropertyName("notification-frequency")
+    @set:PropertyName("notification-frequency")
     var notificationFrequency: String? = "",
 
     @get:PropertyName("study-frequency")

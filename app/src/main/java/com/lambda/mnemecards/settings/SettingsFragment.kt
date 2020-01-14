@@ -156,6 +156,11 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
             Log.i("settingsFragment2", user.studyFrequency)
         }
 
+        if(!user.notificationFrequency.isNullOrEmpty()){
+            val spinnerPosition = notificationFrequencyAdapter.getPosition(user.notificationFrequency)
+            binding.spinnerNotificationFrequency.setSelection(spinnerPosition)
+        }
+
         if(!user.customOrPremade.isNullOrEmpty()){
             if(user.customOrPremade!!.toLowerCase() == "custom"){
                 binding.rbSettingsCustomDecks.isChecked = true
