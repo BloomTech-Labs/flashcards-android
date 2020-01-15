@@ -1,42 +1,17 @@
 package com.lambda.mnemecards.overview
 
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
-import com.facebook.login.LoginManager
-import com.facebook.login.LoginResult
-import com.firebase.ui.auth.AuthUI
-import com.firebase.ui.auth.IdpResponse
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.firebase.auth.FacebookAuthProvider
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.SetOptions
 import com.lambda.mnemecards.R
 import com.lambda.mnemecards.databinding.FragmentHomeBinding
-import com.lambda.mnemecards.network.User
-import com.lambda.mnemecards.settings.SettingsViewModel
-import com.lambda.mnemecards.settings.SettingsViewModelFactory
-import java.util.*
-
 
 
 class HomeFragment : Fragment() {
@@ -61,7 +36,11 @@ class HomeFragment : Fragment() {
 
         val homeFragmentArgs by navArgs<HomeFragmentArgs>()
 
-        viewModelFactory = HomeViewModelFactory(homeFragmentArgs.name, homeFragmentArgs.photoUrl, homeFragmentArgs.user)
+        viewModelFactory = HomeViewModelFactory(
+            homeFragmentArgs.name,
+            homeFragmentArgs.photoUrl,
+            homeFragmentArgs.user
+        )
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(HomeViewModel::class.java)
 
@@ -86,9 +65,10 @@ class HomeFragment : Fragment() {
             binding.pbLoading.visibility = View.INVISIBLE
         })
 
-        viewModel.navigateToSelectedDeck.observe(this, Observer{
-            if(it != null){
-                this.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCardsFragment(it))
+        viewModel.navigateToSelectedDeck.observe(this, Observer {
+            if (it != null) {
+                this.findNavController()
+                    .navigate(HomeFragmentDirections.actionHomeFragmentToCardsFragment(it))
                 viewModel.displayDeckDetailsComplete()
             }
         })
@@ -117,10 +97,6 @@ class HomeFragment : Fragment() {
 //            .set(preferences, SetOptions.merge())
 //            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
 //            .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
-
-
-
-
 
 
         setHasOptionsMenu(true)
@@ -293,9 +269,6 @@ class HomeFragment : Fragment() {
 //    }
 
 
-
-
-
     /**
      * Inflates the overflow menu that contains filtering options.
      */
@@ -307,8 +280,19 @@ class HomeFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            R.id.preferences -> findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSettingsFragment(viewModel.name, viewModel.photo, viewModel.user))
+            R.id.preferences -> findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToSettingsFragment(
+                    viewModel.name,
+                    viewModel.photo,
+                    viewModel.user
+                )
+            )
+            R.id.logout -> {
+
+                findNavController().navigate(R.id.action_homeFragment_to_marketingFragment)
+            }
         }
+
 
         return super.onOptionsItemSelected(item)
     }
