@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class User (
-    val id: String? = "",
+    var id: String? = "",
     var favSubjects: String? = "",
 
     @get:PropertyName("MobileOrDesktop")

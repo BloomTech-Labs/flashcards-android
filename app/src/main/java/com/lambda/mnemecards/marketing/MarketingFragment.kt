@@ -17,8 +17,11 @@ import androidx.navigation.fragment.findNavController
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
+import com.lambda.mnemecards.MainActivity
 
 import com.lambda.mnemecards.R
 import com.lambda.mnemecards.databinding.FragmentMarketingBinding
@@ -71,7 +74,7 @@ class marketingFragment : Fragment() {
             false
         )
 
-
+        FirebaseAnalytics.getInstance(binding.root.context).setCurrentScreen(MainActivity(), "MarketingFragment", "Test2")
 
         // To get data using custom objects
         val docRef = db.collection("Users").document("4uR0bkDdUeOvQdolIXbiP0kxLZs1")
@@ -87,9 +90,15 @@ class marketingFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         binding.btnMarketingSignIn.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "Sign_in")
+            FirebaseAnalytics.getInstance(binding.root.context).logEvent("Sign_In_Clicked", bundle)
             launchSignInFlow()
         }
         binding.btnMarketingSignUp.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "Sign_up")
+            FirebaseAnalytics.getInstance(binding.root.context).logEvent("Sign_Up_Clicked", bundle)
             launchSignInFlow()
         }
 
@@ -146,8 +155,32 @@ class marketingFragment : Fragment() {
                     // To get user's preference data using custom objects
                     val docRef = db.collection("Users").document(userId!!)
                     docRef.get().addOnSuccessListener { documentSnapshot ->
-                        this.user = documentSnapshot.toObject(User::class.java)!!
-                        Log.i("HomeFragment2", this.user?.toString())
+                        Log.i("MarketingFragmentFix", documentSnapshot.exists().toString())
+                        // Check to see if the user has any preferences or not.
+                        if(documentSnapshot.exists())
+                            this.user = documentSnapshot.toObject(User::class.java)!!
+                        // If they don't have any preferences, assign default values to them.
+                        else{
+                            // Creates a hashMapOf to be writen to FireStore
+                            val preferences = hashMapOf(
+                                "MobileOrDesktop" to "Mobile",
+                                "customOrPremade" to "pre-made",
+                                "favSubjects" to "",
+                                "notification-frequency" to "Everyday",
+                                "study-frequency" to "Everyday",
+                                "technique" to "Other",
+                                "id" to user.uid
+                            )
+                            Log.i("MarketingFragment2", user.uid)
+                            this.user.customOrPremade = "pre-made"
+                            this.user.technique = "Other"
+                            this.user.id = user.uid
+                            this.user.mobileOrDesktop = "Mobile"
+                            this.user.notificationFrequency = "Everyday"
+                            this.user.studyFrequency = "Everyday"
+                            this.user.favSubjects = ""
+                            db.collection("Users").document(user.uid.toString()).set(preferences, SetOptions.merge())
+                        }
                     }
 
                     // User successfully signed in
