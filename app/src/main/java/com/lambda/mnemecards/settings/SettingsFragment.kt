@@ -7,12 +7,14 @@ import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.manager.SupportRequestManagerFragment
 import com.google.firebase.firestore.SetOptions
 import com.lambda.mnemecards.R
 import com.lambda.mnemecards.databinding.FragmentSettingsBinding
@@ -36,6 +38,11 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     // For the notification frequency spinner
     private lateinit var notificationFrequencyAdapter: ArrayAdapter<CharSequence>
+
+    // Values of the spinners. Used for writing to FireStore
+    private var spinnerPreferToStudyBy: String? ="Listening"
+    private var spinnerStudyFrequency: String? ="Once a day"
+    private var spinnerNotificationFrequency: String? ="When I haven't met my goal in a day"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -139,7 +146,7 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
             binding.etSettingsPreference.append(" " + user.favSubjects)
         }
 
-        if(!user.customOrPremade.isNullOrEmpty()){
+        if(!user.mobileOrDesktop.isNullOrEmpty()){
             if(user.mobileOrDesktop!!.toLowerCase() == "desktop"){
                 binding.rbSettingsDesktop.isChecked = true
             }
@@ -167,35 +174,76 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
 
         if(!user.customOrPremade.isNullOrEmpty()){
-            if(user.customOrPremade!!.toLowerCase() == "custom"){
-                binding.rbSettingsCustomDecks.isChecked = true
+            if(user.customOrPremade!!.toLowerCase() == "pre-made"){
+                binding.rbSettingsPreMadeDecks.isChecked = true
             }
             else{
-                binding.rbSettingsPreMadeDecks.isChecked = true
+                binding.rbSettingsCustomDecks.isChecked = true
             }
         }
     }
 
     fun savePreferences(user: User, binding: FragmentSettingsBinding){
 
-//        if(binding.rgSettingsPreferencesMobileDesktop.isEnabled){
-            val idMobileOrDesktop = binding.rgSettingsPreferencesMobileDesktop.checkedRadioButtonId
-            val radioButtonMobileOrDesktop = binding.rgSettingsPreferencesMobileDesktop.findViewById<RadioButton>(idMobileOrDesktop)
-            val radioIdMobileOrDesktop = binding.rgSettingsPreferencesMobileDesktop.indexOfChild(radioButtonMobileOrDesktop)
-            val btnMobileOrDesktop = binding.rgSettingsPreferencesMobileDesktop.getChildAt(radioIdMobileOrDesktop)
+        var preferenceSubject: String = ""
 
-            val idDecks = binding.rgSettingsPreferencesPreMadeCustom.checkedRadioButtonId
-            val radioButtonDecks = binding.rgSettingsPreferencesPreMadeCustom.findViewById<RadioButton>(idDecks)
-            val radioIdDecks = binding.rgSettingsPreferencesPreMadeCustom.indexOfChild(radioButtonDecks)
-            val btnDecks = binding.rgSettingsPreferencesPreMadeCustom.getChildAt(radioIdDecks)
+        // Corresponds to the first radio group
+//        if(binding.rgSettingsPreferencesMobileDesktop.isEnabled){
+        val idMobileOrDesktop = binding.rgSettingsPreferencesMobileDesktop.checkedRadioButtonId
+        val radioButtonMobileOrDesktop = binding.rgSettingsPreferencesMobileDesktop.findViewById<RadioButton>(idMobileOrDesktop)
+        val radioIdMobileOrDesktop = binding.rgSettingsPreferencesMobileDesktop.indexOfChild(radioButtonMobileOrDesktop)
+        val btnMobileOrDesktop = binding.rgSettingsPreferencesMobileDesktop.getChildAt(radioIdMobileOrDesktop)
+
+        if(!binding.etSettingsPreference.text.isNullOrEmpty()){
+            // trim gets rid of the spaces at the beginning and end
+            preferenceSubject = binding.etSettingsPreference.text.toString().trim()
+        }
+
+        // For the first spinner
+        if(!binding.spinnerSettingsPreferToStudyBy.selectedItem.toString().isNullOrEmpty() ||
+            binding.spinnerSettingsPreferToStudyBy.selectedItem.toString() != "Please Select One"){
+            spinnerPreferToStudyBy = binding.spinnerSettingsPreferToStudyBy.selectedItem.toString()
+        }
+
+        // For the second spinner
+        if(!binding.spinnerStudyFrequency.selectedItem.toString().isNullOrEmpty() ||
+            binding.spinnerStudyFrequency.selectedItem.toString() != "Please Select One"){
+            spinnerStudyFrequency = binding.spinnerStudyFrequency.selectedItem.toString()
+        }
+
+        // For the third spinner
+        if(!binding.spinnerNotificationFrequency.selectedItem.toString().isNullOrEmpty() ||
+            binding.spinnerNotificationFrequency.selectedItem.toString() != "Please Select One"){
+            spinnerNotificationFrequency = binding.spinnerNotificationFrequency.selectedItem.toString()
+        }
+
+        // Corresponds to the second radio group
+        val idDecks = binding.rgSettingsPreferencesPreMadeCustom.checkedRadioButtonId
+        val radioButtonDecks = binding.rgSettingsPreferencesPreMadeCustom.findViewById<RadioButton>(idDecks)
+        val radioIdDecks = binding.rgSettingsPreferencesPreMadeCustom.indexOfChild(radioButtonDecks)
+        val btnDecks = binding.rgSettingsPreferencesPreMadeCustom.getChildAt(radioIdDecks)
 //        }
 
+        // Creates a hashMapOf to be writen to FireStore
         val preferences = hashMapOf(
             "MobileOrDesktop" to btnMobileOrDesktop.tag.toString(),
-            "customOrPremade" to btnDecks.tag.toString()
+            "customOrPremade" to btnDecks.tag.toString(),
+            "favSubjects" to preferenceSubject,
+            "notification-frequency" to spinnerNotificationFrequency,
+            "study-frequency" to spinnerStudyFrequency,
+            "technique" to spinnerPreferToStudyBy
         )
         user.mobileOrDesktop = btnMobileOrDesktop.tag.toString()
         user.customOrPremade = btnMobileOrDesktop.tag.toString()
+        user.favSubjects = preferenceSubject
+        user.notificationFrequency = spinnerNotificationFrequency
+        user.studyFrequency = spinnerStudyFrequency
+        user.technique = spinnerPreferToStudyBy
         db.collection("Users").document(user.id.toString()).set(preferences, SetOptions.merge())
+
+        Toast.makeText(binding.root.context, "Preferences have been saved", Toast.LENGTH_SHORT).show()
+//        findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToHomeFragment(viewModel.name.value, viewModel.photo.value, viewModel.user.value))
+//        findNavController().navigate(R.id.action_settingsFragment_to_homeFragment)
+
     }
 }

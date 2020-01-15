@@ -53,7 +53,7 @@ class CardsFragment : Fragment() {
         viewModel.frameLayoutColor.observe(this, Observer { color ->
 
             binding.btnCardsNext.visibility = View.INVISIBLE
-            binding.btnCardsTryAgain.visibility = View.INVISIBLE
+//            binding.btnCardsTryAgain.visibility = View.INVISIBLE
             binding.ivCardsDisplayHowWell.visibility = View.INVISIBLE
             binding.tvCardsDisplay.visibility = View.VISIBLE
 
@@ -76,6 +76,7 @@ class CardsFragment : Fragment() {
                 binding.ivCardsShock.visibility = View.INVISIBLE
                 binding.ivCardsHappy.visibility = View.INVISIBLE
                 binding.ivCardsCool.visibility = View.INVISIBLE
+                binding.tvCardsEmojiToText.visibility = View.INVISIBLE
             }
         })
 
@@ -89,18 +90,22 @@ class CardsFragment : Fragment() {
             binding.ivCardsCool.visibility = View.INVISIBLE
             binding.tvCardsHowWell.visibility = View.INVISIBLE
             binding.tvCardsDisplay.visibility = View.INVISIBLE
+            binding.tvCardsEmojiToText.visibility = View.VISIBLE
 
             binding.btnCardsNext.visibility = View.VISIBLE
-            binding.btnCardsTryAgain.visibility = View.VISIBLE
+//            binding.btnCardsTryAgain.visibility = View.VISIBLE
 
             if(clickedEmoji == "shockEmoji"){
                 binding.ivCardsDisplayHowWell.setImageResource(R.drawable.shocked_emoji)
+                binding.tvCardsEmojiToText.text = "Umm?!"
             }
             else if(clickedEmoji == "happyEmoji"){
                 binding.ivCardsDisplayHowWell.setImageResource(R.drawable.happy_emoji)
+                binding.tvCardsEmojiToText.text = "Okay!"
             }
             else{
                 binding.ivCardsDisplayHowWell.setImageResource(R.drawable.cool_emoji)
+                binding.tvCardsEmojiToText.text = "Nailed It!"
             }
 
         })

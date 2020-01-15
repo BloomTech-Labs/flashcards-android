@@ -217,6 +217,7 @@
                 android:buttonTint="@color/colorPrimary"
                 android:layout_width="wrap_content"
                 android:text="@string/pre_made"
+                android:checked="true"
                 android:tag="pre-made"
                 android:layout_height="wrap_content"/>
 
