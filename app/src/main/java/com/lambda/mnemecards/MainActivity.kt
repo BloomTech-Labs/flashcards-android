@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.google.firebase.analytics.FirebaseAnalytics
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import java.util.*
@@ -18,12 +19,15 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var fireAnalytics: FirebaseAnalytics
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 //        val drawable: Drawable? = ContextCompat.getDrawable(applicationContext, R.drawable.fui_ic_facebook_white_22dp)
 
+        fireAnalytics = FirebaseAnalytics.getInstance(this)
 
         printHashKey(this)
 

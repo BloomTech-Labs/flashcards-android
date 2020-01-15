@@ -238,34 +238,46 @@
             app:layout_constraintTop_toBottomOf="@id/tv_cards_how_well"
             tools:layout_editor_absoluteY="511dp" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_cards_try_again"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#FFFFFF"
-            android:fontFamily="@font/roboto_condensed_bold"
-            android:text="@string/try_again"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18sp"
-            android:layout_marginTop="38dp"
-            app:cornerRadius="23dp"
-            app:rippleColor="@color/colorPrimary"
-            app:strokeWidth="2dp"
-            android:onClick="@{(view) -> viewModel.changeDisplay(view)}"
-            android:visibility="invisible"
-            android:tag="btnTryAgain"
-            app:strokeColor="@color/colorPrimary"
-            app:layout_constraintTop_toBottomOf="@id/fl_cards_display_card"
-            app:layout_constraintEnd_toStartOf="@+id/btn_cards_next"
-            app:layout_constraintHorizontal_bias="0.5"
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/btn_cards_try_again"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:backgroundTint="#FFFFFF"-->
+<!--            android:fontFamily="@font/roboto_condensed_bold"-->
+<!--            android:text="@string/try_again"-->
+<!--            android:textColor="@color/colorPrimary"-->
+<!--            android:textSize="18sp"-->
+<!--            android:layout_marginTop="38dp"-->
+<!--            app:cornerRadius="23dp"-->
+<!--            app:rippleColor="@color/colorPrimary"-->
+<!--            app:strokeWidth="2dp"-->
+<!--            android:onClick="@{(view) -> viewModel.changeDisplay(view)}"-->
+<!--            android:visibility="invisible"-->
+<!--            android:tag="btnTryAgain"-->
+<!--            app:strokeColor="@color/colorPrimary"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/fl_cards_display_card"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/btn_cards_next"-->
+<!--            app:layout_constraintHorizontal_bias="0.5"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            tools:layout_editor_absoluteY="446dp" />-->
+
+        <TextView
+            android:id="@+id/tv_cards_emoji_to_text"
+            app:layout_constraintBottom_toTopOf="@id/btn_cards_next"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="446dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="16dp"
+            android:textSize="36sp"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:textColor="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_cards_next"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="38dp"
+            android:layout_marginTop="62dp"
             android:backgroundTint="#FFFFFF"
             android:fontFamily="@font/roboto_condensed_bold"
             android:text="@string/next"
@@ -277,7 +289,8 @@
             android:tag="btnNext"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btn_cards_try_again"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_percent=".90"
             app:layout_constraintTop_toBottomOf="@id/fl_cards_display_card"
             app:rippleColor="@color/colorPrimary"
             app:strokeColor="@color/colorPrimary"

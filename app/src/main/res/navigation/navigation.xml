@@ -28,6 +28,9 @@
             android:name="user"
             app:argType="com.lambda.mnemecards.network.User"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_homeFragment_to_marketingFragment"
+            app:destination="@id/marketingFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -46,6 +49,12 @@
             android:name="userPreference"
             app:argType="com.lambda.mnemecards.network.User"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_settingsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_marketingFragment"
+            app:destination="@id/marketingFragment" />
 
     </fragment>
     <fragment
