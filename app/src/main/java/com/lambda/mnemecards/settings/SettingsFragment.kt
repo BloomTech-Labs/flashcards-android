@@ -123,7 +123,8 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            R.id.preferences -> findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
+            R.id.preferences -> Toast.makeText(context, "Already in the preferences section", Toast.LENGTH_SHORT).show()
+            R.id.logout -> findNavController().navigate(R.id.action_settingsFragment_to_marketingFragment)
         }
 
         return super.onOptionsItemSelected(item)
