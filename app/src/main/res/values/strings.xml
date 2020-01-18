@@ -57,7 +57,8 @@
     <string name="mneme">mNeme</string>
     <string name="nee_mee">[Nee-Mee]</string>
     <string name="flashcard_decks">Flashcard decks</string>
-    <string name="create_new_deck">Create new deck</string>
+    <string name="create_new_deck">Create New Deck</string>
+    <string name="total_cards">Total Cards</string>
 
     <!--    String arrays used for the spinner drop down menu-->
     <string-array name="study_methods">
