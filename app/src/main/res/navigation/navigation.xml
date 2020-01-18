@@ -80,5 +80,9 @@
     <fragment
         android:id="@+id/createFragment"
         android:name="com.lambda.mnemecards.create.CreateFragment"
-        android:label="CreateFragment" />
+        android:label="CreateFragment" >
+        <argument
+            android:name="deckList"
+            app:argType="com.lambda.mnemecards.network.Deck[]" />
+    </fragment>
 </navigation>

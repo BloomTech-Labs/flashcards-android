@@ -74,7 +74,8 @@ class HomeFragment : Fragment() {
         })
 
         binding.btnCreateDeck.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_createFragment)
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCreateFragment(
+                viewModel.decks.value!!.toTypedArray()))
         }
 
         // Code that pops up the possible log in options
