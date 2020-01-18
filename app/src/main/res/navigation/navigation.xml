@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_homeFragment_to_marketingFragment"
             app:destination="@id/marketingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_createFragment"
+            app:destination="@id/createFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -74,4 +77,8 @@
             android:id="@+id/action_marketingFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/createFragment"
+        android:name="com.lambda.mnemecards.create.CreateFragment"
+        android:label="CreateFragment" />
 </navigation>

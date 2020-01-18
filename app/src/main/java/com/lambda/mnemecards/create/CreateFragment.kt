@@ -27,7 +27,7 @@ class CreateFragment : Fragment() {
 
         val binding: FragmentCreateBinding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_marketing,
+            R.layout.fragment_create,
             container,
             false)
 

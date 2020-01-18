@@ -73,6 +73,10 @@ class HomeFragment : Fragment() {
             }
         })
 
+        binding.btnCreateDeck.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_createFragment)
+        }
+
         // Code that pops up the possible log in options
 
         if (!loggedInFlag) {
