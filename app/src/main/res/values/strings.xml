@@ -35,7 +35,7 @@
     <string name="demodeck">Demo Deck</string>
     <string name="help">Help</string>
     <string name="logout">Logout</string>
-    <string name="search">search</string>
+    <string name="search">Search</string>
     <string name="which_subjects_do_you_use_flashcards_for_most_often">Which subjects do you use flashcards for most often?</string>
     <string name="mobile">Mobile</string>
     <string name="do_you_prefer_to_do_most_of_your_studying_on_a_mobile_or_desktop_device">Do you prefer to do most of your studying on a mobile or desktop device?</string>
@@ -56,6 +56,8 @@
     <string name="welcome_to">Welcome to</string>
     <string name="mneme">mNeme</string>
     <string name="nee_mee">[Nee-Mee]</string>
+    <string name="flashcard_decks">Flashcard decks</string>
+    <string name="create_new_deck">Create new deck</string>
 
     <!--    String arrays used for the spinner drop down menu-->
     <string-array name="study_methods">

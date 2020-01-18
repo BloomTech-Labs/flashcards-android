@@ -184,6 +184,7 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
     }
 
+    // Gets the values of the radio buttons and the spinners to have a write request be completed on FireStore
     fun savePreferences(user: User, binding: FragmentSettingsBinding){
 
         var preferenceSubject: String = ""
@@ -235,7 +236,7 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
             "technique" to spinnerPreferToStudyBy
         )
         user.mobileOrDesktop = btnMobileOrDesktop.tag.toString()
-        user.customOrPremade = btnMobileOrDesktop.tag.toString()
+        user.customOrPremade = btnDecks.tag.toString()
         user.favSubjects = preferenceSubject
         user.notificationFrequency = spinnerNotificationFrequency
         user.studyFrequency = spinnerStudyFrequency
