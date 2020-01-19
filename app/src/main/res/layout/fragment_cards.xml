@@ -107,7 +107,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="32dp"
-            android:background="#F3ECE3"
+            android:background="@color/cardFront"
             android:onClick="@{(view) -> viewModel.changeDisplay(view)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent=".4"
