@@ -17,7 +17,7 @@ class DeckAdapter(val onClickListener: OnClickListener):
     ListAdapter<Deck, DeckAdapter.DeckViewHolder>(DiffCallback){
 
     /**
-     * The MarsPropertyViewHolder constructor takes the binding variable from the associated
+     * The DeckViewHolder constructor takes the binding variable from the associated
      * GridViewItem, which nicely gives it access to the full [Deck] information.
      */
     class DeckViewHolder(private var binding: DeckItemBinding):

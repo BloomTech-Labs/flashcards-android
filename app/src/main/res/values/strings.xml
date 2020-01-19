@@ -66,6 +66,7 @@
     <string name="front">Front</string>
     <string name="back">Back</string>
     <string name="add_card">Add Card</string>
+    <string name="save_deck">Save Deck</string>
 
     <!--    String arrays used for the spinner drop down menu-->
     <string-array name="study_methods">

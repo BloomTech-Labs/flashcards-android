@@ -185,7 +185,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_create_deck"
-            app:listData="@{viewModel.decks}" />
+            app:listDataDeck="@{viewModel.decks}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

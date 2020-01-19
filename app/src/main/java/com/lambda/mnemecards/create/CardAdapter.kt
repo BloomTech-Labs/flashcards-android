@@ -18,7 +18,7 @@ class CardAdapter(val onClickListener: OnClickListener):
     ListAdapter<DataX, CardAdapter.CardViewHolder>(DiffCallback){
 
     /**
-     * The MarsPropertyViewHolder constructor takes the binding variable from the associated
+     * The CardViewHolder constructor takes the binding variable from the associated
      * GridViewItem, which nicely gives it access to the full [Deck] information.
      */
     class CardViewHolder(private var binding: CardItemBinding):
@@ -33,7 +33,7 @@ class CardAdapter(val onClickListener: OnClickListener):
     }
 
     /**
-     * Allows the RecyclerView to determine which items have changed when the [List] of [Deck]
+     * Allows the RecyclerView to determine which items have changed when the [List] of [DataX]
      * has been updated.
      */
     companion object DiffCallback : DiffUtil.ItemCallback<DataX>() {
@@ -67,9 +67,9 @@ class CardAdapter(val onClickListener: OnClickListener):
     }
 
     /**
-     * Custom listener that handles clicks on [RecyclerView] items.  Passes the [Deck]
+     * Custom listener that handles clicks on [RecyclerView] items.  Passes the [DataX]
      * associated with the current item to the [onClick] function.
-     * @param clickListener lambda that will be called with the current [Deck]
+     * @param clickListener lambda that will be called with the current [DataX]
      */
     class OnClickListener(val clickListener: (card:DataX) -> Unit) {
         fun onClick(card:DataX) = clickListener(card)

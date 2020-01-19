@@ -14,10 +14,34 @@ class CreateViewModel(decks: MutableList<Deck>, app: Application) : AndroidViewM
     val decks : LiveData<MutableList<Deck>>
         get() = _decks
 
-    var cards = mutableListOf<DataX>()
+    private val _cards = MutableLiveData<List<DataX>>()
+    val cards: LiveData<List<DataX>>
+        get() = _cards
+
+    var cardFront : String = ""
+    var cardBack : String = ""
+
+    val listResult = mutableListOf<DataX>()
 
     init {
         this._decks.value = decks
+
+//        cardFront = "Testing Front"
+//        cardBack = "Testing Back"
+
+//        val listResult = mutableListOf<DataX>(DataX(cardFront, cardBack))
+
+        addCards()
+        _cards.value = listResult
+    }
+
+//    fun displayCardDetails(card: DataX){
+//        _navigateToSelectedDeck.value = selectedDeck
+//    }
+
+    fun addCards(){
+        listResult.add(DataX("Front", "Back"))
+        _cards.value = listResult
     }
 
 }

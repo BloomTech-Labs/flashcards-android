@@ -6,15 +6,23 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.lambda.mnemecards.create.CardAdapter
+import com.lambda.mnemecards.network.DataX
 import com.lambda.mnemecards.network.Deck
 import com.lambda.mnemecards.overview.DeckAdapter
 
 /**
  * When there is no Mars property data (data is null), hide the [RecyclerView], otherwise show it.
  */
-@BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<Deck>?) {
+@BindingAdapter("listDataDeck")
+fun bindRecyclerViewDeck(recyclerView: RecyclerView, data: List<Deck>?) {
     val adapter = recyclerView.adapter as DeckAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("listDataCard")
+fun bindRecyclerViewCard(recyclerView: RecyclerView, data: List<DataX>?){
+    val adapter = recyclerView.adapter as CardAdapter
     adapter.submitList(data)
 }
 
