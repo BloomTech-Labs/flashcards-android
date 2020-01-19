@@ -1,29 +1,30 @@
-package com.lambda.mnemecards.overview
+package com.lambda.mnemecards.create
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.lambda.mnemecards.databinding.DeckItemBinding
-import com.lambda.mnemecards.network.Deck
+import com.lambda.mnemecards.databinding.CardItemBinding
+import com.lambda.mnemecards.network.Card
+import com.lambda.mnemecards.network.DataX
 
 /**
  * This class implements a [RecyclerView] [ListAdapter] which uses Data Binding to present [List]
  * data, including computing diffs between lists.
  * @param onClick a lambda that takes the
  */
-class DeckAdapter(val onClickListener: OnClickListener):
-    ListAdapter<Deck, DeckAdapter.DeckViewHolder>(DiffCallback){
+class CardAdapter(val onClickListener: OnClickListener):
+    ListAdapter<DataX, CardAdapter.CardViewHolder>(DiffCallback){
 
     /**
      * The MarsPropertyViewHolder constructor takes the binding variable from the associated
      * GridViewItem, which nicely gives it access to the full [Deck] information.
      */
-    class DeckViewHolder(private var binding: DeckItemBinding):
+    class CardViewHolder(private var binding: CardItemBinding):
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(deck: Deck) {
-            binding.deck = deck
+        fun bind(card: DataX) {
+            binding.card = card
 //            binding.tvTitle.text = deck.deckName
             // This is important, because it forces the data binding to execute immediately,
             // which allows the RecyclerView to make the correct view size measurements
@@ -35,13 +36,13 @@ class DeckAdapter(val onClickListener: OnClickListener):
      * Allows the RecyclerView to determine which items have changed when the [List] of [Deck]
      * has been updated.
      */
-    companion object DiffCallback : DiffUtil.ItemCallback<Deck>() {
-        override fun areItemsTheSame(oldItem: Deck, newItem: Deck): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<DataX>() {
+        override fun areItemsTheSame(oldItem: DataX, newItem: DataX): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: Deck, newItem: Deck): Boolean {
-            return oldItem.deckName == newItem.deckName
+        override fun areContentsTheSame(oldItem: DataX, newItem: DataX): Boolean {
+            return oldItem.front == newItem.front
         }
     }
 
@@ -49,20 +50,20 @@ class DeckAdapter(val onClickListener: OnClickListener):
      * Create new [RecyclerView] item views (invoked by the layout manager)
      */
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeckViewHolder {
-        return DeckViewHolder(DeckItemBinding.inflate(LayoutInflater.from(parent.context)))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
+        return CardViewHolder(CardItemBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
     /**
      * Replaces the contents of a view (invoked by the layout manager)
      */
 
-    override fun onBindViewHolder(holder: DeckViewHolder, position: Int) {
-        val currentDeck = getItem(position)
+    override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
+        val currentCard = getItem(position)
         holder.itemView.setOnClickListener{
-            onClickListener.onClick(currentDeck)
+            onClickListener.onClick(currentCard)
         }
-        holder.bind(currentDeck)
+        holder.bind(currentCard)
     }
 
     /**
@@ -70,7 +71,7 @@ class DeckAdapter(val onClickListener: OnClickListener):
      * associated with the current item to the [onClick] function.
      * @param clickListener lambda that will be called with the current [Deck]
      */
-    class OnClickListener(val clickListener: (deck:Deck) -> Unit) {
-        fun onClick(deck:Deck) = clickListener(deck)
+    class OnClickListener(val clickListener: (card:DataX) -> Unit) {
+        fun onClick(card:DataX) = clickListener(card)
     }
 }
