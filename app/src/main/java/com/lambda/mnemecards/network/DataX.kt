@@ -9,8 +9,9 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @JsonClass(generateAdapter = true)
 data class DataX(
-    @Json(name = "back")
-    val back: String,
     @Json(name = "front")
-    val front: String
+    val front: String,
+
+    @Json(name = "back")
+    val back: String
 ):Parcelable

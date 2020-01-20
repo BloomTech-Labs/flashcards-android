@@ -38,11 +38,11 @@ class CardAdapter(val onClickListener: OnClickListener):
      */
     companion object DiffCallback : DiffUtil.ItemCallback<DataX>() {
         override fun areItemsTheSame(oldItem: DataX, newItem: DataX): Boolean {
-            return oldItem === newItem
+            return oldItem.front == newItem.front
         }
 
         override fun areContentsTheSame(oldItem: DataX, newItem: DataX): Boolean {
-            return oldItem.front == newItem.front
+            return oldItem == newItem
         }
     }
 

@@ -23,7 +23,6 @@ class CreateFragment : Fragment() {
 
     private lateinit var viewModel: CreateViewModel
     private lateinit var viewModelFactory: CreateViewModelFactory
-    var counter = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,17 +44,21 @@ class CreateFragment : Fragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(CreateViewModel::class.java)
 
-        Log.i("CreateFragment", viewModel.decks.value?.get(0)?.deckName)
-        Log.i("CreateFragment", viewModel.cardFront)
-
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+
 
         binding.rvCreateListCards.adapter = CardAdapter(CardAdapter.OnClickListener{
 
 //            viewModel.
 
         })
+
+        binding.btnCreateAddCard.setOnClickListener {
+            viewModel.addCards()
+            binding.rvCreateListCards.adapter?.notifyDataSetChanged()
+        }
 
 
         // Inflate the layout for this fragment

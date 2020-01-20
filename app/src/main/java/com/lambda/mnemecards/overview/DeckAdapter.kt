@@ -37,11 +37,11 @@ class DeckAdapter(val onClickListener: OnClickListener):
      */
     companion object DiffCallback : DiffUtil.ItemCallback<Deck>() {
         override fun areItemsTheSame(oldItem: Deck, newItem: Deck): Boolean {
-            return oldItem === newItem
+            return oldItem.deckName == newItem.deckName
         }
 
         override fun areContentsTheSame(oldItem: Deck, newItem: Deck): Boolean {
-            return oldItem.deckName == newItem.deckName
+            return oldItem == newItem
         }
     }
 
