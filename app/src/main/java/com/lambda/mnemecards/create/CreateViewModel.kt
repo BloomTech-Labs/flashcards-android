@@ -27,13 +27,11 @@ class CreateViewModel(decks: MutableList<Deck>, app: Application) : AndroidViewM
     val listResult = mutableListOf<DataX>()
 
     init {
-        _cards.value = listResult
+
     }
 
-    fun addCards(){
-        listResult.add(DataX("Front ${counter}", "Back ${counter}"))
-        counter++
+    fun addCards(front: String, back: String){
+        listResult.add(DataX(front, back))
         _cards.value = listResult
     }
-
 }

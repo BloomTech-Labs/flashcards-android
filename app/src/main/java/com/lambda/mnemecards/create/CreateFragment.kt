@@ -56,7 +56,7 @@ class CreateFragment : Fragment() {
         })
 
         binding.btnCreateAddCard.setOnClickListener {
-            viewModel.addCards()
+            viewModel.addCards(binding.etCreateCardFront.text.toString(), binding.etCreateCardBack.text.toString())
             binding.rvCreateListCards.adapter?.notifyDataSetChanged()
         }
 

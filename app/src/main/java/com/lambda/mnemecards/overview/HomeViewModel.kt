@@ -59,6 +59,7 @@ class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
 
         coroutineScope.launch {
             getDeckNames()
+            delay(100)
 //            _deckNames.value?.get(0)?.let { getDecks(it) }
             for (name in _deckNames.value!!) {
                 getDecks(name)
@@ -66,9 +67,7 @@ class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
 
             // Whenever using postValue inside of thread, need a delay or else logs will be null.
             _decks.postValue(newDeck)
-            delay(1000)
-            Log.i("HomeViewModel tre", "${_decks.value?.get(0)?.deckName}")
-            Log.i("HomeViewModel tre", "${_decks.value?.get(1)?.deckName}")
+            delay(100)
         }
     }
 
@@ -98,11 +97,8 @@ class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
 
             _deckNames.value = deckResult
 
-            Log.i("HomeViewModel name TRY", "${_deckNames.value!!.get(0)}")
-            Log.i("HomeViewModel name TRY", "${_deckNames.value!!.get(1)}")
-
         } catch (e: Exception) {
-            Log.i("HomeViewModel nm CATCH", "${e.message}")
+            Log.i("HomeViewModel CATCH", "${e.message}")
         }
     }
 
@@ -134,19 +130,12 @@ class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
 
 //            _decks.value?.add(deckResult)
 
-            Log.i("HomeViewModel Try", "${deckResult}")
-            Log.i("HomeViewModel Try", "${newDeck}")
-            Log.i("HomeViewModel Try", "${_decks.value?.get(0)?.deckName}")
 
             // Need this delay or else the value will be null when using logs
             delay(1000)
 
-            Log.i("HomeViewModel Tryyy", "${_decks.value?.get(0)?.deckName}")
-            Log.i("HomeViewModel Tryyy", "${_decks.value?.get(1)?.deckName}")
-
-
         } catch (e: Exception) {
-            Log.i("HomeViewModel get CATCH", "${e.message}")
+            Log.i("HomeViewModel CATCH", "${e.message}")
         }
     }
 
