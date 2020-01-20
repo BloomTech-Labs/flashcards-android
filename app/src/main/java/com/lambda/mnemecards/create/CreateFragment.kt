@@ -50,11 +50,14 @@ class CreateFragment : Fragment() {
 
 
         binding.rvCreateListCards.adapter = CardAdapter(CardAdapter.OnClickListener{
-
+            binding.etCreateCardFront.setText(it.front)
+            binding.etCreateCardBack.setText(it.back)
         })
 
         binding.btnCreateAddCard.setOnClickListener {
             viewModel.addCards(binding.etCreateCardFront.text.toString(), binding.etCreateCardBack.text.toString())
+            binding.etCreateCardFront.text.clear()
+            binding.etCreateCardBack.text.clear()
         }
 
         binding.btnCreateSaveDeck.setOnClickListener {
