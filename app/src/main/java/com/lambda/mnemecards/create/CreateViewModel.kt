@@ -1,13 +1,13 @@
 package com.lambda.mnemecards.create
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.lambda.mnemecards.network.Card
+import com.lambda.mnemecards.network.Data
 import com.lambda.mnemecards.network.DataX
 import com.lambda.mnemecards.network.Deck
+import com.lambda.mnemecards.overview.HomeViewModel
 
 class CreateViewModel(decks: MutableList<Deck>, app: Application) : AndroidViewModel(app){
 
@@ -24,14 +24,27 @@ class CreateViewModel(decks: MutableList<Deck>, app: Application) : AndroidViewM
     // Recycler View wouldn't update the value if not using a LiveData variable in the XML
 //    var normieCardList = listOf<DataX>()
 
-    val listResult = mutableListOf<DataX>()
+    var cardsResult = mutableListOf<DataX>()
+
+    var decksResult = mutableListOf<Deck>()
 
     init {
 
+        _decks.value = decks
+
+        decksResult = decks
     }
 
     fun addCards(front: String, back: String){
-        listResult.add(DataX(front, back))
-        _cards.value = listResult
+        cardsResult.add(DataX(front, back))
+        _cards.value = cardsResult
+    }
+
+    fun addDeck(deckName: String){
+//        val listData = mutableListOf<Data>()
+//       for(data in cardsResult){
+//            listData.add(Data(data))
+//       }
+//        decksResult.add(Deck(listData, deckName, "", "", 0))
     }
 }

@@ -51,15 +51,17 @@ class CreateFragment : Fragment() {
 
         binding.rvCreateListCards.adapter = CardAdapter(CardAdapter.OnClickListener{
 
-//            viewModel.
-
         })
 
         binding.btnCreateAddCard.setOnClickListener {
             viewModel.addCards(binding.etCreateCardFront.text.toString(), binding.etCreateCardBack.text.toString())
-            binding.rvCreateListCards.adapter?.notifyDataSetChanged()
         }
 
+        binding.btnCreateSaveDeck.setOnClickListener {
+            viewModel.addDeck(binding.etCreateDeckName.text.toString())
+
+            Log.i("CreateFragment", "${viewModel.decks.value?.get(0)?.data?.get(0)?.data?.front}")
+        }
 
         // Inflate the layout for this fragment
         return binding.root

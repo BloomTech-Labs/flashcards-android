@@ -3,6 +3,7 @@ package com.lambda.mnemecards.overview
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -54,14 +55,15 @@ class HomeFragment : Fragment() {
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
 
-
-
         fragmentContext = container!!.context
 
         // Sets the adapter of the deckGrid RecyclerView with clickHandler lambda that
         // tells the viewModel when our Deck is clicked
         binding.rvDecks.adapter = DeckAdapter(DeckAdapter.OnClickListener {
             viewModel.displayDeckDetails(it)
+        })
+
+        viewModel.decks.observe(this, Observer {
             binding.pbLoading.visibility = View.INVISIBLE
         })
 

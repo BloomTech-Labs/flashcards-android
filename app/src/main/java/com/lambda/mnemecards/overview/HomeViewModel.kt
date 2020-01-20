@@ -12,7 +12,7 @@ class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
 
     // Internally, we use a MutableLiveData, because we will be updating the List of Decks
     // with new values
-    private val _decks = MutableLiveData<MutableList<Deck>>()
+    val _decks = MutableLiveData<MutableList<Deck>>()
 
     // The external LiveData interface to the property is immutable, so only this class can modify
     val decks: LiveData<MutableList<Deck>>
@@ -66,13 +66,13 @@ class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
             }
 
             // Whenever using postValue inside of thread, need a delay or else logs will be null.
+            val listOfData = mutableListOf<Data>()
+            listOfData.add(Data(DataX("Test Front", "Test Back")))
+            val newDeckStatic = Deck(listOfData, "Test Deck", "", "", 0)
+            newDeck.add(newDeckStatic)
             _decks.postValue(newDeck)
             delay(100)
         }
-    }
-
-    fun setUsername(username:String){
-        _username.value = username
     }
 
     fun displayDeckDetails(selectedDeck: Deck){
@@ -132,7 +132,9 @@ class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
 
 
             // Need this delay or else the value will be null when using logs
-            delay(1000)
+            delay(100)
+
+//            newDecks.postValue(_decks.value)
 
         } catch (e: Exception) {
             Log.i("HomeViewModel CATCH", "${e.message}")

@@ -9,7 +9,7 @@ import kotlinx.android.parcel.Parcelize
 @JsonClass(generateAdapter = true)
 data class Deck(
     @Json(name = "data")
-    val `data`: List<Data>,
+    val `data`: MutableList<Data>,
 
     @Json(name = "deckName")
     var deckName: String,
