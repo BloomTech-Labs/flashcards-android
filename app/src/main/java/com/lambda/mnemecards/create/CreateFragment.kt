@@ -15,6 +15,7 @@ import com.lambda.mnemecards.R
 import com.lambda.mnemecards.cards.CardsViewModel
 import com.lambda.mnemecards.databinding.FragmentCreateBinding
 import com.lambda.mnemecards.overview.HomeViewModel
+import kotlinx.android.synthetic.main.fragment_create.*
 
 /**
  * A simple [Fragment] subclass.
@@ -48,11 +49,16 @@ class CreateFragment : Fragment() {
         binding.lifecycleOwner = this
 
 
-
+        // Set the edit texts equal to the cards values.
         binding.rvCreateListCards.adapter = CardAdapter(CardAdapter.OnClickListener{
             binding.etCreateCardFront.setText(it.front)
             binding.etCreateCardBack.setText(it.back)
         })
+
+        binding.rvCreateListCards.setOnLongClickListener {
+            Log.i("CreateFragment", "Does this get called?")
+            false
+        }
 
         binding.btnCreateAddCard.setOnClickListener {
             viewModel.addCards(binding.etCreateCardFront.text.toString(), binding.etCreateCardBack.text.toString())

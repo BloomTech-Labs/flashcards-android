@@ -1,13 +1,20 @@
 package com.lambda.mnemecards.create
 
+import android.app.AlertDialog
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.lambda.mnemecards.databinding.CardItemBinding
 import com.lambda.mnemecards.network.Card
 import com.lambda.mnemecards.network.DataX
+import kotlinx.android.synthetic.main.deck_item.view.*
+import kotlinx.android.synthetic.main.fragment_create.view.*
 
 /**
  * This class implements a [RecyclerView] [ListAdapter] which uses Data Binding to present [List]
@@ -63,6 +70,22 @@ class CardAdapter(val onClickListener: OnClickListener):
         holder.itemView.setOnClickListener{
             onClickListener.onClick(currentCard)
         }
+
+        holder.itemView.setOnLongClickListener {
+            val builder = AlertDialog.Builder(holder.itemView.context)
+            builder.setTitle("Delete Confirmation")
+            builder.setMessage("Are you sure you want to delete this card?")
+            builder.setPositiveButton("YES") { dialogInterface, i ->
+                holder.itemView.visibility = View.GONE
+                Toast.makeText(holder.itemView.context, "Card has been successfully deleted", Toast.LENGTH_SHORT).show()
+            }
+            builder.setNegativeButton("NO"){dialogInterface, i ->
+                dialogInterface.dismiss()
+            }
+            builder.show()
+            true
+        }
+
         holder.bind(currentCard)
     }
 
@@ -74,4 +97,5 @@ class CardAdapter(val onClickListener: OnClickListener):
     class OnClickListener(val clickListener: (card:DataX) -> Unit) {
         fun onClick(card:DataX) = clickListener(card)
     }
+
 }
