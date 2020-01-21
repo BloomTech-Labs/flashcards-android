@@ -21,18 +21,28 @@
             android:layout_height="match_parent"
             >
 
+            <TextView
+                android:id="@+id/tv_options"
+                app:layout_constraintBottom_toTopOf="@id/deck_card"
+                app:layout_constraintRight_toRightOf="@id/deck_card"
+                android:textColor="@color/colorPrimary"
+                android:rotation="90"
+                android:textSize="16sp"
+                android:text="@string/options_symbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/deck_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginTop="16dp"
-                android:paddingBottom="50dp"
+                android:layout_marginBottom="8dp"
                 app:strokeColor="@color/colorPrimary"
                 app:strokeWidth="1dp"
                 app:cardElevation="2dp"
