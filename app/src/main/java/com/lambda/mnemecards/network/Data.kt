@@ -12,5 +12,5 @@ data class Data(
     @Json(name = "data")
     val `data`: DataX,
     @Json(name = "id")
-    val id: String
+    val id: String = ""
 ):Parcelable

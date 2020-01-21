@@ -30,7 +30,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/tv_cards_deck_name"
+                    android:id="@+id/tv_create_deck"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -86,7 +86,7 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
-                    android:id="@+id/tv_cards_mastered"
+                    android:id="@+id/tv_create_total_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
@@ -107,7 +107,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="32dp"
-            android:background="#F3ECE3"
+            android:background="@color/cardFront"
             android:onClick="@{(view) -> viewModel.changeDisplay(view)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent=".4"

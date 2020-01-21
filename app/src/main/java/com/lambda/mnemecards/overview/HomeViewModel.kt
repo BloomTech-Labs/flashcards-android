@@ -12,7 +12,7 @@ class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
 
     // Internally, we use a MutableLiveData, because we will be updating the List of Decks
     // with new values
-    private val _decks = MutableLiveData<MutableList<Deck>>()
+    val _decks = MutableLiveData<MutableList<Deck>>()
 
     // The external LiveData interface to the property is immutable, so only this class can modify
     val decks: LiveData<MutableList<Deck>>
@@ -59,21 +59,20 @@ class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
 
         coroutineScope.launch {
             getDeckNames()
+            delay(100)
 //            _deckNames.value?.get(0)?.let { getDecks(it) }
             for (name in _deckNames.value!!) {
                 getDecks(name)
             }
 
             // Whenever using postValue inside of thread, need a delay or else logs will be null.
+            val listOfData = mutableListOf<Data>()
+            listOfData.add(Data(DataX("Test Front", "Test Back")))
+            val newDeckStatic = Deck(listOfData, "Test Deck", "", "", 0)
+            newDeck.add(newDeckStatic)
             _decks.postValue(newDeck)
-            delay(1000)
-            Log.i("HomeViewModel tre", "${_decks.value?.get(0)?.deckName}")
-            Log.i("HomeViewModel tre", "${_decks.value?.get(1)?.deckName}")
+            delay(100)
         }
-    }
-
-    fun setUsername(username:String){
-        _username.value = username
     }
 
     fun displayDeckDetails(selectedDeck: Deck){
@@ -98,11 +97,8 @@ class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
 
             _deckNames.value = deckResult
 
-            Log.i("HomeViewModel name TRY", "${_deckNames.value!!.get(0)}")
-            Log.i("HomeViewModel name TRY", "${_deckNames.value!!.get(1)}")
-
         } catch (e: Exception) {
-            Log.i("HomeViewModel nm CATCH", "${e.message}")
+            Log.i("HomeViewModel CATCH", "${e.message}")
         }
     }
 
@@ -134,19 +130,14 @@ class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
 
 //            _decks.value?.add(deckResult)
 
-            Log.i("HomeViewModel Try", "${deckResult}")
-            Log.i("HomeViewModel Try", "${newDeck}")
-            Log.i("HomeViewModel Try", "${_decks.value?.get(0)?.deckName}")
 
             // Need this delay or else the value will be null when using logs
-            delay(1000)
+            delay(100)
 
-            Log.i("HomeViewModel Tryyy", "${_decks.value?.get(0)?.deckName}")
-            Log.i("HomeViewModel Tryyy", "${_decks.value?.get(1)?.deckName}")
-
+//            newDecks.postValue(_decks.value)
 
         } catch (e: Exception) {
-            Log.i("HomeViewModel get CATCH", "${e.message}")
+            Log.i("HomeViewModel CATCH", "${e.message}")
         }
     }
 

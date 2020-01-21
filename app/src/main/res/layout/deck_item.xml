@@ -72,7 +72,7 @@
                         android:id="@+id/fl_text_holder"
                         android:scaleType="centerCrop"
                         android:adjustViewBounds="true"
-                        android:background="#F3ECE3"
+                        android:background="@color/cardFront"
                         android:layout_width="200dp"
                         android:layout_height="100dp"
                         app:layout_constraintEnd_toEndOf="parent"

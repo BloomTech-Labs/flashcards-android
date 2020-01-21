@@ -1,7 +1,10 @@
 package com.lambda.mnemecards.overview
 
+import android.app.AlertDialog
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +20,7 @@ class DeckAdapter(val onClickListener: OnClickListener):
     ListAdapter<Deck, DeckAdapter.DeckViewHolder>(DiffCallback){
 
     /**
-     * The MarsPropertyViewHolder constructor takes the binding variable from the associated
+     * The DeckViewHolder constructor takes the binding variable from the associated
      * GridViewItem, which nicely gives it access to the full [Deck] information.
      */
     class DeckViewHolder(private var binding: DeckItemBinding):
@@ -37,11 +40,11 @@ class DeckAdapter(val onClickListener: OnClickListener):
      */
     companion object DiffCallback : DiffUtil.ItemCallback<Deck>() {
         override fun areItemsTheSame(oldItem: Deck, newItem: Deck): Boolean {
-            return oldItem === newItem
+            return oldItem.deckName == newItem.deckName
         }
 
         override fun areContentsTheSame(oldItem: Deck, newItem: Deck): Boolean {
-            return oldItem.deckName == newItem.deckName
+            return oldItem == newItem
         }
     }
 
@@ -62,6 +65,21 @@ class DeckAdapter(val onClickListener: OnClickListener):
         holder.itemView.setOnClickListener{
             onClickListener.onClick(currentDeck)
         }
+
+        holder.itemView.setOnLongClickListener {
+            val builder = AlertDialog.Builder(holder.itemView.context)
+            builder.setTitle("Delete Confirmation")
+            builder.setMessage("Sure you want to delete this deck?")
+            builder.setPositiveButton("Delete") { dialogInterface, i ->
+                holder.itemView.visibility = View.GONE
+                Toast.makeText(holder.itemView.context, "Deck has been successfully deleted", Toast.LENGTH_SHORT).show()
+            }
+            builder.setNegativeButton("<- No, go back"){dialogInterface, i ->
+                dialogInterface.dismiss()
+            }
+            builder.show()
+            true
+        }
         holder.bind(currentDeck)
     }
 
@@ -73,6 +91,4 @@ class DeckAdapter(val onClickListener: OnClickListener):
     class OnClickListener(val clickListener: (deck:Deck) -> Unit) {
         fun onClick(deck:Deck) = clickListener(deck)
     }
-
-
 }
