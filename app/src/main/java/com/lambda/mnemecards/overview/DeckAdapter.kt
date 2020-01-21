@@ -70,6 +70,7 @@ class DeckAdapter(val onClickListener: OnClickListener):
             onClickListener.onClick(currentDeck)
         }
 
+        // Creates the pop up menu that allows for editing, achieving, and deleting.
         holder.itemView.tv_options.setOnClickListener {
             Log.i("Deck Adapter", "This works")
 //            onClickListener.onClick(currentDeck)
@@ -81,6 +82,20 @@ class DeckAdapter(val onClickListener: OnClickListener):
                         Log.i("DeckAdapter", "Clicked on edit deck")
                         true
                     }
+                    R.id.delete_deck -> {
+                        val builder = AlertDialog.Builder(holder.itemView.context)
+                        builder.setTitle("Delete Confirmation")
+                        builder.setMessage("Sure you want to delete this deck?")
+                        builder.setPositiveButton("Delete") { dialogInterface, i ->
+                            holder.itemView.visibility = View.GONE
+                            Toast.makeText(holder.itemView.context, "Deck has been successfully deleted", Toast.LENGTH_SHORT).show()
+                        }
+                        builder.setNegativeButton("<- No, go back"){dialogInterface, i ->
+                            dialogInterface.dismiss()
+                        }
+                        builder.show()
+                        true
+                    }
                     else -> {
                         Log.i("DeckAdapter", "Clicked on something else")
                         true
@@ -88,21 +103,6 @@ class DeckAdapter(val onClickListener: OnClickListener):
                 }
             })
             popup.show()
-        }
-
-        holder.itemView.setOnLongClickListener {
-            val builder = AlertDialog.Builder(holder.itemView.context)
-            builder.setTitle("Delete Confirmation")
-            builder.setMessage("Sure you want to delete this deck?")
-            builder.setPositiveButton("Delete") { dialogInterface, i ->
-                holder.itemView.visibility = View.GONE
-                Toast.makeText(holder.itemView.context, "Deck has been successfully deleted", Toast.LENGTH_SHORT).show()
-            }
-            builder.setNegativeButton("<- No, go back"){dialogInterface, i ->
-                dialogInterface.dismiss()
-            }
-            builder.show()
-            true
         }
         holder.bind(currentDeck)
     }
