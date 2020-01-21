@@ -1,15 +1,19 @@
 package com.lambda.mnemecards.overview
 
 import android.app.AlertDialog
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.lambda.mnemecards.R
 import com.lambda.mnemecards.databinding.DeckItemBinding
 import com.lambda.mnemecards.network.Deck
+import kotlinx.android.synthetic.main.deck_item.view.*
 
 /**
  * This class implements a [RecyclerView] [ListAdapter] which uses Data Binding to present [List]
@@ -64,6 +68,26 @@ class DeckAdapter(val onClickListener: OnClickListener):
         val currentDeck = getItem(position)
         holder.itemView.setOnClickListener{
             onClickListener.onClick(currentDeck)
+        }
+
+        holder.itemView.tv_options.setOnClickListener {
+            Log.i("Deck Adapter", "This works")
+//            onClickListener.onClick(currentDeck)
+            val popup = PopupMenu(holder.itemView.context, holder.itemView.tv_options)
+            popup.inflate(R.menu.options_menu)
+            popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener() {
+                when(it.itemId){
+                    R.id.edit_deck -> {
+                        Log.i("DeckAdapter", "Clicked on edit deck")
+                        true
+                    }
+                    else -> {
+                        Log.i("DeckAdapter", "Clicked on something else")
+                        true
+                    }
+                }
+            })
+            popup.show()
         }
 
         holder.itemView.setOnLongClickListener {
