@@ -132,6 +132,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
                         android:button="@null"
+                        android:drawableTint="@color/colorPrimary"
                         android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
                         android:fontFamily="@font/roboto_condensed_bold"
                         android:gravity="center_horizontal|bottom"
@@ -142,6 +143,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
+
+                        android:drawableTint="@color/colorPrimary"
                         android:button="@null"
                         android:drawableBottom="?android:attr/listChoiceIndicatorSingle"
                         android:fontFamily="@font/roboto_condensed_bold"

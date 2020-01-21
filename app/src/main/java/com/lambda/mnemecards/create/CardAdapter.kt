@@ -74,12 +74,12 @@ class CardAdapter(val onClickListener: OnClickListener):
         holder.itemView.setOnLongClickListener {
             val builder = AlertDialog.Builder(holder.itemView.context)
             builder.setTitle("Delete Confirmation")
-            builder.setMessage("Are you sure you want to delete this card?")
-            builder.setPositiveButton("YES") { dialogInterface, i ->
+            builder.setMessage("Sure you want to delete this card?")
+            builder.setPositiveButton("Delete") { dialogInterface, i ->
                 holder.itemView.visibility = View.GONE
                 Toast.makeText(holder.itemView.context, "Card has been successfully deleted", Toast.LENGTH_SHORT).show()
             }
-            builder.setNegativeButton("NO"){dialogInterface, i ->
+            builder.setNegativeButton("<- No, go back"){dialogInterface, i ->
                 dialogInterface.dismiss()
             }
             builder.show()

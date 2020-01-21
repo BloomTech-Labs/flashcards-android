@@ -1,7 +1,10 @@
 package com.lambda.mnemecards.overview
 
+import android.app.AlertDialog
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -61,6 +64,21 @@ class DeckAdapter(val onClickListener: OnClickListener):
         val currentDeck = getItem(position)
         holder.itemView.setOnClickListener{
             onClickListener.onClick(currentDeck)
+        }
+
+        holder.itemView.setOnLongClickListener {
+            val builder = AlertDialog.Builder(holder.itemView.context)
+            builder.setTitle("Delete Confirmation")
+            builder.setMessage("Sure you want to delete this deck?")
+            builder.setPositiveButton("Delete") { dialogInterface, i ->
+                holder.itemView.visibility = View.GONE
+                Toast.makeText(holder.itemView.context, "Deck has been successfully deleted", Toast.LENGTH_SHORT).show()
+            }
+            builder.setNegativeButton("<- No, go back"){dialogInterface, i ->
+                dialogInterface.dismiss()
+            }
+            builder.show()
+            true
         }
         holder.bind(currentDeck)
     }
