@@ -15,6 +15,7 @@ import com.lambda.mnemecards.network.Card
 import com.lambda.mnemecards.network.DataX
 import kotlinx.android.synthetic.main.deck_item.view.*
 import kotlinx.android.synthetic.main.fragment_create.view.*
+import kotlinx.android.synthetic.main.fragment_settings.view.*
 
 /**
  * This class implements a [RecyclerView] [ListAdapter] which uses Data Binding to present [List]

@@ -67,6 +67,9 @@
     <string name="back">Back</string>
     <string name="add_card">Add Card</string>
     <string name="save_deck">Save Deck</string>
+    <string name="edit_deck">Edit Deck</string>
+    <string name="archive_deck">Archive Deck</string>
+    <string name="delete_deck">Delete Deck</string>
 
     <!--    String arrays used for the spinner drop down menu-->
     <string-array name="study_methods">
