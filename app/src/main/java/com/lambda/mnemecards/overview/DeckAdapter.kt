@@ -88,6 +88,7 @@ class DeckAdapter(val onClickListener: OnClickListener):
                         builder.setMessage("Sure you want to delete this deck?")
                         builder.setPositiveButton("Delete") { dialogInterface, i ->
                             holder.itemView.visibility = View.GONE
+                            holder.itemView.layoutParams.height = 0
                             Toast.makeText(holder.itemView.context, "Deck has been successfully deleted", Toast.LENGTH_SHORT).show()
                         }
                         builder.setNegativeButton("<- No, go back"){dialogInterface, i ->

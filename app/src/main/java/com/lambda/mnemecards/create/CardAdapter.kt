@@ -78,6 +78,7 @@ class CardAdapter(val onClickListener: OnClickListener):
             builder.setMessage("Sure you want to delete this card?")
             builder.setPositiveButton("Delete") { dialogInterface, i ->
                 holder.itemView.visibility = View.GONE
+                holder.itemView.layoutParams.height = 0
                 Toast.makeText(holder.itemView.context, "Card has been successfully deleted", Toast.LENGTH_SHORT).show()
             }
             builder.setNegativeButton("<- No, go back"){dialogInterface, i ->
