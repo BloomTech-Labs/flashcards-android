@@ -71,6 +71,7 @@
     <string name="archive_deck">Archive Deck</string>
     <string name="delete_deck">Delete Deck</string>
     <string name="options_symbol">⋮</string>
+    <string name="edit_deck">Edit Deck</string>
 
     <!--    String arrays used for the spinner drop down menu-->
     <string-array name="study_methods">
