@@ -77,8 +77,9 @@ class DeckAdapter(val onClickListener: OnClickListener):
             popup.inflate(R.menu.options_menu)
             popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener() {
                 when(it.itemId){
+                    // If edit deck is clicked on, then pass in true to the onClick function I defined below
                     R.id.edit_deck -> {
-                        onClickListener.onClick(currentDeck)
+                        onClickListener.onClick(currentDeck, true)
                         true
                     }
                     R.id.delete_deck -> {
@@ -122,7 +123,11 @@ class DeckAdapter(val onClickListener: OnClickListener):
      * associated with the current item to the [onClick] function.
      * @param clickListener lambda that will be called with the current [Deck]
      */
-    class OnClickListener(val clickListener: (deck:Deck) -> Unit) {
-        fun onClick(deck:Deck) = clickListener(deck)
+    class OnClickListener(val clickListener: (deck:Deck, edit: Boolean) -> Unit) {
+        // the onClick that only takes in a deck brings the user to studying
+        fun onClick(deck:Deck) = clickListener(deck, false)
+
+        // the onClick that takes in a deck and a boolean brings the user to editing the deck
+        fun onClick(deck:Deck, edit: Boolean) = clickListener(deck, edit)
     }
 }

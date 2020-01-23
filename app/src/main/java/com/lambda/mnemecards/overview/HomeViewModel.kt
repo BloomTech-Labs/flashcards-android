@@ -27,6 +27,11 @@ class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
     val navigateToSelectedDeck: LiveData<Deck>
         get() = _navigateToSelectedDeck
 
+    private val _navigateToEditSelectedDeck = MutableLiveData<Deck>()
+
+    val navifateToEditSelectedDeck: LiveData<Deck>
+        get() = _navigateToEditSelectedDeck
+
     // Create a Coroutine scope using a job to be able to cancel when needed
     private var viewModelJob = Job()
 
@@ -76,7 +81,11 @@ class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
     }
 
     fun displayDeckDetails(selectedDeck: Deck){
-        _navigateToSelectedDeck.value = selectedDeck
+            _navigateToSelectedDeck.value = selectedDeck
+    }
+
+    fun editDeckDetails(selectedDeck: Deck){
+        _navigateToEditSelectedDeck.value = selectedDeck
     }
 
     /**
@@ -84,6 +93,10 @@ class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
      */
     fun displayDeckDetailsComplete(){
         _navigateToSelectedDeck.value = null
+    }
+
+    fun displayDeckEditComplete(){
+        _navigateToEditSelectedDeck.value = null
     }
 
     private suspend fun getDeckNames() {
