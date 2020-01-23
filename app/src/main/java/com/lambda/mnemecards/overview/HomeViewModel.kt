@@ -18,7 +18,7 @@ class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
     val decks: LiveData<MutableList<Deck>>
         get() = _decks
 
-    private var _deckNames = MutableLiveData<List<String>>()
+    private var _deckNames = MutableLiveData<List<DeckInformation>>()
 
     // Internally, we use a MutableLiveData to handle navigation to the selected property
     private val _navigateToSelectedDeck = MutableLiveData<Deck>()
@@ -26,6 +26,11 @@ class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
     // The external immutable LiveData for the navigation property
     val navigateToSelectedDeck: LiveData<Deck>
         get() = _navigateToSelectedDeck
+
+    private val _navigateToEditSelectedDeck = MutableLiveData<Deck>()
+
+    val navifateToEditSelectedDeck: LiveData<Deck>
+        get() = _navigateToEditSelectedDeck
 
     // Create a Coroutine scope using a job to be able to cancel when needed
     private var viewModelJob = Job()
@@ -59,10 +64,10 @@ class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
 
         coroutineScope.launch {
             getDeckNames()
-            delay(100)
+            delay(200)
 //            _deckNames.value?.get(0)?.let { getDecks(it) }
-            for (name in _deckNames.value!!) {
-                getDecks(name)
+            for (deck in _deckNames.value!!) {
+                getDecks(deck.deckName)
             }
 
             // Whenever using postValue inside of thread, need a delay or else logs will be null.
@@ -76,7 +81,11 @@ class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
     }
 
     fun displayDeckDetails(selectedDeck: Deck){
-        _navigateToSelectedDeck.value = selectedDeck
+            _navigateToSelectedDeck.value = selectedDeck
+    }
+
+    fun editDeckDetails(selectedDeck: Deck){
+        _navigateToEditSelectedDeck.value = selectedDeck
     }
 
     /**
@@ -84,6 +93,10 @@ class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
      */
     fun displayDeckDetailsComplete(){
         _navigateToSelectedDeck.value = null
+    }
+
+    fun displayDeckEditComplete(){
+        _navigateToEditSelectedDeck.value = null
     }
 
     private suspend fun getDeckNames() {

@@ -51,8 +51,8 @@ class CreateFragment : Fragment() {
 
         // Set the edit texts equal to the cards values.
         binding.rvCreateListCards.adapter = CardAdapter(CardAdapter.OnClickListener{
-            binding.etCreateCardFront.setText(it.front)
-            binding.etCreateCardBack.setText(it.back)
+//            binding.etCreateCardFront.setText(it.front)
+//            binding.etCreateCardBack.setText(it.back)
         })
 
         binding.rvCreateListCards.setOnLongClickListener {

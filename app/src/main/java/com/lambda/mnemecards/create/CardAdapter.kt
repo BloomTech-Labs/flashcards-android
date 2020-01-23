@@ -13,8 +13,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.lambda.mnemecards.databinding.CardItemBinding
 import com.lambda.mnemecards.network.Card
 import com.lambda.mnemecards.network.DataX
+import kotlinx.android.synthetic.main.card_item.view.*
 import kotlinx.android.synthetic.main.deck_item.view.*
 import kotlinx.android.synthetic.main.fragment_create.view.*
+import kotlinx.android.synthetic.main.fragment_edit.view.*
+import kotlinx.android.synthetic.main.fragment_settings.view.*
 
 /**
  * This class implements a [RecyclerView] [ListAdapter] which uses Data Binding to present [List]
@@ -77,6 +80,7 @@ class CardAdapter(val onClickListener: OnClickListener):
             builder.setMessage("Sure you want to delete this card?")
             builder.setPositiveButton("Delete") { dialogInterface, i ->
                 holder.itemView.visibility = View.GONE
+                holder.itemView.layoutParams.height = 0
                 Toast.makeText(holder.itemView.context, "Card has been successfully deleted", Toast.LENGTH_SHORT).show()
             }
             builder.setNegativeButton("<- No, go back"){dialogInterface, i ->
@@ -85,6 +89,17 @@ class CardAdapter(val onClickListener: OnClickListener):
             builder.show()
             true
         }
+
+        holder.itemView.cb_card.setOnClickListener {
+            currentCard.checked = !currentCard.checked
+        }
+
+//        holder.itemView?.btn_edit_delete?.setOnClickListener{
+//            if(currentCard.checked == true){
+//                it.visibility = View.GONE
+//                it.layoutParams.height = 0
+//            }
+//        }
 
         holder.bind(currentCard)
     }

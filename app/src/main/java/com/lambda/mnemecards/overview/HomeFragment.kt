@@ -13,6 +13,9 @@ import androidx.navigation.fragment.navArgs
 import com.facebook.CallbackManager
 import com.lambda.mnemecards.R
 import com.lambda.mnemecards.databinding.FragmentHomeBinding
+import kotlinx.android.synthetic.main.card_item.view.*
+import kotlinx.android.synthetic.main.deck_item.view.*
+import kotlinx.android.synthetic.main.fragment_create.view.*
 
 
 class HomeFragment : Fragment() {
@@ -59,14 +62,29 @@ class HomeFragment : Fragment() {
 
         // Sets the adapter of the deckGrid RecyclerView with clickHandler lambda that
         // tells the viewModel when our Deck is clicked
-        binding.rvDecks.adapter = DeckAdapter(DeckAdapter.OnClickListener {
-            viewModel.displayDeckDetails(it)
+        // If edit is false, then bring the user to study. If it's true, then bring the user to editing the deck.
+        binding.rvDecks.adapter = DeckAdapter(DeckAdapter.OnClickListener { selectedDeck, edit ->
+            if(edit == false)
+                viewModel.displayDeckDetails(selectedDeck)
+            else{
+                viewModel.editDeckDetails(selectedDeck)
+            }
         })
 
         viewModel.decks.observe(this, Observer {
             binding.pbLoading.visibility = View.INVISIBLE
         })
 
+        // Navigates to the edit deck
+        viewModel.navifateToEditSelectedDeck.observe(this, Observer {
+            if(it != null){
+                this.findNavController()
+                    .navigate(com.lambda.mnemecards.overview.HomeFragmentDirections.actionHomeFragmentToEditFragment(it))
+                viewModel.displayDeckEditComplete()
+            }
+        })
+
+        // Navigates to study
         viewModel.navigateToSelectedDeck.observe(this, Observer {
             if (it != null) {
                 this.findNavController()
