@@ -31,4 +31,9 @@ class EditViewModel(deck: Deck, app: Application) : AndroidViewModel(app)  {
         _listOfCards.value = obtainCards
     }
 
+    fun addCard(front: String, back: String){
+        obtainCards.add(DataX(front, back, false))
+        _listOfCards.value = obtainCards
+    }
+
 }

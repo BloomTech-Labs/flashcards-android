@@ -70,6 +70,12 @@ class EditFragment : Fragment() {
 //            }
         }
 
+        binding.btnEditAddCardSecond.setOnClickListener {
+            viewModel.addCard(binding.etCardFront.text.toString(), binding.etCardBack.text.toString())
+            binding.etCardFront.setText("")
+            binding.etCardBack.setText("")
+        }
+
         return binding.root
     }
 

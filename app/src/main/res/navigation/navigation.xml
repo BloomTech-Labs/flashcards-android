@@ -91,7 +91,7 @@
     <fragment
         android:id="@+id/editFragment"
         android:name="com.lambda.mnemecards.edit.EditFragment"
-        android:label="EditFragment" >
+        android:label="@string/mNeme">
         <argument
             android:name="deck"
             app:argType="com.lambda.mnemecards.network.Deck" />
