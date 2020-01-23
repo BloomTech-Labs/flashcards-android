@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_homeFragment_to_createFragment"
             app:destination="@id/createFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_editFragment"
+            app:destination="@id/editFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -84,5 +87,13 @@
         <argument
             android:name="deckList"
             app:argType="com.lambda.mnemecards.network.Deck[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/editFragment"
+        android:name="com.lambda.mnemecards.edit.EditFragment"
+        android:label="EditFragment" >
+        <argument
+            android:name="deck"
+            app:argType="com.lambda.mnemecards.network.Deck" />
     </fragment>
 </navigation>
