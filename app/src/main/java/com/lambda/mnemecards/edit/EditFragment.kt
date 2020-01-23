@@ -45,6 +45,9 @@ class EditFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
+        binding.btnEditSaveDeck.setOnClickListener {
+            Toast.makeText(binding.root.context, "Deck has been saved", Toast.LENGTH_SHORT).show()
+        }
 
         binding.rvEditCards.adapter = CardAdapter(CardAdapter.OnClickListener {
         })
