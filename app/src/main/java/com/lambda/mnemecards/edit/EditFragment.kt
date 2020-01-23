@@ -59,9 +59,9 @@ class EditFragment : Fragment() {
             viewFirst.visibility = View.GONE
             viewFirst.layoutParams.height = 0
 
-            val viewSecond = binding.rvEditCards.getChildAt(2)
-            viewSecond.visibility = View.GONE
-            viewSecond.layoutParams.height = 0
+//            val viewSecond = binding.rvEditCards.getChildAt(2)
+//            viewSecond.visibility = View.GONE
+//            viewSecond.layoutParams.height = 0
 
 //            for(card in viewModel.listOfCards.value!!){
 //                if(card.checked == true){

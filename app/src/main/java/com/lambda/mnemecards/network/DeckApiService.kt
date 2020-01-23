@@ -46,7 +46,7 @@ interface DeckApiService {
     // For some reason making this return type: Deferred<ArrayList<String>>
     // Gets an list of all the deck names
     @GET("api/demo/{deckid}")
-    fun getDemoDecks(@Path("deckid") deckid: String): Deferred<List<String>>
+    fun getDemoDecks(@Path("deckid") deckid: String): Deferred<List<DeckInformation>>
 
     // Only need the demo deck id  and deck name
     @GET("api/demo/{deckid}/{deckname}")
