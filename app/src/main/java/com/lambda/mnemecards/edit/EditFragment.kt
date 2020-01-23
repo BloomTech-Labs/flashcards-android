@@ -2,6 +2,7 @@ package com.lambda.mnemecards.edit
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 
 import com.lambda.mnemecards.R
+import com.lambda.mnemecards.create.CardAdapter
 import com.lambda.mnemecards.databinding.FragmentEditBinding
 
 /**
@@ -40,7 +42,11 @@ class EditFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
+        binding.rvEditCards.adapter = CardAdapter(CardAdapter.OnClickListener{
 
+        })
+
+        Log.i("EditFragment", "${viewModel.listOfCards.value?.get(0)?.front}")
 
         return binding.root
     }

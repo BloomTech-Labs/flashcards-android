@@ -182,6 +182,8 @@
                     android:id="@+id/rv_edit_cards"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:listDataCard="@{viewModel.listOfCards}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/btn_edit_add_card" />
 
