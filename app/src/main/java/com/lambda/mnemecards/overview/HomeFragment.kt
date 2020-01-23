@@ -62,11 +62,12 @@ class HomeFragment : Fragment() {
 
         // Sets the adapter of the deckGrid RecyclerView with clickHandler lambda that
         // tells the viewModel when our Deck is clicked
+        // If edit is false, then bring the user to study. If it's true, then bring the user to editing the deck.
         binding.rvDecks.adapter = DeckAdapter(DeckAdapter.OnClickListener { selectedDeck, edit ->
             if(edit == false)
                 viewModel.displayDeckDetails(selectedDeck)
             else{
-                Log.i("HomeFragment3", "Does this actually work?")
+                viewModel.editDeckDetails(selectedDeck)
             }
         })
 

@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.lambda.mnemecards.edit.EditViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
