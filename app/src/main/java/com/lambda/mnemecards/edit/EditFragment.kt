@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
@@ -70,10 +71,23 @@ class EditFragment : Fragment() {
 //            }
         }
 
+        // Shows the card that can be edited while also making the add btn invisible
+        binding.btnEditAddCard.setOnClickListener {
+            binding.btnEditAddCard.visibility = View.GONE
+            binding.cardEditAdd.visibility = View.VISIBLE
+            binding.btnEditAddCardSecond.visibility = View.VISIBLE
+        }
+
+        // Adds the card into the list while also hiding the card when it gets added.
         binding.btnEditAddCardSecond.setOnClickListener {
             viewModel.addCard(binding.etCardFront.text.toString(), binding.etCardBack.text.toString())
             binding.etCardFront.setText("")
             binding.etCardBack.setText("")
+
+            binding.btnEditAddCard.visibility = View.VISIBLE
+            binding.cardEditAdd.visibility = View.GONE
+            binding.btnEditAddCardSecond.visibility = View.GONE
+            Toast.makeText(application, "Card Added", Toast.LENGTH_SHORT).show()
         }
 
         return binding.root
