@@ -13,5 +13,7 @@ data class DataX(
     val front: String,
 
     @Json(name = "back")
-    val back: String
+    val back: String,
+
+    var checked: Boolean = false
 ):Parcelable

@@ -11,12 +11,12 @@ import com.lambda.mnemecards.network.Deck
 
 class EditViewModel(deck: Deck, app: Application) : AndroidViewModel(app)  {
 
-    val _selectedDeck = MutableLiveData<Deck>()
+    private val _selectedDeck = MutableLiveData<Deck>()
 
     val selectedDeck : LiveData<Deck>
         get() = _selectedDeck
 
-    val _listOfCards = MutableLiveData<MutableList<DataX>>()
+    private val _listOfCards = MutableLiveData<MutableList<DataX>>()
     val listOfCards : LiveData<MutableList<DataX>>
         get() = _listOfCards
 

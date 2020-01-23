@@ -29,7 +29,8 @@ class EditFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        val binding: FragmentEditBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_edit, container, false)
+        val binding: FragmentEditBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_edit, container, false)
 
         val editFragmentArgs by navArgs<EditFragmentArgs>()
 
@@ -42,11 +43,32 @@ class EditFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-        binding.rvEditCards.adapter = CardAdapter(CardAdapter.OnClickListener{
-
+        binding.rvEditCards.adapter = CardAdapter(CardAdapter.OnClickListener {
         })
 
         Log.i("EditFragment", "${viewModel.listOfCards.value?.get(0)?.front}")
+
+        binding.btnEditDelete.setOnClickListener {
+            var size = binding.rvEditCards.adapter!!.itemCount
+            Log.i("Edit Fragment", size.toString())
+
+
+//               val cardSelected = (binding.rvEditCards.adapter as CardAdapter).getItemId(cardCounter)
+            val viewFirst = binding.rvEditCards.getChildAt(1)
+            viewFirst.visibility = View.GONE
+            viewFirst.layoutParams.height = 0
+
+            val viewSecond = binding.rvEditCards.getChildAt(2)
+            viewSecond.visibility = View.GONE
+            viewSecond.layoutParams.height = 0
+
+//            for(card in viewModel.listOfCards.value!!){
+//                if(card.checked == true){
+//                    it.visibility = View.GONE
+//                    it.layoutParams.height = 0
+//                }
+//            }
+        }
 
         return binding.root
     }

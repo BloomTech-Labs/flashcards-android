@@ -13,8 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.lambda.mnemecards.databinding.CardItemBinding
 import com.lambda.mnemecards.network.Card
 import com.lambda.mnemecards.network.DataX
+import kotlinx.android.synthetic.main.card_item.view.*
 import kotlinx.android.synthetic.main.deck_item.view.*
 import kotlinx.android.synthetic.main.fragment_create.view.*
+import kotlinx.android.synthetic.main.fragment_edit.view.*
 import kotlinx.android.synthetic.main.fragment_settings.view.*
 
 /**
@@ -87,6 +89,17 @@ class CardAdapter(val onClickListener: OnClickListener):
             builder.show()
             true
         }
+
+        holder.itemView.cb_card.setOnClickListener {
+            currentCard.checked = !currentCard.checked
+        }
+
+//        holder.itemView?.btn_edit_delete?.setOnClickListener{
+//            if(currentCard.checked == true){
+//                it.visibility = View.GONE
+//                it.layoutParams.height = 0
+//            }
+//        }
 
         holder.bind(currentCard)
     }
