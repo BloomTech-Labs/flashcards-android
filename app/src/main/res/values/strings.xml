@@ -72,6 +72,13 @@
     <string name="delete_deck">Delete Deck</string>
     <string name="options_symbol">⋮</string>
     <string name="edit_deck">Edit Deck</string>
+    <string name="deck_info">Deck Info</string>
+    <string name="deck_name">Deck Name</string>
+    <string name="add_new_card">Add New Card</string>
+    <string name="flashcards">Flashcards</string>
+    <string name="select_a_card_below_to_edit_card_content_or_add_a_new_card">Select a card below to edit card content or add a new card</string>
+    <string name="go_back"><![CDATA[<- Go back]]></string>
+    <string name="save">Save</string>
 
     <!--    String arrays used for the spinner drop down menu-->
     <string-array name="study_methods">
