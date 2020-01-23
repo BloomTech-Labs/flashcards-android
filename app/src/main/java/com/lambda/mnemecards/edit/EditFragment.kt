@@ -1,6 +1,7 @@
 package com.lambda.mnemecards.edit
 
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -44,6 +45,7 @@ class EditFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
+
         binding.rvEditCards.adapter = CardAdapter(CardAdapter.OnClickListener {
         })
 
@@ -53,11 +55,23 @@ class EditFragment : Fragment() {
             var size = binding.rvEditCards.adapter!!.itemCount
             Log.i("Edit Fragment", size.toString())
 
-
+                val builder = AlertDialog.Builder(binding.root.context)
+                builder.setTitle("Delete Confirmation")
+                builder.setMessage("Sure you want to delete these cards?")
+                builder.setPositiveButton("Delete") { dialogInterface, i ->
+                    val viewFirst = binding.rvEditCards.getChildAt(1)
+                    if(viewFirst != null){
+                        viewFirst.visibility = View.GONE
+                        viewFirst.layoutParams.height = 0
+                    }
+                    Toast.makeText(binding.root.context, "Card has been successfully deleted", Toast.LENGTH_SHORT).show()
+                }
+                builder.setNegativeButton("<- No, go back"){dialogInterface, i ->
+                    dialogInterface.dismiss()
+                }
+                builder.show()
 //               val cardSelected = (binding.rvEditCards.adapter as CardAdapter).getItemId(cardCounter)
-            val viewFirst = binding.rvEditCards.getChildAt(1)
-            viewFirst.visibility = View.GONE
-            viewFirst.layoutParams.height = 0
+
 
 //            val viewSecond = binding.rvEditCards.getChildAt(2)
 //            viewSecond.visibility = View.GONE
