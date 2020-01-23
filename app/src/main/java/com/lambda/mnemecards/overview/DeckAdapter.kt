@@ -72,14 +72,13 @@ class DeckAdapter(val onClickListener: OnClickListener):
 
         // Creates the pop up menu that allows for editing, achieving, and deleting.
         holder.itemView.tv_options.setOnClickListener {
-            Log.i("Deck Adapter", "This works")
-//            onClickListener.onClick(currentDeck)
+
             val popup = PopupMenu(holder.itemView.context, holder.itemView.tv_options)
             popup.inflate(R.menu.options_menu)
             popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener() {
                 when(it.itemId){
                     R.id.edit_deck -> {
-                        Log.i("DeckAdapter", "Clicked on edit deck")
+                        onClickListener.onClick(currentDeck)
                         true
                     }
                     R.id.delete_deck -> {
@@ -98,7 +97,17 @@ class DeckAdapter(val onClickListener: OnClickListener):
                         true
                     }
                     else -> {
-                        Log.i("DeckAdapter", "Clicked on something else")
+                        val builder = AlertDialog.Builder(holder.itemView.context)
+                        builder.setTitle("Archive Confirmation")
+                        builder.setMessage("Sure you want to archive this deck?")
+                        builder.setPositiveButton("Archive") { dialogInterface, i ->
+                        holder.itemView.visibility = View.GONE
+                        holder.itemView.layoutParams.height = 0
+                        }
+                        builder.setNegativeButton("<- No, go back"){dialogInterface, i ->
+                            dialogInterface.dismiss()
+                        }
+                        builder.show()
                         true
                     }
                 }

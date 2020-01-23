@@ -75,6 +75,8 @@
     <string name="add_new_card">Add New Card</string>
     <string name="select_a_card_below_to_edit_card_content_or_add_a_new_card">Select a card below to edit card content or add a new card</string>
     <string name="go_back"><![CDATA[<- Go back]]></string>
+    <string name="delete">Delete</string>
+    <string name="archive">Archive</string>
 
     <!--    String arrays used for the spinner drop down menu-->
     <string-array name="study_methods">
