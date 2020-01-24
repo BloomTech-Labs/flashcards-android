@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
@@ -67,7 +68,9 @@ class CreateFragment : Fragment() {
         }
 
         binding.btnCreateSaveDeck.setOnClickListener {
-            viewModel.addDeck(binding.etCreateDeckName.text.toString())
+//            viewModel.addDeck(binding.textInputCreateDeckName.inp.text.toString())
+
+            Toast.makeText(binding.root.context, "Deck has been saved", Toast.LENGTH_SHORT).show()
 
             Log.i("CreateFragment", "${viewModel.decks.value?.get(0)?.data?.get(0)?.data?.front}")
         }
