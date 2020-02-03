@@ -10,9 +10,7 @@ import kotlinx.coroutines.Deferred
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 private const val BASE_URL = "https://flashcards-be.herokuapp.com/"
 
@@ -57,6 +55,30 @@ interface DeckApiService {
 
     @GET("api/demo/I2r2gejFYwCQfqafWlVy/Biology")
     fun getDemoCardsEasy(): Deferred<Deck>
+
+    @POST("api/deck/{id}/{deckName}")
+    fun addDeck(@Path("id") userId:String,
+                @Path("deckName") deckName: String)
+
+    @POST("api/deck/{id}/{deckName}/add")
+    fun addCards(@Path("id") userId: String,
+                 @Path("deckName")deckName: String)
+
+    @PUT("api/deck/update/{id}/{deckName}")
+    fun updateCard(@Path("id") userId: String,
+                   @Path("deckName") deckName: String)
+
+    @PUT("api/deck/update-deck-name/{id}/{deckName}")
+    fun updateDeck(@Path("id") userId: String,
+                   @Path("deckName") deckName: String)
+
+    @DELETE("api/deck/{id}/{deckName}/delete-cards")
+    fun deleteCard(@Path("id") userId: String,
+                   @Path("deckName") deckId: String)
+
+    @DELETE("api/deck/{id}/{deckName}/delete-deck")
+    fun deleteDeck(@Path("id") userId: String,
+                   @Path("deckName") deckid: String)
 }
 
 /**
