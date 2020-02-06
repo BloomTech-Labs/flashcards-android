@@ -28,6 +28,7 @@ class CardsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        // Data Binding boilerplate code
         val binding: FragmentCardsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_cards, container, false)
 
         val cardFragmentArgs by navArgs<CardsFragmentArgs>()
@@ -37,6 +38,7 @@ class CardsFragment : Fragment() {
         viewModelFactory = CardsViewModelFactory(cardFragmentArgs.deck, application)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(CardsViewModel::class.java)
 
+        // Sets the binding viewmodel from the XML to the viewModel that gets created in this function.
         binding.viewModel = viewModel
 
         binding.lifecycleOwner = this
@@ -95,14 +97,19 @@ class CardsFragment : Fragment() {
             binding.btnCardsNext.visibility = View.VISIBLE
 //            binding.btnCardsTryAgain.visibility = View.VISIBLE
 
+            // Display the Shocked Emoji if it gets clicked on
             if(clickedEmoji == "shockEmoji"){
                 binding.ivCardsDisplayHowWell.setImageResource(R.drawable.shocked_emoji)
                 binding.tvCardsEmojiToText.text = "Umm?!"
             }
+
+            // Display the Happy Emoji if it gets clicked on
             else if(clickedEmoji == "happyEmoji"){
                 binding.ivCardsDisplayHowWell.setImageResource(R.drawable.happy_emoji)
                 binding.tvCardsEmojiToText.text = "Okay!"
             }
+
+            // Display the Cool Emoji if it gets clicked on
             else{
                 binding.ivCardsDisplayHowWell.setImageResource(R.drawable.cool_emoji)
                 binding.tvCardsEmojiToText.text = "Nailed It!"

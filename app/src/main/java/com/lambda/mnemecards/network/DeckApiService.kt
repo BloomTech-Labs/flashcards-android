@@ -53,29 +53,32 @@ interface DeckApiService {
     // The Coroutine Call Adapter allows us to return a Deferred, a Job with a result
             //Deferred<List<MarsProperty>>
 
-    @GET("api/demo/I2r2gejFYwCQfqafWlVy/Biology")
-    fun getDemoCardsEasy(): Deferred<Deck>
-
+    // Used to add a deck to the backend.
     @POST("api/deck/{id}/{deckName}")
     fun addDeck(@Path("id") userId:String,
                 @Path("deckName") deckName: String)
 
+    // Used to add cards to an existing deck
     @POST("api/deck/{id}/{deckName}/add")
     fun addCards(@Path("id") userId: String,
                  @Path("deckName")deckName: String)
 
+    // Used to update a card in the deck.
     @PUT("api/deck/update/{id}/{deckName}")
     fun updateCard(@Path("id") userId: String,
                    @Path("deckName") deckName: String)
 
+    // Used to update the name of a deck.
     @PUT("api/deck/update-deck-name/{id}/{deckName}")
     fun updateDeck(@Path("id") userId: String,
                    @Path("deckName") deckName: String)
 
+    // Used to delete a card from a deck.
     @DELETE("api/deck/{id}/{deckName}/delete-cards")
     fun deleteCard(@Path("id") userId: String,
                    @Path("deckName") deckId: String)
 
+    // Used to delete a deck.
     @DELETE("api/deck/{id}/{deckName}/delete-deck")
     fun deleteDeck(@Path("id") userId: String,
                    @Path("deckName") deckid: String)
