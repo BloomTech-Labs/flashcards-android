@@ -72,8 +72,8 @@ class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
 
             // Whenever using postValue inside of thread, need a delay or else logs will be null.
             val listOfData = mutableListOf<Data>()
-            listOfData.add(Data(DataX("Test Front", "Test Back")))
-            val newDeckStatic = Deck(listOfData, "Test Deck", "", "", 0)
+            listOfData.add(Data(DataX("Front12", "Back12")))
+            val newDeckStatic = Deck(listOfData, "Deck123", "", "", 0)
             newDeck.add(newDeckStatic)
             _decks.postValue(newDeck)
             delay(100)
@@ -113,6 +113,8 @@ class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
         } catch (e: Exception) {
             Log.i("HomeViewModel CATCH", "${e.message}")
         }
+
+
     }
 
     private suspend fun getDecks(deckName: String) {

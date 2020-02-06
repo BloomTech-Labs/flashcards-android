@@ -58,6 +58,7 @@ class CardsViewModel(deck: Deck, app: Application) : AndroidViewModel(app) {
     val displayDeckCardAmount = _selectedDeck.value?.data?.size
     var cardCounter = 0
 
+    // Changes the display of the card depending on the view's value that's passed in.
     fun changeDisplay(view: View?){
 
         _frontOrBack.value = !_frontOrBack.value!!
@@ -86,11 +87,13 @@ class CardsViewModel(deck: Deck, app: Application) : AndroidViewModel(app) {
 
     }
 
+    // Increases the card count. This is used for traversing through the deck.
     fun increaseCardCount(){
         if(cardCounter < _selectedDeck.value?.data?.size!!-1)
             cardCounter++
     }
 
+    // Decreases the card count. Correctly not in use because of team decision to not be able to go back.
     fun decreaseCardCount(){
         if(cardCounter >= 0)
             cardCounter--

@@ -78,6 +78,8 @@
     <string name="delete">Delete</string>
     <string name="archive">Archive</string>
     <string name="add">Add</string>
+    <string name="user_preferences">User preferences</string>
+    <string name="most_studied_subjects">Most studied subjects</string>
 
     <!--    String arrays used for the spinner drop down menu-->
     <string-array name="study_methods">

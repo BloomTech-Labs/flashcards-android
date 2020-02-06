@@ -35,6 +35,7 @@ class CreateViewModel(decks: MutableList<Deck>, app: Application) : AndroidViewM
         decksResult = decks
     }
 
+    // Adds a card to the list of cards
     fun addCards(front: String, back: String){
         cardsResult.add(DataX(front, back))
         _cards.value = cardsResult

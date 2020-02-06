@@ -31,6 +31,7 @@ class EditFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
+        // binding boiler plate
         val binding: FragmentEditBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_edit, container, false)
 
@@ -41,10 +42,12 @@ class EditFragment : Fragment() {
         viewModelFactory = EditViewModelFactory(editFragmentArgs.deck, application)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(EditViewModel::class.java)
 
+        // sets the binding viewmodel from the xml to the binding created in this function.
         binding.viewModel = viewModel
 
         binding.lifecycleOwner = this
 
+        // Creates a toast for when the user clicks on the save deck button.
         binding.btnEditSaveDeck.setOnClickListener {
             Toast.makeText(binding.root.context, "Deck has been saved", Toast.LENGTH_SHORT).show()
         }
@@ -54,6 +57,7 @@ class EditFragment : Fragment() {
 
         Log.i("EditFragment", "${viewModel.listOfCards.value?.get(0)?.front}")
 
+        // Creates the delete alert dialog for when a user wants to delete a deck
         binding.btnEditDelete.setOnClickListener {
             var size = binding.rvEditCards.adapter!!.itemCount
             Log.i("Edit Fragment", size.toString())
@@ -64,6 +68,7 @@ class EditFragment : Fragment() {
                 builder.setPositiveButton("Delete") { dialogInterface, i ->
                     val viewFirst = binding.rvEditCards.getChildAt(1)
                     if(viewFirst != null){
+                        // Sets the deck's views to nothing
                         viewFirst.visibility = View.GONE
                         viewFirst.layoutParams.height = 0
                     }
