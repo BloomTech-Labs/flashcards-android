@@ -31,6 +31,7 @@ class CreateFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        // boilerplate for data binding.
         val binding: FragmentCreateBinding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_create,
@@ -46,6 +47,7 @@ class CreateFragment : Fragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(CreateViewModel::class.java)
 
+        // Sets the binding's viewmodel from the xml to the viewModel created in this function.
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
@@ -56,17 +58,14 @@ class CreateFragment : Fragment() {
 //            binding.etCreateCardBack.setText(it.back)
         })
 
-        binding.rvCreateListCards.setOnLongClickListener {
-            Log.i("CreateFragment", "Does this get called?")
-            false
-        }
-
+        // Sets the edit text values to blank for when a user clicks on add card.
         binding.btnCreateAddCard.setOnClickListener {
             viewModel.addCards(binding.etCreateCardFront.text.toString(), binding.etCreateCardBack.text.toString())
             binding.etCreateCardFront.text.clear()
             binding.etCreateCardBack.text.clear()
         }
 
+        // Adds the deck to the database.
         binding.btnCreateSaveDeck.setOnClickListener {
 //            viewModel.addDeck(binding.textInputCreateDeckName.inp.text.toString())
 

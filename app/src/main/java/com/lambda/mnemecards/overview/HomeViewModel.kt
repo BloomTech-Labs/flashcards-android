@@ -114,16 +114,7 @@ class HomeViewModel(name: String?, photo: String?, user:User?) : ViewModel() {
             Log.i("HomeViewModel CATCH", "${e.message}")
         }
 
-        try{
-//            DeckApi.retrofitService.addDeck("wdqe", "dsada")
-//            DeckApi.retrofitService.addCards("wdqe", "dsada")
-//            DeckApi.retrofitService.updateCard("wdqe", "dsada")
-//            DeckApi.retrofitService.updateDeck("wdqe", "dsada")
-//            DeckApi.retrofitService.deleteCard("wdqe", "dsada")
-//            DeckApi.retrofitService.deleteDeck("wdqe", "dsada")
-        } catch (e: Exception){
-            Log.i("wadas", "dwadsa")
-        }
+
     }
 
     private suspend fun getDecks(deckName: String) {
