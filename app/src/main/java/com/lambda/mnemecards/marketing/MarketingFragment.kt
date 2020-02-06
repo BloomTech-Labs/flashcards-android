@@ -90,12 +90,16 @@ class marketingFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         binding.btnMarketingSignIn.setOnClickListener {
+
+            // Used for analytics in the firebase console
             val bundle = Bundle()
             bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "Sign_in")
             FirebaseAnalytics.getInstance(binding.root.context).logEvent("Sign_In_Clicked", bundle)
             launchSignInFlow()
         }
         binding.btnMarketingSignUp.setOnClickListener {
+            
+            // Used for analytics in the firebase console
             val bundle = Bundle()
             bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "Sign_up")
             FirebaseAnalytics.getInstance(binding.root.context).logEvent("Sign_Up_Clicked", bundle)

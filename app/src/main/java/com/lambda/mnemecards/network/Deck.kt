@@ -5,6 +5,8 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 
+// This class contains all of the information about a deck and the list of cards that they have.
+
 @Parcelize
 @JsonClass(generateAdapter = true)
 data class Deck(

@@ -6,6 +6,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 
+// This class holds the data about a card and their id.
 @Parcelize
 @JsonClass(generateAdapter = true)
 data class Data(
